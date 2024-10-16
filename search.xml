@@ -3,20 +3,43 @@
   <entry>
     <title>hexo使用说明</title>
     <url>/2024/10/15/hexo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</url>
-    <content><![CDATA[<h1 id="hexo使用说明"><a href="#hexo使用说明" class="headerlink" title="hexo使用说明"></a>hexo使用说明</h1><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>总的来说，Hexo 是一个非常灵活和易用的静态博客生成器，非常适合快速搭建博客和记录开发相关内容。</p>
+    <content><![CDATA[<h1 id="命令总结"><a href="#命令总结" class="headerlink" title="命令总结"></a>命令总结</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt; # 生成新文章</span><br><span class="line">hexo g	#markdown渲染html</span><br><span class="line">hexo s #打开本地服务</span><br><span class="line">hexo d #推送至github</span><br></pre></td></tr></table></figure>
+
 <span id="more"></span>
 
-<h2 id="创建一片文章"><a href="#创建一片文章" class="headerlink" title="创建一片文章"></a>创建一片文章</h2><ol>
-<li>命令<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure></li>
-<li>\source\_posts 文件夹下直接创建markdown文件<ul>
+<h1 id="创建一片文章"><a href="#创建一片文章" class="headerlink" title="创建一片文章"></a>创建一片文章</h1><ol>
+<li><p>命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>优点:自动生成一些标记</li>
+<li>缺点：需要手动切换至对应文件编辑</li>
+</ul>
+<blockquote>
+<p>layout :<code>post</code>、<code>page</code> 和 <code>draft</code> ；<code>page</code>就是在Source下生成对应的文件夹然后生成一个index.md文件,另外两个就是生成对应文件夹 并且生成新的markdown文件名称</p>
+</blockquote>
+</li>
+<li><p>自定义layout</p>
+<blockquote>
+<p>layout，自定义的位于 scaffolds文件下 , 用于定义一些Front-matter  和模板内容</p>
+</blockquote>
+</li>
+<li><p>使用自定义layout</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new custom_template &quot;根据自定义模板生成文章&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>\source\_posts 文件夹下直接创建markdown文件</p>
+<ul>
 <li>优点: 避免繁琐的命令</li>
 <li>缺点:Front-matter需要手动书写</li>
 </ul>
 </li>
 </ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://fuguigui.github.io/hexo2/">一次完整的Hexo写作流程</a></p>
+<h1 id="阅读更多链接"><a href="#阅读更多链接" class="headerlink" title="阅读更多链接"></a>阅读更多链接</h1><p><code>&lt;!-- more --&gt;</code>前的内容被展示 剩下的点击<strong>阅读全文</strong>展示</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://fuguigui.github.io/hexo2/">一次完整的Hexo写作流程</a></p>
 <p><a href="https://hexo.io/zh-cn/">hexo官方文档</a></p>
 ]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
       <tags>
         <tag>hexo</tag>
         <tag>教程</tag>
