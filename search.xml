@@ -136,4 +136,44 @@
         <tag>教程</tag>
       </tags>
   </entry>
+  <entry>
+    <title>电网知识</title>
+    <url>/2024/10/18/%E7%94%B5%E7%BD%91%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.dlzstp.com/entry">电知网</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/538591681">电力知识图谱：网络安全分区</a></p>
+<p><a href="https://www.zhihu.com/column/c_1193928849044598784">能源信息化专栏</a></p>
+<span id="more"></span>
+
+<h1 id="网络分区"><a href="#网络分区" class="headerlink" title="网络分区"></a>网络分区</h1><p>总的有6个区，电力内网I-IV区+互联网大区+外网区</p>
+<p>根据电力 二次系统的特点，划分为生产控制大区和管理信息大区。生产控制大区 分为控制区（安全区Ⅰ）和非控制区（安全区Ⅱ）。信息管理大区分为生产管理区（安全区Ⅲ）和管理信息区（安全区Ⅳ）。</p>
+]]></content>
+      <categories>
+        <category>电网</category>
+      </categories>
+      <tags>
+        <tag>电网</tag>
+        <tag>业务</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue2踩坑记录</title>
+    <url>/2024/10/17/vue2%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="v-show失效"><a href="#v-show失效" class="headerlink" title="v-show失效"></a>v-show失效</h1><p>components\拖拽折线\index.html   拖拽组件右键菜单部分v-show 和flex同存则不生效 ，但是其他方式却无法复现这一问题</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">&quot;contextmenuRef&quot;</span> <span class="attr">v-show</span>=<span class="string">&quot;showContextMenu&quot;</span> <span class="attr">style</span>=<span class="string">&quot;position:absolute;display:flex;&quot;</span> @<span class="attr">keyup.enter</span>=<span class="string">&quot;saveDiff&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>问题</strong>: <code>v-show</code>和 行内样式 <code>display:flex</code>同时设置在一个标签上 <code>v-show</code>不生效</p>
+<p><strong>原因：</strong>未知，并且无法复现</p>
+<p><strong>解决方案</strong>：样式使用class或者v-show提高一层</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>vue</tag>
+        <tag>经验</tag>
+        <tag>bug</tag>
+      </tags>
+  </entry>
 </search>
