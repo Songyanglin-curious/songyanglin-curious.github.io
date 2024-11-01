@@ -26,8 +26,8 @@
 <meta property="og:site_name" content="SYL">
 <meta property="og:description" content="导航菜单示例                      .custom-nav {                 &#x2F;* font-family: Arial, sans-serif; *&#x2F;             }              .custom-nav .navigation&gt;div&gt;div {">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-11-01T07:19:23.756Z">
-<meta property="article:modified_time" content="2024-11-01T07:19:23.756Z">
+<meta property="article:published_time" content="2024-11-01T07:32:37.976Z">
+<meta property="article:modified_time" content="2024-11-01T07:32:37.976Z">
 <meta property="article:author" content="songyanglin">
 <meta name="twitter:card" content="summary">
 
@@ -299,11 +299,11 @@
                 display: flex;
                 flex-wrap: wrap;
                 gap: 20px;
-                padding: 10px;
+                /* padding: 10px; */
                 /* border: solid 1px #ccc; */
                 border-radius: 5px;
-                margin: 5px;
-                box-shadow: 0 0 5px #ccc;
+                margin: 5px 10px;
+                /* box-shadow: 0 0 5px #ccc; */
 
             }
 
@@ -313,7 +313,7 @@
                 /* 更柔和的深灰色 */
                 text-decoration: underline;
                 /* 去掉下划线 */
-                /* border: 1px solid #FF5722; */
+                border: 1px solid #FF5722;
                 /* 橘色边框 */
                 /* padding: 5px 10px; */
                 /* 内边距 */
@@ -492,7 +492,8 @@
                     if (node.items) {
                         const item = document.createElement('div'); // 创建 item
 
-                        let title = `<div id="${level}-${node.title}" class="level-${level}" style="margin-left: ${level * 10}px;font-size: ${24 - level * 2}px;font-weight: bold;">${node.title}</div>`
+                        let title = `<div id="${level}-${node.title}" class="level-${level}" style="margin-left: ${level * 10}px;font-size: ${24 - level * 2}px;font-weight: bold;border-bottom: 2px solid #000;
+    line-height: ${24 - level * 2}px;">${node.title}</div>`
                         item.innerHTML = title; // 设置标题
                         const subUl = createNavDOM(node.items, level + 1); // 递归创建子 div
                         item.appendChild(subUl); // 将子 div 添加到当前 item
