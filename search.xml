@@ -74,168 +74,6 @@
       </tags>
   </entry>
   <entry>
-    <title>hexo使用说明</title>
-    <url>/2024/10/15/hexo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</url>
-    <content><![CDATA[<h1 id="命令总结"><a href="#命令总结" class="headerlink" title="命令总结"></a>命令总结</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt; # 生成新文章</span><br><span class="line">hexo g	#markdown渲染html</span><br><span class="line">hexo s #打开本地服务</span><br><span class="line">hexo d #推送至github</span><br><span class="line">npm run sync #自定义更新指令</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<h1 id="创建一片文章"><a href="#创建一片文章" class="headerlink" title="创建一片文章"></a>创建一片文章</h1><ol>
-<li><p>命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>优点:自动生成一些标记</li>
-<li>缺点：需要手动切换至对应文件编辑</li>
-</ul>
-<blockquote>
-<p>layout :<code>post</code>、<code>page</code> 和 <code>draft</code> ；<code>page</code>就是在Source下生成对应的文件夹然后生成一个index.md文件,另外两个就是生成对应文件夹 并且生成新的markdown文件名称</p>
-</blockquote>
-</li>
-<li><p>自定义layout</p>
-<blockquote>
-<p>layout，自定义的位于 scaffolds文件下 , 用于定义一些Front-matter  和模板内容</p>
-</blockquote>
-</li>
-<li><p>使用自定义layout</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new custom_template &quot;根据自定义模板生成文章&quot;</span><br></pre></td></tr></table></figure></li>
-<li><p>\source\_posts 文件夹下直接创建markdown文件</p>
-<ul>
-<li>优点: 避免繁琐的命令</li>
-<li>缺点:Front-matter需要手动书写</li>
-</ul>
-</li>
-</ol>
-<h1 id="阅读更多链接"><a href="#阅读更多链接" class="headerlink" title="阅读更多链接"></a>阅读更多链接</h1><p><code>&lt;!-- more --&gt;</code>前的内容被展示 剩下的点击<strong>阅读全文</strong>展示</p>
-<h1 id="嵌入图片"><a href="#嵌入图片" class="headerlink" title="嵌入图片"></a>嵌入图片</h1><p><strong>思路：</strong></p>
-<ol>
-<li>hexo 的工作本质就是将markdown 转成 html  ,所以最终展示 图片按照 image标签的规则来即可；</li>
-<li>我使用的markdown插件为<strong>Office Viewer(Markdown Editor)</strong> 可以直接插入图片 它会在文章同级生成 <code>/image/[文章名称]/[图片名称].png</code>如 <code>source\_posts\image\Echarts配置生成\1729064676610.png</code> ，并且编译出来的image的url为绝对路径，所以我需要让——post下的image文件夹copy到 public文件夹下。</li>
-<li>由于未找到自定义配置如何实现  所以通过自定义脚本来实现，根路径下创建自定义任务 <code>copy_images.js</code>内容如下</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs-extra&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义源路径和目标路径</span></span><br><span class="line"><span class="keyword">const</span> sourcePath = path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;source/_posts/image&#x27;</span>); <span class="comment">// 源文件夹路径</span></span><br><span class="line"><span class="keyword">const</span> destPath = path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;public/image&#x27;</span>); <span class="comment">// 目标文件夹路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断源文件夹是否存在</span></span><br><span class="line"><span class="keyword">if</span> (!fs.<span class="title function_">existsSync</span>(sourcePath)) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 复制文件</span></span><br><span class="line">fs.<span class="title function_">copy</span>(sourcePath, destPath)</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;source/_posts/image copied to public/image successfully!&#x27;</span>))</span><br><span class="line">    .<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;复制过程中出现错误:&#x27;</span>, err.<span class="property">message</span>));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><code>package.json</code> 设置自定义脚本</li>
-</ol>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;after_build&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node copy_images.js&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>由于执行比较麻烦可以将命令合并,一次执行 发布、图片拷贝、同步远程</li>
-</ol>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">     <span class="attr">&quot;after_build&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node copy_images.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">     <span class="attr">&quot;sync&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hexo generate &amp;&amp; node copy_images.js &amp;&amp; hexo deploy&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://fuguigui.github.io/hexo2/">一次完整的Hexo写作流程</a></p>
-<p><a href="https://hexo.io/zh-cn/">hexo官方文档</a></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>教程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>电网知识</title>
-    <url>/2024/10/18/%E7%94%B5%E7%BD%91%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.dlzstp.com/entry">电知网</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/538591681">电力知识图谱：网络安全分区</a></p>
-<p><a href="https://www.zhihu.com/column/c_1193928849044598784">能源信息化专栏</a></p>
-<span id="more"></span>
-
-<h1 id="网络分区"><a href="#网络分区" class="headerlink" title="网络分区"></a>网络分区</h1><p>总的有6个区，电力内网I-IV区+互联网大区+外网区</p>
-<p>根据电力 二次系统的特点，划分为生产控制大区和管理信息大区。生产控制大区 分为控制区（安全区Ⅰ）和非控制区（安全区Ⅱ）。信息管理大区分为生产管理区（安全区Ⅲ）和管理信息区（安全区Ⅳ）。</p>
-]]></content>
-      <categories>
-        <category>电网</category>
-      </categories>
-      <tags>
-        <tag>电网</tag>
-        <tag>业务</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue2踩坑记录</title>
-    <url>/2024/10/17/vue2%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h1 id="v-show失效"><a href="#v-show失效" class="headerlink" title="v-show失效"></a>v-show失效</h1><p>components\拖拽折线\index.html   拖拽组件右键菜单部分v-show 和flex同存则不生效 ，但是其他方式却无法复现这一问题</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">&quot;contextmenuRef&quot;</span> <span class="attr">v-show</span>=<span class="string">&quot;showContextMenu&quot;</span> <span class="attr">style</span>=<span class="string">&quot;position:absolute;display:flex;&quot;</span> @<span class="attr">keyup.enter</span>=<span class="string">&quot;saveDiff&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>问题</strong>: <code>v-show</code>和 行内样式 <code>display:flex</code>同时设置在一个标签上 <code>v-show</code>不生效</p>
-<p><strong>原因：</strong>未知，并且无法复现</p>
-<p><strong>解决方案</strong>：样式使用class或者v-show提高一层</p>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>笔记</tag>
-        <tag>vue</tag>
-        <tag>经验</tag>
-        <tag>bug</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>地理信息导航总结</title>
-    <url>/2024/11/07/%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AF%BC%E8%88%AA%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h2 id="Conncfg配置"><a href="#Conncfg配置" class="headerlink" title="Conncfg配置"></a>Conncfg配置</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ConnMain</span> <span class="attr">Name</span>=<span class="string">&quot;审计日志&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">IPCFG</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[192.168.12.82]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">IPCFG</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DATABASE</span>&gt;</span>&lt;![CDATA[ys_db]]&gt;<span class="tag">&lt;/<span class="name">DATABASE</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[MYSQL]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DBUSER</span>&gt;</span>&lt;![CDATA[root]]&gt;<span class="tag">&lt;/<span class="name">DBUSER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PASSWORD</span>&gt;</span>&lt;![CDATA[042fd2789843ff96fddf38a8fe5d763eaec70ec3838dc662ebb1bf0464926fbb]]&gt;<span class="tag">&lt;/<span class="name">PASSWORD</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">BATCHEX</span>&gt;</span>&lt;![CDATA[BEGIN;,COMMIT;]]&gt;<span class="tag">&lt;/<span class="name">BATCHEX</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ConnMain</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>标记</th>
-<th>作用</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ConnMain</td>
-<td>数据库节点名称，一个节点代表一个库的配置</td>
-<td></td>
-</tr>
-<tr>
-<td>IPCFG</td>
-<td>数据库IP和端口</td>
-<td>没写端口为默认端口</td>
-</tr>
-<tr>
-<td>DATABASE</td>
-<td>指定默认数据库</td>
-<td></td>
-</tr>
-<tr>
-<td>PROVIDER</td>
-<td>指定数据库类型</td>
-<td></td>
-</tr>
-<tr>
-<td>DBUSER</td>
-<td>用户名</td>
-<td></td>
-</tr>
-<tr>
-<td>PASSWORD</td>
-<td>密码(加密后的)</td>
-<td></td>
-</tr>
-<tr>
-<td>SETTINGS</td>
-<td>事务.未设置时默认为BEGIN;END;</td>
-<td>要以,分割；</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>项目</category>
-        <category>PDP2</category>
-      </categories>
-      <tags>
-        <tag>配置</tag>
-        <tag>PDP2</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Mysql常用命令</title>
     <url>/2024/11/05/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h3 id="1-数据操作"><a href="#1-数据操作" class="headerlink" title="1. 数据操作"></a>1. 数据操作</h3><h4 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INSERT INTO table_name (column1, column2, column3, ...)</span><br><span class="line">VALUES (value1, value2, value3, ...);</span><br></pre></td></tr></table></figure>
@@ -311,6 +149,109 @@
       <tags>
         <tag>Mysql</tag>
         <tag>命令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo使用说明</title>
+    <url>/2024/10/15/hexo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</url>
+    <content><![CDATA[<h1 id="命令总结"><a href="#命令总结" class="headerlink" title="命令总结"></a>命令总结</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt; # 生成新文章</span><br><span class="line">hexo g	#markdown渲染html</span><br><span class="line">hexo s #打开本地服务</span><br><span class="line">hexo d #推送至github</span><br><span class="line">hexo S --draft #本机预览草稿</span><br><span class="line">npm run local #本机预览服务 包含草稿</span><br><span class="line">npm run sync #自定义更新指令</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h1 id="创建一片文章"><a href="#创建一片文章" class="headerlink" title="创建一片文章"></a>创建一片文章</h1><ol>
+<li><p>命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>优点:自动生成一些标记</li>
+<li>缺点：需要手动切换至对应文件编辑</li>
+</ul>
+<blockquote>
+<p>layout :<code>post</code>、<code>page</code> 和 <code>draft</code> ；<code>page</code>就是在Source下生成对应的文件夹然后生成一个index.md文件,另外两个就是生成对应文件夹 并且生成新的markdown文件名称</p>
+</blockquote>
+</li>
+<li><p>自定义layout</p>
+<blockquote>
+<p>layout，自定义的位于 scaffolds文件下 , 用于定义一些Front-matter  和模板内容</p>
+</blockquote>
+</li>
+<li><p>使用自定义layout</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new custom_template &quot;根据自定义模板生成文章&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>\source\_posts 文件夹下直接创建markdown文件</p>
+<ul>
+<li>优点: 避免繁琐的命令</li>
+<li>缺点:Front-matter需要手动书写</li>
+</ul>
+</li>
+</ol>
+<h1 id="阅读更多链接"><a href="#阅读更多链接" class="headerlink" title="阅读更多链接"></a>阅读更多链接</h1><p><code>&lt;!-- more --&gt;</code>前的内容被展示 剩下的点击<strong>阅读全文</strong>展示</p>
+<h1 id="嵌入图片"><a href="#嵌入图片" class="headerlink" title="嵌入图片"></a>嵌入图片</h1><p><strong>思路：</strong></p>
+<ol>
+<li>hexo 的工作本质就是将markdown 转成 html  ,所以最终展示 图片按照 image标签的规则来即可；</li>
+<li>我使用的markdown插件为<strong>Office Viewer(Markdown Editor)</strong> 可以直接插入图片 它会在文章同级生成 <code>/image/[文章名称]/[图片名称].png</code>如 <code>source\_posts\image\Echarts配置生成\1729064676610.png</code> ，并且编译出来的image的url为绝对路径，所以我需要让——post下的image文件夹copy到 public文件夹下。</li>
+<li>由于未找到自定义配置如何实现  所以通过自定义脚本来实现，根路径下创建自定义任务 <code>copy_images.js</code>内容如下</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs-extra&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义源路径和目标路径</span></span><br><span class="line"><span class="keyword">const</span> sourcePath = path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;source/_posts/image&#x27;</span>); <span class="comment">// 源文件夹路径</span></span><br><span class="line"><span class="keyword">const</span> destPath = path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;public/image&#x27;</span>); <span class="comment">// 目标文件夹路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断源文件夹是否存在</span></span><br><span class="line"><span class="keyword">if</span> (!fs.<span class="title function_">existsSync</span>(sourcePath)) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 复制文件</span></span><br><span class="line">fs.<span class="title function_">copy</span>(sourcePath, destPath)</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;source/_posts/image copied to public/image successfully!&#x27;</span>))</span><br><span class="line">    .<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;复制过程中出现错误:&#x27;</span>, err.<span class="property">message</span>));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><code>package.json</code> 设置自定义脚本</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;after_build&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node copy_images.js&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>由于执行比较麻烦可以将命令合并,一次执行 发布、图片拷贝、同步远程</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">     <span class="attr">&quot;after_build&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node copy_images.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">     <span class="attr">&quot;sync&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hexo generate &amp;&amp; node copy_images.js &amp;&amp; hexo deploy&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://fuguigui.github.io/hexo2/">一次完整的Hexo写作流程</a></p>
+<p><a href="https://hexo.io/zh-cn/">hexo官方文档</a></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue2踩坑记录</title>
+    <url>/2024/10/17/vue2%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="v-show失效"><a href="#v-show失效" class="headerlink" title="v-show失效"></a>v-show失效</h1><p>components\拖拽折线\index.html   拖拽组件右键菜单部分v-show 和flex同存则不生效 ，但是其他方式却无法复现这一问题</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">&quot;contextmenuRef&quot;</span> <span class="attr">v-show</span>=<span class="string">&quot;showContextMenu&quot;</span> <span class="attr">style</span>=<span class="string">&quot;position:absolute;display:flex;&quot;</span> @<span class="attr">keyup.enter</span>=<span class="string">&quot;saveDiff&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>问题</strong>: <code>v-show</code>和 行内样式 <code>display:flex</code>同时设置在一个标签上 <code>v-show</code>不生效</p>
+<p><strong>原因：</strong>未知，并且无法复现</p>
+<p><strong>解决方案</strong>：样式使用class或者v-show提高一层</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>vue</tag>
+        <tag>经验</tag>
+        <tag>bug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>电网知识</title>
+    <url>/2024/10/18/%E7%94%B5%E7%BD%91%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.dlzstp.com/entry">电知网</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/538591681">电力知识图谱：网络安全分区</a></p>
+<p><a href="https://www.zhihu.com/column/c_1193928849044598784">能源信息化专栏</a></p>
+<span id="more"></span>
+
+<h1 id="网络分区"><a href="#网络分区" class="headerlink" title="网络分区"></a>网络分区</h1><p>总的有6个区，电力内网I-IV区+互联网大区+外网区</p>
+<p>根据电力 二次系统的特点，划分为生产控制大区和管理信息大区。生产控制大区 分为控制区（安全区Ⅰ）和非控制区（安全区Ⅱ）。信息管理大区分为生产管理区（安全区Ⅲ）和管理信息区（安全区Ⅳ）。</p>
+]]></content>
+      <categories>
+        <category>电网</category>
+      </categories>
+      <tags>
+        <tag>电网</tag>
+        <tag>业务</tag>
       </tags>
   </entry>
 </search>
