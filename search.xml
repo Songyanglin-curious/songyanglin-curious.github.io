@@ -235,4 +235,82 @@
         <tag>PDP2</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Mysql常用命令</title>
+    <url>/2024/11/05/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h3 id="1-数据操作"><a href="#1-数据操作" class="headerlink" title="1. 数据操作"></a>1. 数据操作</h3><h4 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INSERT INTO table_name (column1, column2, column3, ...)</span><br><span class="line">VALUES (value1, value2, value3, ...);</span><br></pre></td></tr></table></figure>
+
+<h4 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT column1, column2, ...</span><br><span class="line">FROM table_name</span><br><span class="line">WHERE condition;</span><br></pre></td></tr></table></figure>
+
+<h4 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">UPDATE table_name</span><br><span class="line">SET column1 = value1, column2 = value2, ...</span><br><span class="line">WHERE condition;</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELETE FROM table_name</span><br><span class="line">WHERE condition;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-数据库操作"><a href="#2-数据库操作" class="headerlink" title="2. 数据库操作"></a>2. 数据库操作</h3><h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE DATABASE database_name;</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看所有数据库"><a href="#查看所有数据库" class="headerlink" title="查看所有数据库"></a>查看所有数据库</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW DATABASES;</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用数据库"><a href="#使用数据库" class="headerlink" title="使用数据库"></a>使用数据库</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">USE database_name;</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DROP DATABASE database_name;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-表操作"><a href="#3-表操作" class="headerlink" title="3. 表操作"></a>3. 表操作</h3><h4 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TABLE table_name (</span><br><span class="line">    column1 datatype,</span><br><span class="line">    column2 datatype,</span><br><span class="line">    column3 datatype,</span><br><span class="line">    ...</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看表结构"><a href="#查看表结构" class="headerlink" title="查看表结构"></a>查看表结构</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DESCRIBE table_name;</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW COLUMNS FROM table_name;</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改表结构"><a href="#修改表结构" class="headerlink" title="修改表结构"></a>修改表结构</h4><p>添加列：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER TABLE table_name ADD column_name datatype;</span><br></pre></td></tr></table></figure>
+
+<p>修改列：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER TABLE table_name MODIFY column_name new_datatype;</span><br></pre></td></tr></table></figure>
+
+<p>删除列：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER TABLE table_name DROP COLUMN column_name;</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DROP TABLE table_name;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-用户管理"><a href="#4-用户管理" class="headerlink" title="4. 用户管理"></a>4. 用户管理</h3><h4 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE USER &#x27;username&#x27;@&#x27;host&#x27; IDENTIFIED BY &#x27;password&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DROP USER &#x27;username&#x27;@&#x27;host&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看所有用户"><a href="#查看所有用户" class="headerlink" title="查看所有用户"></a>查看所有用户</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT User FROM mysql.user;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-权限管理"><a href="#5-权限管理" class="headerlink" title="5. 权限管理"></a>5. 权限管理</h3><h4 id="授予权限"><a href="#授予权限" class="headerlink" title="授予权限"></a>授予权限</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT privilege_type ON database_name.table_name TO &#x27;username&#x27;@&#x27;host&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>例如授予用户对某个数据库的所有权限：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON database_name.* TO &#x27;username&#x27;@&#x27;host&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="撤消权限"><a href="#撤消权限" class="headerlink" title="撤消权限"></a>撤消权限</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REVOKE privilege_type ON database_name.table_name FROM &#x27;username&#x27;@&#x27;host&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>例如撤消用户对某个数据库的所有权限：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REVOKE ALL PRIVILEGES ON database_name.* FROM &#x27;username&#x27;@&#x27;host&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="刷新权限"><a href="#刷新权限" class="headerlink" title="刷新权限"></a>刷新权限</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-其他常用命令"><a href="#6-其他常用命令" class="headerlink" title="6. 其他常用命令"></a>6. 其他常用命令</h3><h4 id="显示当前用户"><a href="#显示当前用户" class="headerlink" title="显示当前用户"></a>显示当前用户</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT CURRENT_USER();</span><br></pre></td></tr></table></figure>
+
+<h4 id="显示当前数据库"><a href="#显示当前数据库" class="headerlink" title="显示当前数据库"></a>显示当前数据库</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT DATABASE();</span><br></pre></td></tr></table></figure>
+
+<h4 id="显示所有表"><a href="#显示所有表" class="headerlink" title="显示所有表"></a>显示所有表</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW TABLES;</span><br></pre></td></tr></table></figure>
+
+<h4 id="显示服务器状态"><a href="#显示服务器状态" class="headerlink" title="显示服务器状态"></a>显示服务器状态</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW STATUS;</span><br></pre></td></tr></table></figure>
+
+<h4 id="显示系统变量"><a href="#显示系统变量" class="headerlink" title="显示系统变量"></a>显示系统变量</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW VARIABLES;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-其他"><a href="#7-其他" class="headerlink" title="7.其他"></a>7.其他</h3><h4 id="显示建表SQL脚本"><a href="#显示建表SQL脚本" class="headerlink" title="显示建表SQL脚本"></a>显示建表SQL脚本</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> ys_db.tbmoduleinfo2;</span><br></pre></td></tr></table></figure>
+
+<h4 id="显示创建视图SQL脚本"><a href="#显示创建视图SQL脚本" class="headerlink" title="显示创建视图SQL脚本"></a>显示创建视图SQL脚本</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">CREATE</span> <span class="keyword">view</span> ys_db.v_normaluser;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数据库</category>
+        <category>Mysql</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+        <tag>命令</tag>
+      </tags>
+  </entry>
 </search>
