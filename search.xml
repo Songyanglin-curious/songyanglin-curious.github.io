@@ -176,4 +176,63 @@
         <tag>bug</tag>
       </tags>
   </entry>
+  <entry>
+    <title>地理信息导航总结</title>
+    <url>/2024/11/07/%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AF%BC%E8%88%AA%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="Conncfg配置"><a href="#Conncfg配置" class="headerlink" title="Conncfg配置"></a>Conncfg配置</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ConnMain</span> <span class="attr">Name</span>=<span class="string">&quot;审计日志&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">IPCFG</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[192.168.12.82]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">IPCFG</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DATABASE</span>&gt;</span>&lt;![CDATA[ys_db]]&gt;<span class="tag">&lt;/<span class="name">DATABASE</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[MYSQL]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DBUSER</span>&gt;</span>&lt;![CDATA[root]]&gt;<span class="tag">&lt;/<span class="name">DBUSER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PASSWORD</span>&gt;</span>&lt;![CDATA[042fd2789843ff96fddf38a8fe5d763eaec70ec3838dc662ebb1bf0464926fbb]]&gt;<span class="tag">&lt;/<span class="name">PASSWORD</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">BATCHEX</span>&gt;</span>&lt;![CDATA[BEGIN;,COMMIT;]]&gt;<span class="tag">&lt;/<span class="name">BATCHEX</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ConnMain</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>标记</th>
+<th>作用</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ConnMain</td>
+<td>数据库节点名称，一个节点代表一个库的配置</td>
+<td></td>
+</tr>
+<tr>
+<td>IPCFG</td>
+<td>数据库IP和端口</td>
+<td>没写端口为默认端口</td>
+</tr>
+<tr>
+<td>DATABASE</td>
+<td>指定默认数据库</td>
+<td></td>
+</tr>
+<tr>
+<td>PROVIDER</td>
+<td>指定数据库类型</td>
+<td></td>
+</tr>
+<tr>
+<td>DBUSER</td>
+<td>用户名</td>
+<td></td>
+</tr>
+<tr>
+<td>PASSWORD</td>
+<td>密码(加密后的)</td>
+<td></td>
+</tr>
+<tr>
+<td>SETTINGS</td>
+<td>事务.未设置时默认为BEGIN;END;</td>
+<td>要以,分割；</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>项目</category>
+        <category>PDP2</category>
+      </categories>
+      <tags>
+        <tag>配置</tag>
+        <tag>PDP2</tag>
+      </tags>
+  </entry>
 </search>
