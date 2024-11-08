@@ -19,31 +19,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="v-show失效components\拖拽折线\index.html   拖拽组件右键菜单部分v-show 和flex同存则不生效 ，但是其他方式却无法复现这一问题 1&lt;div ref&#x3D;&quot;contextmenuRef&quot; v-show&#x3D;&quot;showContextMenu&quot; style&#x3D;&quot;position:absolute;display:flex">
+    <meta name="description" content="鼠标所在折线的信息进行展示 实现思路1、axisPointer来获取当前鼠标所在的位置的值，并且将其保存2、formatter比较每一个series的值找到离其最近的进行高亮显示  1234567891011121314151617181920212223242526272829303132333435363738394041varmouseCurValue;tooltip: &#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue2踩坑记录">
-<meta property="og:url" content="http://example.com/2024/10/17/vue2%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="Echarts代码片段">
+<meta property="og:url" content="http://example.com/2024/11/07/Echarts%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/index.html">
 <meta property="og:site_name" content="SYL">
-<meta property="og:description" content="v-show失效components\拖拽折线\index.html   拖拽组件右键菜单部分v-show 和flex同存则不生效 ，但是其他方式却无法复现这一问题 1&lt;div ref&#x3D;&quot;contextmenuRef&quot; v-show&#x3D;&quot;showContextMenu&quot; style&#x3D;&quot;position:absolute;display:flex">
+<meta property="og:description" content="鼠标所在折线的信息进行展示 实现思路1、axisPointer来获取当前鼠标所在的位置的值，并且将其保存2、formatter比较每一个series的值找到离其最近的进行高亮显示  1234567891011121314151617181920212223242526272829303132333435363738394041varmouseCurValue;tooltip: &#123;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-10-17T06:49:50.000Z">
-<meta property="article:modified_time" content="2024-10-17T07:40:44.437Z">
+<meta property="article:published_time" content="2024-11-07T09:25:59.000Z">
+<meta property="article:modified_time" content="2024-11-07T09:30:39.014Z">
 <meta property="article:author" content="songyanglin">
-<meta property="article:tag" content="笔记">
-<meta property="article:tag" content="vue">
-<meta property="article:tag" content="经验">
-<meta property="article:tag" content="bug">
+<meta property="article:tag" content="Echarts">
+<meta property="article:tag" content="功能片段">
+<meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2024/10/17/vue2%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
+<link rel="canonical" href="http://example.com/2024/11/07/Echarts%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/10/17/vue2%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/","path":"2024/10/17/vue2踩坑记录/","title":"vue2踩坑记录"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/11/07/Echarts%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/","path":"2024/11/07/Echarts代码片段/","title":"Echarts代码片段"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>vue2踩坑记录 | SYL</title>
+<title>Echarts代码片段 | SYL</title>
   
 
 
@@ -143,7 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#v-show%E5%A4%B1%E6%95%88"><span class="nav-number">1.</span> <span class="nav-text">v-show失效</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BC%A0%E6%A0%87%E6%89%80%E5%9C%A8%E6%8A%98%E7%BA%BF%E7%9A%84%E4%BF%A1%E6%81%AF%E8%BF%9B%E8%A1%8C%E5%B1%95%E7%A4%BA"><span class="nav-number">1.</span> <span class="nav-text">鼠标所在折线的信息进行展示</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -232,7 +231,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/10/17/vue2%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/07/Echarts%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -245,12 +244,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="vue2踩坑记录 | SYL">
+      <meta itemprop="name" content="Echarts代码片段 | SYL">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          vue2踩坑记录
+          Echarts代码片段
         </h1>
 
         <div class="post-meta-container">
@@ -262,7 +261,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-10-17 14:49:50 / 修改时间：15:40:44" itemprop="dateCreated datePublished" datetime="2024-10-17T14:49:50+08:00">2024-10-17</time>
+      <time title="创建时间：2024-11-07 17:25:59 / 修改时间：17:30:39" itemprop="dateCreated datePublished" datetime="2024-11-07T17:25:59+08:00">2024-11-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -270,11 +269,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%89%8D%E7%AB%AF/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
+          <a href="/categories/%E5%B7%A5%E5%85%B7/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
         </span>
     </span>
 
@@ -285,14 +284,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>330</span>
+      <span>1.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -302,12 +301,10 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="v-show失效"><a href="#v-show失效" class="headerlink" title="v-show失效"></a>v-show失效</h1><p>components\拖拽折线\index.html   拖拽组件右键菜单部分v-show 和flex同存则不生效 ，但是其他方式却无法复现这一问题</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">&quot;contextmenuRef&quot;</span> <span class="attr">v-show</span>=<span class="string">&quot;showContextMenu&quot;</span> <span class="attr">style</span>=<span class="string">&quot;position:absolute;display:flex;&quot;</span> @<span class="attr">keyup.enter</span>=<span class="string">&quot;saveDiff&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>问题</strong>: <code>v-show</code>和 行内样式 <code>display:flex</code>同时设置在一个标签上 <code>v-show</code>不生效</p>
-<p><strong>原因：</strong>未知，并且无法复现</p>
-<p><strong>解决方案</strong>：样式使用class或者v-show提高一层</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="鼠标所在折线的信息进行展示"><a href="#鼠标所在折线的信息进行展示" class="headerlink" title="鼠标所在折线的信息进行展示"></a>鼠标所在折线的信息进行展示</h2><blockquote>
+<p>实现思路<br>1、axisPointer来获取当前鼠标所在的位置的值，并且将其保存<br>2、formatter比较每一个series的值找到离其最近的进行高亮显示</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">varmouseCurValue;</span><br><span class="line"><span class="attr">tooltip</span>: &#123;</span><br><span class="line">            <span class="attr">trigger</span>: <span class="string">&#x27;axis&#x27;</span>,</span><br><span class="line">            <span class="attr">axisPointer</span>: &#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="string">&quot;cross&quot;</span>,</span><br><span class="line">                <span class="attr">label</span>: &#123;</span><br><span class="line">                    <span class="attr">show</span>: <span class="literal">false</span>,</span><br><span class="line">                    <span class="attr">formatter</span>: <span class="keyword">function</span> (<span class="params">params</span>) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (params.<span class="property">seriesData</span>.<span class="property">length</span> === <span class="number">0</span>) &#123;</span><br><span class="line">                            mouseCurValue = params.<span class="property">value</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">formatter</span>: <span class="keyword">function</span> (<span class="params">params</span>) &#123;</span><br><span class="line">                varres = <span class="string">&quot;&quot;</span>;</span><br><span class="line">                varallRes = <span class="string">&quot;&quot;</span>;</span><br><span class="line">                varminDiff = <span class="title class_">Infinity</span>;</span><br><span class="line">                varminDiffIndex = -<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">for</span> (vari = <span class="number">0</span>; i &lt; params.<span class="property">length</span>; i++) &#123;</span><br><span class="line">                    varseries = params[i];</span><br><span class="line">                    varv = <span class="title class_">Number</span>(series.<span class="property">value</span>);</span><br><span class="line">                    vardiff = <span class="title class_">Math</span>.<span class="title function_">abs</span>(v - mouseCurValue);</span><br><span class="line">                    <span class="keyword">if</span> (diff &lt; minDiff) &#123;</span><br><span class="line">                        minDiff = diff;</span><br><span class="line">                        minDiffIndex = i;</span><br><span class="line">                    &#125;</span><br><span class="line">                    allRes += series.<span class="property">marker</span> + <span class="string">&quot; &quot;</span> + series.<span class="property">seriesName</span> + <span class="string">&quot;：&quot;</span> + series.<span class="property">value</span> + <span class="string">&quot;&lt;br/&gt;&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                varselItem = params[minDiffIndex];</span><br><span class="line">                <span class="keyword">if</span> (params.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    res += params[<span class="number">0</span>].<span class="property">axisValue</span> + <span class="string">&quot;&lt;br/&gt;&quot;</span> + <span class="string">&quot;&lt;div style=&#x27;width:100%;height:5px;&#x27;&gt;&lt;/div&gt;&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (selItem)</span><br><span class="line">                    res += selItem.<span class="property">marker</span> + <span class="string">&quot;&lt;strong&gt;&lt;u&gt;&quot;</span> + selItem.<span class="property">seriesName</span> + <span class="string">&quot;&lt;/u&gt;&lt;/strong&gt;&quot;</span> + <span class="string">&quot;:&quot;</span> + selItem.<span class="property">value</span> + <span class="string">&quot;&lt;br/&gt;&quot;</span> + <span class="string">&quot;&lt;div style=&#x27;width:100%;height:5px;&#x27;&gt;&lt;/div&gt;&quot;</span>;</span><br><span class="line">                    res += allRes;</span><br><span class="line">                    <span class="keyword">return</span> res;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -317,24 +314,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
-              <a href="/tags/vue/" rel="tag"># vue</a>
-              <a href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag"># 经验</a>
-              <a href="/tags/bug/" rel="tag"># bug</a>
+              <a href="/tags/Echarts/" rel="tag"># Echarts</a>
+              <a href="/tags/%E5%8A%9F%E8%83%BD%E7%89%87%E6%AE%B5/" rel="tag"># 功能片段</a>
+              <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/10/16/Echarts%E9%85%8D%E7%BD%AE%E7%94%9F%E6%88%90/" rel="prev" title="Echarts配置生成">
-                  <i class="fa fa-angle-left"></i> Echarts配置生成
+                <a href="/2024/11/07/js%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="prev" title="js代码片段">
+                  <i class="fa fa-angle-left"></i> js代码片段
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/10/18/%E7%94%B5%E7%BD%91%E7%9F%A5%E8%AF%86/" rel="next" title="电网知识">
-                  电网知识 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
