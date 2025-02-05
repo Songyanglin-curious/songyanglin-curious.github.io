@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前端编码123encodeURIComponent	decodeURIComponentencodeURI			decodeURIescape				unescape   encodeURIComponent()和decodeURIComponent()：用于编码和解码URL中的参数部分，包括保留字符和中文字符。在编码过程中，保留字符会被转换为它们的十六进制转义序列，以避免与URL语法发生冲突；中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js代码片段">
+<meta property="og:url" content="http://example.com/2024/11/07/js%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/index.html">
+<meta property="og:site_name" content="SYL">
+<meta property="og:description" content="前端编码123encodeURIComponent	decodeURIComponentencodeURI			decodeURIescape				unescape   encodeURIComponent()和decodeURIComponent()：用于编码和解码URL中的参数部分，包括保留字符和中文字符。在编码过程中，保留字符会被转换为它们的十六进制转义序列，以避免与URL语法发生冲突；中">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-07T08:42:00.000Z">
+<meta property="article:modified_time" content="2024-11-08T01:35:49.010Z">
+<meta property="article:author" content="songyanglin">
+<meta property="article:tag" content="功能片段">
+<meta property="article:tag" content="工具">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2024/11/07/js%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/11/07/js%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/","path":"2024/11/07/js代码片段/","title":"js代码片段"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>js代码片段 | SYL</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SYL</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">随笔</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-navigation"><a href="/navigation/" rel="section"><i class="fa fa-navicon fa-fw"></i>导航</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E7%BC%96%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">前端编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA%E5%A4%87%E7%94%A8%E5%9B%BE%E7%89%87"><span class="nav-number">2.</span> <span class="nav-text">未加载图片显示备用图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%9C%B0%E5%9D%80%E8%83%BD%E5%90%A6%E6%8B%BF%E5%88%B0%E5%9B%BE%E7%89%87"><span class="nav-number">3.</span> <span class="nav-text">判断一个地址能否拿到图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E4%B8%AD%E6%96%87%E5%90%8D%E5%A4%84%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">图片中文名处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E9%83%A8%E5%88%86%E5%A4%84%E7%90%86"><span class="nav-number">4.1.</span> <span class="nav-text">前端部分处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E5%88%86"><span class="nav-number">4.2.</span> <span class="nav-text">服务器部分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B0%B4%E5%8D%B0"><span class="nav-number">5.</span> <span class="nav-text">水印</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BC%A0%E6%A0%87%E6%BB%9A%E5%8A%A8%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8%E6%9D%A1"><span class="nav-number">6.</span> <span class="nav-text">鼠标滚动横向滚动条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%8F"><span class="nav-number">7.</span> <span class="nav-text">全屏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#video"><span class="nav-number">8.</span> <span class="nav-text">video</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%90%E8%97%8F%E5%8E%9F%E7%94%9F%E7%BB%84%E4%BB%B6"><span class="nav-number">8.1.</span> <span class="nav-text">隐藏原生组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E8%A7%86%E9%A2%91%E5%8A%A0%E6%96%87%E5%AD%97%E4%BF%A1%E6%81%AF"><span class="nav-number">8.2.</span> <span class="nav-text">前端视频加文字信息</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">songyanglin</p>
+  <div class="site-description" itemprop="description">code随笔</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Songyanglin-curious" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Songyanglin-curious" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+<!-- recent posts -->
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+        <div class="links-of-blogroll-title recent-posts-title">
+	    <i class="fa fa-history " aria-hidden="true"></i>
+            近期文章
+	</div>
+	<ul class="links-of-blogroll-list recent-posts-list">
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/01/08/iview%E7%BB%84%E4%BB%B6%E8%AE%B0%E5%BD%95/" title="iview组件记录" target="">
+		    iview组件记录
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/12/06/PDP2.0%E7%B1%BB/" title="PDP2.0类" target="">
+		    PDP2.0类
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/12/03/%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="网络学习笔记" target="">
+		    网络学习笔记
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/12/02/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Linux常用命令" target="">
+		    Linux常用命令
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/12/02/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Linux学习笔记" target="">
+		    Linux学习笔记
+		    </a>
+		</li>
+	</ul>
+    </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/07/js%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="songyanglin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SYL">
+      <meta itemprop="description" content="code随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="js代码片段 | SYL">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          js代码片段
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-07 16:42:00" itemprop="dateCreated datePublished" datetime="2024-11-07T16:42:00+08:00">2024-11-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-11-08 09:35:49" itemprop="dateModified" datetime="2024-11-08T09:35:49+08:00">2024-11-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>10 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="前端编码"><a href="#前端编码" class="headerlink" title="前端编码"></a>前端编码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">encodeURIComponent	decodeURIComponent</span><br><span class="line">encodeURI			decodeURI</span><br><span class="line">escape				unescape</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li>encodeURIComponent()和decodeURIComponent()：用于编码和解码URL中的参数部分，包括保留字符和中文字符。在编码过程中，保留字符会被转换为它们的十六进制转义序列，以避免与URL语法发生冲突；中文字符会被编码为UTF-8字符集下的十六进制编码，以便在URL中安全使用。</li>
+<li>encodeURI()和decodeURI()：用于编码和解码整个URL，但是，不会进行对特殊字符（例如冒号、斜杠、问号等）的编码。这些方法主要用于编码URL本身，而不是参数部分。</li>
+<li>escape()和unescape()：用于编码和解码字符串中的Unicode字符。但是，由于这些方法不适用于所有字符，现在很少使用。</li>
+</ol>
+</blockquote>
+<span id="more"></span>
+<h2 id="未加载图片显示备用图片"><a href="#未加载图片显示备用图片" class="headerlink" title="未加载图片显示备用图片"></a>未加载图片显示备用图片</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;/i/t.png&quot;</span> <span class="attr">onerror</span>=<span class="string">&quot;this.src = &#x27;/i/sgc/shengchan/no_img.png&#x27;;this.onerror = null;&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">img</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>实现思路是获取不到图片时会触发onerror 函数，在该函数内将src改为指定的图片。为了避免error指定的图片也拿不到从而陷入死循环将this.onerror &#x3D; null ;注销回调函数</p>
+</blockquote>
+<h2 id="判断一个地址能否拿到图片"><a href="#判断一个地址能否拿到图片" class="headerlink" title="判断一个地址能否拿到图片"></a>判断一个地址能否拿到图片</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkImgExist</span>  (<span class="params">src, successCallback, errorCallback</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> img = <span class="keyword">new</span> <span class="title class_">Image</span>()</span><br><span class="line">    img.<span class="property">src</span> = src</span><br><span class="line">    img.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="title function_">successCallback</span>(src);</span><br><span class="line">    &#125;</span><br><span class="line">    img.<span class="property">onerror</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="title function_">errorCallback</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">successCallback</span>(<span class="params">src</span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(src,<span class="string">&quot;能够获取到图片&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">errorCallback</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;获取不到图片&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="图片中文名处理"><a href="#图片中文名处理" class="headerlink" title="图片中文名处理"></a>图片中文名处理</h2><h3 id="前端部分处理"><a href="#前端部分处理" class="headerlink" title="前端部分处理"></a>前端部分处理</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> imgName = <span class="string">&quot;中文名图片.png&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> url = <span class="string">&quot;/i/sgc/shengchan/linedefect/&quot;</span> + <span class="built_in">encodeURIComponent</span>(imgName)</span><br></pre></td></tr></table></figure>
+
+<p>对中文部分通过encodeURIComponent转为utf-8</p>
+<h3 id="服务器部分"><a href="#服务器部分" class="headerlink" title="服务器部分"></a>服务器部分</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export MONO_EXTERNAL_ENCODINGS=gbk</span><br></pre></td></tr></table></figure>
+
+<p>在 &#x2F;usr&#x2F;jexus&#x2F;jws 加上上方的</p>
+<blockquote>
+<p>linux服务器，华北生技线路缺陷使用</p>
+</blockquote>
+<h2 id="水印"><a href="#水印" class="headerlink" title="水印"></a>水印</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">canvasWaterMark</span>(<span class="params">&#123;</span></span><br><span class="line"><span class="params">    container = <span class="variable language_">document</span>.body,</span></span><br><span class="line"><span class="params">    width = <span class="number">300</span>,</span></span><br><span class="line"><span class="params">    height = <span class="number">300</span>,</span></span><br><span class="line"><span class="params">    textAlign = <span class="string">&#x27;center&#x27;</span>,</span></span><br><span class="line"><span class="params">    textBaseline = <span class="string">&#x27;middle&#x27;</span>,</span></span><br><span class="line"><span class="params">    alpha = <span class="number">0.3</span>,</span></span><br><span class="line"><span class="params">    font = <span class="string">&#x27;20px monaco, microsoft yahei&#x27;</span>,</span></span><br><span class="line"><span class="params">    fillStyle = <span class="string">&#x27;rgba(184, 184, 184, 0.8)&#x27;</span>,</span></span><br><span class="line"><span class="params">    content = <span class="string">&#x27;JumpServer&#x27;</span>,</span></span><br><span class="line"><span class="params">    rotate = -<span class="number">45</span>,</span></span><br><span class="line"><span class="params">    zIndex = <span class="number">1000</span></span></span><br><span class="line"><span class="params">&#125;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> canvas = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;canvas&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> ctx = canvas.<span class="title function_">getContext</span>(<span class="string">&#x27;2d&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    canvas.<span class="property">width</span> = width;</span><br><span class="line">    canvas.<span class="property">height</span> = height;</span><br><span class="line">    ctx.<span class="property">globalAlpha</span> = <span class="number">0.5</span>;</span><br><span class="line"></span><br><span class="line">    ctx.<span class="property">font</span> = font;</span><br><span class="line">    ctx.<span class="property">fillStyle</span> = fillStyle;</span><br><span class="line">    ctx.<span class="property">textAlign</span> = textAlign;</span><br><span class="line">    ctx.<span class="property">textBaseline</span> = textBaseline;</span><br><span class="line">    ctx.<span class="property">globalAlpha</span> = alpha;</span><br><span class="line"></span><br><span class="line">    ctx.<span class="title function_">translate</span>(<span class="number">0.5</span> * width, <span class="number">0.5</span> * height);</span><br><span class="line">    ctx.<span class="title function_">rotate</span>((rotate * <span class="title class_">Math</span>.<span class="property">PI</span>) / <span class="number">180</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">generateMultiLineText</span>(<span class="params">_ctx, _text, _width, _lineHeight</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> words = _text.<span class="title function_">split</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">        <span class="keyword">let</span> line = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        <span class="keyword">const</span> x = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> y = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> n = <span class="number">0</span>; n &lt; words.<span class="property">length</span>; n++) &#123;</span><br><span class="line">            line = words[n];</span><br><span class="line">            line = <span class="title function_">truncateCenter</span>(line, <span class="number">25</span>);</span><br><span class="line">            _ctx.<span class="title function_">fillText</span>(line, x, y);</span><br><span class="line">            y += _lineHeight;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">generateMultiLineText</span>(ctx, content, width, <span class="number">24</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> base64Url = canvas.<span class="title function_">toDataURL</span>();</span><br><span class="line">    <span class="keyword">const</span> watermarkDiv = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">    watermarkDiv.<span class="title function_">setAttribute</span>(<span class="string">&#x27;style&#x27;</span>, <span class="string">`</span></span><br><span class="line"><span class="string">            position:absolute;</span></span><br><span class="line"><span class="string">            top:0;</span></span><br><span class="line"><span class="string">            left:0;</span></span><br><span class="line"><span class="string">            width:100%;</span></span><br><span class="line"><span class="string">            height:100%;</span></span><br><span class="line"><span class="string">            z-index:<span class="subst">$&#123;zIndex&#125;</span>;</span></span><br><span class="line"><span class="string">            pointer-events:none;</span></span><br><span class="line"><span class="string">            background-repeat:repeat;</span></span><br><span class="line"><span class="string">            background-image:url(&#x27;<span class="subst">$&#123;base64Url&#125;</span>&#x27;)`</span></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    container.<span class="property">style</span>.<span class="property">position</span> = <span class="string">&#x27;relative&#x27;</span>;</span><br><span class="line">    container.<span class="title function_">insertBefore</span>(watermarkDiv, container.<span class="property">firstChild</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">truncateCenter</span>(<span class="params">s, l</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (s.<span class="property">length</span> &lt;= l) &#123;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> centerIndex = <span class="title class_">Math</span>.<span class="title function_">ceil</span>(l / <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> s.<span class="title function_">slice</span>(<span class="number">0</span>, centerIndex - <span class="number">2</span>) + <span class="string">&#x27;...&#x27;</span> + s.<span class="title function_">slice</span>(centerIndex + <span class="number">1</span>, l);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="鼠标滚动横向滚动条"><a href="#鼠标滚动横向滚动条" class="headerlink" title="鼠标滚动横向滚动条"></a>鼠标滚动横向滚动条</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//设置overflow: auto;属性的div的DOM对象</span></span><br><span class="line">varselectDom =  <span class="variable language_">this</span>.<span class="property">$refs</span>.<span class="property">selectRef</span>;</span><br><span class="line"><span class="comment">//添加滚轮事件</span></span><br><span class="line">selectDom.<span class="title function_">addEventListener</span>(<span class="string">&#x27;wheel&#x27;</span>,<span class="function">(<span class="params">event</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">//组织默认行为</span></span><br><span class="line">    event.<span class="title function_">preventDefault</span>()</span><br><span class="line">    <span class="comment">//将下滚的距离增加到距左边的距离</span></span><br><span class="line">    selectDom.<span class="property">scrollLeft</span> += <span class="number">10</span>*event.<span class="property">deltaY</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="全屏"><a href="#全屏" class="headerlink" title="全屏"></a>全屏</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">screenFull</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//要全屏的DOM对象，可以用vue的this.$refs 或 原生 document.get...方法</span></span><br><span class="line">    vardom = <span class="variable language_">this</span>.<span class="property">$refs</span>.<span class="property">videoContainer</span>;</span><br><span class="line">    <span class="comment">// 未全屏</span></span><br><span class="line">    <span class="comment">//用来判断当前是否全屏，一定是在document对象下判断</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">window</span>.<span class="property">document</span>.<span class="property">fullscreenElement</span>) &#123;</span><br><span class="line">        <span class="comment">//这个是要放大的元素调用全屏方法</span></span><br><span class="line">        dom.<span class="title function_">requestFullscreen</span>();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//一定要document调用退出全屏方法</span></span><br><span class="line">        <span class="variable language_">window</span>.<span class="property">document</span>.<span class="title function_">exitFullscreen</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="video"><a href="#video" class="headerlink" title="video"></a>video</h2><h3 id="隐藏原生组件"><a href="#隐藏原生组件" class="headerlink" title="隐藏原生组件"></a>隐藏原生组件</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>禁用全屏</td>
+<td>controlslist&#x3D;”nofullscreen”</td>
+</tr>
+<tr>
+<td>隐藏倍速播放</td>
+<td>controlslist&#x3D;”noplaybackrate”</td>
+</tr>
+<tr>
+<td>隐藏下载</td>
+<td>controlslist&#x3D;”nodownload”</td>
+</tr>
+<tr>
+<td>隐藏远程播放</td>
+<td>controlslist&#x3D;”noremoteplayback”</td>
+</tr>
+<tr>
+<td>隐藏画中画</td>
+<td>disablePictureInPicture&#x3D;”true”</td>
+</tr>
+<tr>
+<td>隐藏右键</td>
+<td>oncontextmenu&#x3D;”return false”</td>
+</tr>
+<tr>
+<td></td>
+<td><code>-internal</code>开头的样式这样改不了</td>
+</tr>
+<tr>
+<td>隐藏全屏</td>
+<td>video::-webkit-media-controls-fullscreen-button{display:none;}</td>
+</tr>
+<tr>
+<td>隐藏播放按钮</td>
+<td>video::-webkit-media-controls-play-button{display:none;}</td>
+</tr>
+<tr>
+<td>隐藏音量按钮</td>
+<td>video::-webkit-media-controls-volume-control-container{display:none;}</td>
+</tr>
+<tr>
+<td>隐藏进度条</td>
+<td>video::-webkit-media-controls-timeline{display:none;}</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>要显示video详细的内部标签，需要打开 <strong>显示用户代理shadow DOM</strong></p>
+<p>noplaybackrate 在MDN上没显示</p>
+<p>将画中画，下载，倍数功能全部去掉后三个点也就去掉了</p>
+</blockquote>
+<p>参考： <a target="_blank" rel="noopener" href="https://juejin.cn/post/7202174759999766587">原生 audio, video 标签 controls 的修改 - 掘金 (juejin.cn)</a></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;br&gt;&lt;br&gt;&lt;br&gt;//全屏按钮</span><br><span class="line"><span class="selector-tag">video</span>::-webkit-media-controls-fullscreen-button &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line">//播放按钮</span><br><span class="line"><span class="selector-tag">video</span>::-webkit-media-controls-play-button &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line">//进度条</span><br><span class="line"><span class="selector-tag">video</span>::-webkit-media-controls-timeline &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line">//观看的当前时间</span><br><span class="line"><span class="selector-tag">video</span>::-webkit-media-controls-current-time-display&#123;</span><br><span class="line">    <span class="attribute">display</span>: none;         </span><br><span class="line">&#125;</span><br><span class="line">//剩余时间</span><br><span class="line"><span class="selector-tag">video</span>::-webkit-media-controls-time-remaining-display &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;         </span><br><span class="line">&#125;</span><br><span class="line">//音量按钮</span><br><span class="line"><span class="selector-tag">video</span>::-webkit-media-controls-mute-button &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;         </span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">video</span>::-webkit-media-controls-toggle-closed-captions-button &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;         </span><br><span class="line">&#125;</span><br><span class="line">//音量的控制条</span><br><span class="line"><span class="selector-tag">video</span>::-webkit-media-controls-volume-slider &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;         </span><br><span class="line">&#125;</span><br><span class="line">//所有控件</span><br><span class="line"><span class="selector-tag">video</span>::-webkit-media-controls-enclosure&#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="前端视频加文字信息"><a href="#前端视频加文字信息" class="headerlink" title="前端视频加文字信息"></a>前端视频加文字信息</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">desc</span>=<span class="string">&quot;视频区&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width:100%;height:calc(100% - 60px);&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;f jc&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;position:relative;&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">video</span> <span class="attr">style</span>=<span class="string">&quot;object-fit: contain;height:100%;max-width:100vw&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;videoRef&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">controlslist</span>=<span class="string">&quot;nodownload nofullscreen&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">sa</span> <span class="attr">controls</span>=<span class="string">&quot;true&quot;</span> <span class="attr">playsinline</span>=<span class="string">&quot;true&quot;</span> <span class="attr">disablePictureInPicture</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">sa</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">source</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- &lt;a src=&quot;/replay/rain.mp4&quot; type=&quot;video/mp4&quot;&gt;&lt;/a&gt; --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">type</span>=<span class="string">&quot;video/mp4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">sa</span> <span class="attr">src</span>=<span class="string">&quot;videoSrc&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">sa</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;position:absolute;top:20px;left:20px&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;watermark&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">sa</span> <span class="attr">value</span>=<span class="string">&quot;this.watermarkInfo.worker&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">sa</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;watermark&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">sa</span> <span class="attr">value</span>=<span class="string">&quot;this.watermarkInfo.auditor&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">sa</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意点：</strong></p>
+<p>1、video标签要和水印信息标签平级</p>
+<p>2、video标签父元素要由video内容撑开，不能设置width，height，要让其紧密贴合video，才能使水印位置正常</p>
+<p>3、video 标签要对宽高的最大值做限定不然，全屏后会出现bug</p>
+<p>4、全屏需要手动对其父元素进行全屏才能包含水印。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8A%9F%E8%83%BD%E7%89%87%E6%AE%B5/" rel="tag"># 功能片段</a>
+              <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+              <a href="/tags/js/" rel="tag"># js</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/11/07/PDP%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3/" rel="prev" title="PDP调用接口">
+                  <i class="fa fa-angle-left"></i> PDP调用接口
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/11/07/Echarts%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/" rel="next" title="Echarts功能实现">
+                  Echarts功能实现 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">songyanglin</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">33k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">56 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

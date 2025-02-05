@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="pdp获取数据获取参数的节点写法type&#x3D;”sql” sql节点获取sql数据fields&#x3D;”ID,Name” 获得数据的别名 ，目前不加默认为数组，通过索引获取，加了为一个数组的对象，args: 输入的参数 db:数据库节点 1234&lt;test1 db&#x3D;&quot;SGAPP&quot; type&#x3D;&quot;sql&quot; fields&#x3D;&quot;ID,Name">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PDP获取数据">
+<meta property="og:url" content="http://example.com/2024/11/07/PDP%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE/index.html">
+<meta property="og:site_name" content="SYL">
+<meta property="og:description" content="pdp获取数据获取参数的节点写法type&#x3D;”sql” sql节点获取sql数据fields&#x3D;”ID,Name” 获得数据的别名 ，目前不加默认为数组，通过索引获取，加了为一个数组的对象，args: 输入的参数 db:数据库节点 1234&lt;test1 db&#x3D;&quot;SGAPP&quot; type&#x3D;&quot;sql&quot; fields&#x3D;&quot;ID,Name">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-07T07:33:48.000Z">
+<meta property="article:modified_time" content="2024-12-24T03:23:09.278Z">
+<meta property="article:author" content="songyanglin">
+<meta property="article:tag" content="PDP2">
+<meta property="article:tag" content="清单">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2024/11/07/PDP%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/11/07/PDP%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE/","path":"2024/11/07/PDP获取数据/","title":"PDP获取数据"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>PDP获取数据 | SYL</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SYL</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">随笔</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-navigation"><a href="/navigation/" rel="section"><i class="fa fa-navicon fa-fw"></i>导航</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pdp%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="nav-number">1.</span> <span class="nav-text">pdp获取数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0%E7%9A%84%E8%8A%82%E7%82%B9%E5%86%99%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">获取参数的节点写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E6%9D%A1sql%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="nav-number">1.2.</span> <span class="nav-text">单条sql获取数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E6%9D%A1sql%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="nav-number">1.3.</span> <span class="nav-text">多条sql获取数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%86%99%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">模拟数据写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E6%9F%A5%E8%AF%A2sql%E5%86%99%E6%B3%95"><span class="nav-number">1.5.</span> <span class="nav-text">链接查询sql写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#union-SQL%E5%86%99%E6%B3%95"><span class="nav-number">1.6.</span> <span class="nav-text">union SQL写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%A8%E5%B9%B4%E5%86%99%E6%B3%95"><span class="nav-number">1.7.</span> <span class="nav-text">跨年写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93%E5%86%99%E6%B3%95"><span class="nav-number">1.8.</span> <span class="nav-text">内存数据库写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#calc%E4%B8%8A%E4%B8%80%E6%9D%A1sql%E7%BB%93%E6%9E%9C%E6%98%AF%E4%B8%8B%E4%B8%80%E6%9D%A1%E7%9A%84%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.9.</span> <span class="nav-text">calc上一条sql结果是下一条的条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#if%E5%86%99%E6%B3%95"><span class="nav-number">1.10.</span> <span class="nav-text">if写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Insert-%E8%8E%B7%E5%8F%96%E8%87%AA%E5%A2%9Eid"><span class="nav-number">1.11.</span> <span class="nav-text">Insert 获取自增id</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7id"><span class="nav-number">1.12.</span> <span class="nav-text">获取用户id</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E7%94%A8SQL%E7%9A%84%E8%8A%82%E7%82%B9"><span class="nav-number">1.13.</span> <span class="nav-text">复用SQL的节点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%96%87%E4%BB%B6%E8%8E%B7%E5%8F%96SQL%E7%9A%84%E5%86%99%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">设计文件获取SQL的写法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#datasource%E8%8A%82%E7%82%B9%E8%8E%B7%E5%8F%96"><span class="nav-number">2.1.</span> <span class="nav-text">datasource节点获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E9%80%9A%E8%BF%87%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">直接通过函数调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E5%86%99%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">同步写法</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">songyanglin</p>
+  <div class="site-description" itemprop="description">code随笔</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Songyanglin-curious" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Songyanglin-curious" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+<!-- recent posts -->
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+        <div class="links-of-blogroll-title recent-posts-title">
+	    <i class="fa fa-history " aria-hidden="true"></i>
+            近期文章
+	</div>
+	<ul class="links-of-blogroll-list recent-posts-list">
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/01/08/iview%E7%BB%84%E4%BB%B6%E8%AE%B0%E5%BD%95/" title="iview组件记录" target="">
+		    iview组件记录
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/12/06/PDP2.0%E7%B1%BB/" title="PDP2.0类" target="">
+		    PDP2.0类
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/12/03/%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="网络学习笔记" target="">
+		    网络学习笔记
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/12/02/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Linux常用命令" target="">
+		    Linux常用命令
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/12/02/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Linux学习笔记" target="">
+		    Linux学习笔记
+		    </a>
+		</li>
+	</ul>
+    </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/07/PDP%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="songyanglin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SYL">
+      <meta itemprop="description" content="code随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="PDP获取数据 | SYL">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PDP获取数据
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-07 15:33:48" itemprop="dateCreated datePublished" datetime="2024-11-07T15:33:48+08:00">2024-11-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-24 11:23:09" itemprop="dateModified" datetime="2024-12-24T11:23:09+08:00">2024-12-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/PDP2/" itemprop="url" rel="index"><span itemprop="name">PDP2</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="pdp获取数据"><a href="#pdp获取数据" class="headerlink" title="pdp获取数据"></a>pdp获取数据</h1><h2 id="获取参数的节点写法"><a href="#获取参数的节点写法" class="headerlink" title="获取参数的节点写法"></a>获取参数的节点写法</h2><p>type&#x3D;”sql” sql节点获取sql数据<br>fields&#x3D;”ID,Name” 获得数据的别名 ，目前不加默认为数组，通过索引获取，加了为一个数组的对象，<br>args: 输入的参数</p>
+<p>db:数据库节点</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">test1</span> <span class="attr">db</span>=<span class="string">&quot;SGAPP&quot;</span> <span class="attr">type</span>=<span class="string">&quot;sql&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;ID,Name&quot;</span> <span class="attr">args</span>=<span class="string">&quot;type&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;2d&quot;</span>&gt;</span>  </span><br><span class="line">    &lt;![CDATA[SELECT ID,NAME AS Name FROM SG_DB.SG_CON_PLANT_B WHERE PLANT_TYPE=&#123;type&#125;]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">test1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">test</span> <span class="attr">type</span>=<span class="string">&quot;dll&quot;</span> <span class="attr">dll</span>=<span class="string">&quot;PDP2.0:PDP.GetSystemParameter&quot;</span> <span class="attr">args</span>=<span class="string">&quot;key&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;2d&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="单条sql获取数据"><a href="#单条sql获取数据" class="headerlink" title="单条sql获取数据"></a>单条sql获取数据</h2><p>新写法：PDP.load<br>第一个参数为 “节点位置和名称，第二个位置通过对象传递参数，对象名为sql节点的参数名”</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">PDP</span>.<span class="title function_">load</span>(<span class="string">&quot;sync:test1&quot;</span>,&#123;<span class="attr">type</span>:<span class="number">1006</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="多条sql获取数据"><a href="#多条sql获取数据" class="headerlink" title="多条sql获取数据"></a>多条sql获取数据</h2><p>PDP.exec<br>每一条数据是一个对象，所有的打包在一个数组里<br>每个对象里的写法<br>声明type为load<br>xml:加载的sql节点 ,args:传递的参数，用对象传递</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">PDP</span>.<span class="title function_">exec</span>([&#123; <span class="attr">type</span>:<span class="string">&quot;load&quot;</span>,<span class="attr">xml</span>:<span class="string">&quot;sync:test1&quot;</span>,<span class="attr">args</span>:&#123;<span class="attr">type</span>:<span class="number">1006</span>&#125;&#125;])</span><br></pre></td></tr></table></figure>
+
+<p>SELECT * FROM SG_META_TABLE</p>
+<p>SELECT * FROM SG_META_OBJECT</p>
+<p>SELECT *  FROM SG_META_TABLE WHERE TABLE_NAME_ENG LIKE ‘%DEV_ACLINE%’</p>
+<p>SELECT * FROM SG_CON_SUBSTATION_B</p>
+<p>select * from ys_db_hb.ysh_sc_station</p>
+<h2 id="模拟数据写法"><a href="#模拟数据写法" class="headerlink" title="模拟数据写法"></a>模拟数据写法</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">test</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;id,name&quot;</span> <span class="attr">args</span>=<span class="string">&quot;&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;2d&quot;</span>&gt;</span></span><br><span class="line">    1,张三</span><br><span class="line">    2,李四</span><br><span class="line"><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="链接查询sql写法"><a href="#链接查询sql写法" class="headerlink" title="链接查询sql写法"></a>链接查询sql写法</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">test</span> <span class="attr">type</span>=<span class="string">&quot;calc&quot;</span> <span class="attr">args</span>=<span class="string">&quot;devid&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;2d&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;name&quot;</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">fields</span>=<span class="string">&quot;id,&quot;</span>&gt;</span></span><br><span class="line">      &lt;![CDATA[SELECT ZC_ID FROM YS_DB.YSH_GUD_DEVICE WHERE jxt_id=&#123;devid&#125;]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">b</span> <span class="attr">args</span>=<span class="string">&quot;a.id&quot;</span>&gt;</span></span><br><span class="line">      &lt;![CDATA[SELECT col3 FROM YS_DB.YSH_SC_DEVICE WHERE ID=&#123;a.id&#125;]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>参数往下穿，最外层的fields获取最下面的节点</p>
+<h2 id="union-SQL写法"><a href="#union-SQL写法" class="headerlink" title="union SQL写法"></a>union SQL写法</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">GetAllLinesLeng</span> <span class="attr">type</span>=<span class="string">&quot;union&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;ID,Length,Voltage&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">ac</span> <span class="attr">db</span>=<span class="string">&quot;SGC&quot;</span> <span class="attr">type</span>=<span class="string">&quot;sql&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;ID,Length,Voltage&quot;</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[ </span><br><span class="line">     SELECT A.ID,A.LENGTH,&#x27;交流&#x27; || V.NAME FROM SG_DATACENTER.SG_DEV_ACLINE_B AS A</span><br><span class="line">  JOIN SG_DATACENTER.SG_DIC_VOLTAGETYPE V </span><br><span class="line">     ON A.VOLTAGE_TYPE = V.CODE</span><br><span class="line">  WHERE V.CODE IN (1001,1003)</span><br><span class="line">     ]]&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">ac</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dc</span> <span class="attr">db</span>=<span class="string">&quot;SGC&quot;</span> <span class="attr">type</span>=<span class="string">&quot;sql&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;ID,Length,Voltage&quot;</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[ </span><br><span class="line">     SELECT A.ID,A.LENGTH,&#x27;直流&#x27; FROM SG_DATACENTER.SG_DEV_DCLINE_B AS A</span><br><span class="line">     JOIN (SELECT CODE,NAME FROM SG_DATACENTER.SG_DIC_VOLTAGETYPE ) AS B</span><br><span class="line">     ON A.VOLTAGE_TYPE = B.CODE</span><br><span class="line">     ]]&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">dc</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">GetAllLinesLeng</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="跨年写法"><a href="#跨年写法" class="headerlink" title="跨年写法"></a>跨年写法</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">test</span> <span class="attr">type</span>=<span class="string">&quot;period&quot;</span> <span class="attr">period</span>=<span class="string">&quot;y&quot;</span> <span class="attr">s</span>=<span class="string">&quot;0&quot;</span> <span class="attr">e</span>=<span class="string">&quot;1&quot;</span> <span class="attr">args</span>=<span class="string">&quot;st,et&quot;</span>&gt;</span></span><br><span class="line">	&lt;![CDATA[</span><br><span class="line">	SELECT * FROM SG_DATACENTER.SG_COM_TYPHOON_H_FORECAST_@T@&#123;0:yyyy&#125; </span><br><span class="line">	]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="内存数据库写法"><a href="#内存数据库写法" class="headerlink" title="内存数据库写法"></a>内存数据库写法</h2><blockquote>
+<p>可以将多个表查到服务器内存后建立内存数据库，故只能从data的表中执行SQL</p>
+<p>index为内存数据库表创建索引，</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">memory</span> <span class="attr">type</span>=<span class="string">&quot;memory&quot;</span> <span class="attr">args</span>=<span class="string">&quot;st,et&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">data</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[</span><br><span class="line">		SELECT * FROM SG_DATACENTER.SG_COM_TYPHOON_H_FORECAST_@T@&#123;0:yyyy&#125; </span><br><span class="line">		]]&gt;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">data</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">index</span> <span class="attr">a</span>=<span class="string">&quot;id&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">index</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">sql</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[</span><br><span class="line">		SELECT * FROM a</span><br><span class="line">		]]&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">memory</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="calc上一条sql结果是下一条的条件"><a href="#calc上一条sql结果是下一条的条件" class="headerlink" title="calc上一条sql结果是下一条的条件"></a>calc上一条sql结果是下一条的条件</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">&lt;</span>test type<span class="operator">=</span>&quot;calc&quot; args<span class="operator">=</span>&quot;devid&quot; datatype<span class="operator">=</span>&quot;2d&quot; fields<span class="operator">=</span>&quot;name&quot; a<span class="operator">=</span>&quot;115123265642443316&quot;<span class="operator">&gt;</span></span><br><span class="line">       <span class="operator">&lt;</span>a fields<span class="operator">=</span>&quot;id,&quot;<span class="operator">&gt;</span></span><br><span class="line">     <span class="operator">&lt;</span><span class="operator">!</span>[CDATA[<span class="keyword">SELECT</span> ZC_ID <span class="keyword">FROM</span> ]]<span class="operator">&gt;</span><span class="operator">&lt;</span><span class="operator">!</span>[CDATA[same:SearchDistrictCommonSql:SchemaAppName]]<span class="operator">&gt;</span><span class="operator">&lt;</span><span class="operator">!</span>[CDATA[YSH_GUD_DEVICE <span class="keyword">WHERE</span> jxt_id<span class="operator">=</span>&#123;devid&#125;]]<span class="operator">&gt;</span></span><br><span class="line">   <span class="operator">&lt;</span><span class="operator">/</span>a<span class="operator">&gt;</span></span><br><span class="line">       <span class="operator">&lt;</span>b args<span class="operator">=</span>&quot;a.id&quot;<span class="operator">&gt;</span></span><br><span class="line">     <span class="operator">&lt;</span><span class="operator">!</span>[CDATA[<span class="keyword">SELECT</span> col3 <span class="keyword">FROM</span> ]]<span class="operator">&gt;</span><span class="operator">&lt;</span><span class="operator">!</span>[CDATA[same:SearchDistrictCommonSql:SchemaAppName]]<span class="operator">&gt;</span><span class="operator">&lt;</span><span class="operator">!</span>[CDATA[YSH_SC_DEVICE <span class="keyword">WHERE</span> ID<span class="operator">=</span>&#123;a.id&#125;]]<span class="operator">&gt;</span></span><br><span class="line">   <span class="operator">&lt;</span><span class="operator">/</span>b<span class="operator">&gt;</span></span><br><span class="line">   <span class="operator">&lt;</span><span class="operator">/</span>test<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="if写法"><a href="#if写法" class="headerlink" title="if写法"></a>if写法</h2><h2 id="Insert-获取自增id"><a href="#Insert-获取自增id" class="headerlink" title="Insert 获取自增id"></a>Insert 获取自增id</h2><p>insert SQL语句下面的sql想用增加后的id</p>
+<p>需要返回自增id的SQL请求条件type 为new,使用的为本身，使用上面返回的自增id使用占位符type可以干掉</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; ref: &quot;0&quot;, value: -1, type: &quot;string&quot; &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取用户id"><a href="#获取用户id" class="headerlink" title="获取用户id"></a>获取用户id</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">ref</span>: <span class="string">&quot;lib&quot;</span>, <span class="attr">value</span>: <span class="string">&quot;userid&quot;</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="复用SQL的节点"><a href="#复用SQL的节点" class="headerlink" title="复用SQL的节点"></a>复用SQL的节点</h2><p>注释语法same : 节点名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;![CDATA[same:SearchDistrictCommonSql:SchemaAppName]]&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="设计文件获取SQL的写法"><a href="#设计文件获取SQL的写法" class="headerlink" title="设计文件获取SQL的写法"></a>设计文件获取SQL的写法</h1><h2 id="datasource节点获取"><a href="#datasource节点获取" class="headerlink" title="datasource节点获取"></a>datasource节点获取</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">datasource</span> <span class="attr">type</span>=<span class="string">&quot;load&quot;</span> <span class="attr">id</span>=<span class="string">&quot;factorys&quot;</span> <span class="attr">desc</span>=<span class="string">&quot;生产厂家正序&quot;</span> <span class="attr">node</span>=<span class="string">&quot;sc/sbzc:top5/factory&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">cols</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">col</span> <span class="attr">id</span>=<span class="string">&quot;col_type&quot;</span> <span class="attr">name</span>=<span class="string">&quot;type&quot;</span> <span class="attr">desc</span>=<span class="string">&quot;type&quot;</span> <span class="attr">from</span>=<span class="string">&quot;seldevtype&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">col</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">col</span> <span class="attr">id</span>=<span class="string">&quot;col_factory&quot;</span> <span class="attr">name</span>=<span class="string">&quot;factory&quot;</span> <span class="attr">desc</span>=<span class="string">&quot;factory&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">col</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">col</span> <span class="attr">id</span>=<span class="string">&quot;col_count&quot;</span> <span class="attr">name</span>=<span class="string">&quot;count&quot;</span> <span class="attr">desc</span>=<span class="string">&quot;count&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">col</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">cols</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">datasource</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>1、datasource在datasources节点下</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>type</td>
+<td>请求类型</td>
+<td>load|read|dll</td>
+</tr>
+<tr>
+<td>id</td>
+<td>获取到的参数的名字</td>
+<td></td>
+</tr>
+<tr>
+<td>desc</td>
+<td>获取参数失败的提示</td>
+<td></td>
+</tr>
+<tr>
+<td>node</td>
+<td>节点名</td>
+<td>：前的是文件路径，冒号后的是根节点，根节点下一层的SQL节点通过&#x2F;获取</td>
+</tr>
+</tbody></table>
+<p>col:name为字段名字</p>
+<p>from ：是条件变量，name是条件字段的名字</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> this.load_deviceType(true,() =&gt; &#123;</span><br><span class="line">    console.log(this.deviceType)</span><br><span class="line">    var devtypes = [];</span><br><span class="line">    this.deviceType.forEach(item =&gt; &#123;</span><br><span class="line">      devtypes.push([item.type,item.type])</span><br><span class="line">    &#125;)</span><br><span class="line">    this.devtypes = devtypes;</span><br><span class="line">    this.seldevtype = devtypes[0][0];</span><br><span class="line">  </span><br><span class="line">    this.getFactoryTopData();</span><br><span class="line">    this.$nextTick(function()&#123;</span><br><span class="line">      this.resize();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>类型名_SQL变量名，是发布后的SQL请求函数，获取的值是返回值的value</p>
+<blockquote>
+<p>异步方法：</p>
+<p>this.load_deviceType(true,() &#x3D;&gt; {}）是回调函数，在有依赖关系时使用</p>
+<p>同步方法：</p>
+<p>var res &#x3D; this.load_deviceType();直接拿到值</p>
+</blockquote>
+<h2 id="直接通过函数调用"><a href="#直接通过函数调用" class="headerlink" title="直接通过函数调用"></a>直接通过函数调用</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//单条</span><br><span class="line">PDP.load(&quot;sync:test1&quot;,&#123;type:1006&#125;)</span><br><span class="line">//多条</span><br><span class="line">PDP.exec([&#123; type:&quot;load&quot;,xml:&quot;sync:test1&quot;,args:&#123;type:1006&#125;&#125;])</span><br></pre></td></tr></table></figure>
+
+<h2 id="同步写法"><a href="#同步写法" class="headerlink" title="同步写法"></a>同步写法</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var user = PDP.load_userInfo();</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/PDP2/" rel="tag"># PDP2</a>
+              <a href="/tags/%E6%B8%85%E5%8D%95/" rel="tag"># 清单</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/11/07/%E5%86%80%E5%8C%97%E8%B6%85%E9%AB%98%E5%8E%8B/" rel="prev" title="冀北超高压">
+                  <i class="fa fa-angle-left"></i> 冀北超高压
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/11/07/PDP%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3/" rel="next" title="PDP调用接口">
+                  PDP调用接口 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">songyanglin</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">33k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">56 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

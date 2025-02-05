@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="code随笔">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SYL">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="SYL">
+<meta property="og:description" content="code随笔">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="songyanglin">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>SYL</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">SYL</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">随笔</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-navigation"><a href="/navigation/" rel="section"><i class="fa fa-navicon fa-fw"></i>导航</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">songyanglin</p>
+  <div class="site-description" itemprop="description">code随笔</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Songyanglin-curious" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Songyanglin-curious" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+<!-- recent posts -->
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+        <div class="links-of-blogroll-title recent-posts-title">
+	    <i class="fa fa-history " aria-hidden="true"></i>
+            近期文章
+	</div>
+	<ul class="links-of-blogroll-list recent-posts-list">
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/01/08/iview%E7%BB%84%E4%BB%B6%E8%AE%B0%E5%BD%95/" title="iview组件记录" target="">
+		    iview组件记录
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/12/06/PDP2.0%E7%B1%BB/" title="PDP2.0类" target="">
+		    PDP2.0类
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/12/03/%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="网络学习笔记" target="">
+		    网络学习笔记
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/12/02/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Linux常用命令" target="">
+		    Linux常用命令
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/12/02/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Linux学习笔记" target="">
+		    Linux学习笔记
+		    </a>
+		</li>
+	</ul>
+    </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/01/08/iview%E7%BB%84%E4%BB%B6%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="songyanglin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SYL">
+      <meta itemprop="description" content="code随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SYL">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/08/iview%E7%BB%84%E4%BB%B6%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">iview组件记录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-01-08 14:13:32 / 修改时间：14:14:21" itemprop="dateCreated datePublished" datetime="2025-01-08T14:13:32+08:00">2025-01-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BB%84%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">组件</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>294</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="表格单击行选中"><a href="#表格单击行选中" class="headerlink" title="表格单击行选中"></a>表格单击行选中</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> time = <span class="number">200</span>;</span><br><span class="line"><span class="keyword">var</span> timeOut = <span class="literal">null</span>;</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">onRowClick</span> = <span class="keyword">function</span> (<span class="params">row, index</span>) &#123;</span><br><span class="line">    <span class="built_in">clearTimeout</span>(timeOut);</span><br><span class="line">    timeOut = <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (row.<span class="property">_disabled</span> != <span class="literal">undefined</span> &amp;&amp; row.<span class="property">_disabled</span> == <span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        pdp.<span class="property">$refs</span>.<span class="property">configtable</span>.<span class="title function_">toggleSelect</span>(index);</span><br><span class="line">    &#125;, time)</span><br><span class="line">&#125;.<span class="title function_">bind</span>(<span class="variable language_">this</span>);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/12/06/PDP2.0%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="songyanglin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SYL">
+      <meta itemprop="description" content="code随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SYL">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/12/06/PDP2.0%E7%B1%BB/" class="post-title-link" itemprop="url">PDP2.0类</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-12-06 09:26:46 / 修改时间：09:38:12" itemprop="dateCreated datePublished" datetime="2024-12-06T09:26:46+08:00">2024-12-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/PDP2/" itemprop="url" rel="index"><span itemprop="name">PDP2</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>491</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="读取XML"><a href="#读取XML" class="headerlink" title="读取XML"></a>读取XML</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Linger.Common.XmlHelper xml = <span class="keyword">new</span> Linger.Common.XmlHelper(<span class="string">&quot;environment.xml&quot;</span>);</span><br><span class="line"><span class="built_in">string</span> current = xml.GetNodeValue(<span class="string">&quot;CURRENT&quot;</span>).Trim();</span><br><span class="line">XmlNode currentConfig = xml.GetXmlNode(current);</span><br><span class="line">mapUrl = xml.GetNodeValue(current+ <span class="string">&quot;/MPA_URL&quot;</span>).Trim();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>new Linger.Common.XmlHelper(&quot;environment.xml&quot;);</code>读取固定路径 &#x2F;App_Data&#x2F;下的文件</p>
+<p><code>environment.xml</code> 也可以拼路径 如 <code>load/environment.xml</code>就是读&#x2F;App_Data&#x2F;load&#x2F;environment.xml文件</p>
+<p>读取文件下的执行节点可以传相对路径</p>
+<p>读取CDATA内的值使用xml.GetNodeValue(“CURRENT”)</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/12/03/%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="songyanglin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SYL">
+      <meta itemprop="description" content="code随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SYL">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/12/03/%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">网络学习笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-12-03 09:33:54 / 修改时间：12:04:46" itemprop="dateCreated datePublished" datetime="2024-12-03T09:33:54+08:00">2024-12-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="IP-子网掩码-路由-网关"><a href="#IP-子网掩码-路由-网关" class="headerlink" title="IP 子网掩码 路由 网关"></a>IP 子网掩码 路由 网关</h2><h3 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h3><blockquote>
+<p>唯一标识 IP4  32位</p>
+</blockquote>
+<h3 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h3><blockquote>
+<p>子网掩码是一个32位的二进制值，用于将一个IP地址划分为网络部分和主机部分。</p>
+<p>192.168.1.10 &amp; 255.255.255.0 &#x3D; 192.168.1.0<br>192.168.1.20 &amp; 255.255.255.0 &#x3D; 192.168.1.0</p>
+<p>同一网段的可以直接通信</p>
+</blockquote>
+<p><strong>子网的作用：</strong></p>
+<ol>
+<li><strong>提高效率</strong> ：通过将网络划分为较小的子网，可以减少广播域的大小，从而减少网络拥塞和提高网络效率。</li>
+<li><strong>简化管理</strong> ：较小的子网使得网络的管理更加简单。例如，如果网络被划分为多个子网，那么每个子网的配置和管理都可以独立进行，而不需要考虑整个网络的配置。</li>
+<li><strong>提高安全性</strong> ：通过将敏感数据或设备放在单独的子网中，可以提高网络的安全性。这样，即使一个子网受到攻击，也不会影响到其他子网。</li>
+<li><strong>支持更大规模的网络</strong> ：随着技术的发展和需求的增加，我们可以通过划分更多的子网来支持更大的网络规模。</li>
+<li><strong>简化路由决策</strong> ：子网掩码使得路由器能够更有效地进行路由决策。当路由器接收到一个数据包时，它会查看目标IP地址的子网部分，然后根据路由表中的信息决定如何将这个数据包发送到正确的目的地。</li>
+</ol>
+<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><p>物理设备，路由器负责执行路由决策，将数据包发送到正确的目的地。它根据目标IP地址和子网掩码，决定最佳的数据传输路径。</p>
+<h2 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h2><blockquote>
+<p>网关（Gateway）就是一个网络连接到另一个网络的“关口”。</p>
+</blockquote>
+<p>网关实质上是一个网络通向其他网络的IP地址。<br>比如有网络A和网络B，网络A的IP地址范围为 “192.168.1.1<del>192. 168.1.254”，子网掩码为255.255.255.0；<br>网络B的IP地址范围为“192.168.2.1</del>192.168.2.254”，子网掩码为255.255.255.0。<br>在没有路由器的情况下，两个网络之间是不能进行TCP&#x2F;IP通信的，即使是两个网络连接在同一台交换机（或集线器）上，<br> TCP&#x2F;IP协议也会根据子网掩码（255.255.255.0）判定两个网络中的主机处在不同的网络里。<br>而要实现这两个网络之间的通信，则必须通过网关。<br>如果网络A中的主机发现数据包的目的主机不在本地网络中，就把数据包转发给它自己的网关，再由网关转发给网络B的网关，网络B的网关再转发给网络B的某个主机。<br>网络B向网络A转发数据包的过程也是如此。</p>
+<h2 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h2><p>网线不属于任何一层。我觉得题主犯了一个错误，就是把物理层和物理设备或者说物理信号混为一谈了。</p>
+<p>通信网的七层，只是七个抽象的层，只是对于通信的规则进行通行性的描述，不应该把某些实体的设备对应说是哪一层。你就说你的电脑吧，你用不同的软件，就可以对不同层的数据进行操作，你说它应该属于哪一层呢？物理层也只是对各种调制方式、检错方式等进行标准的描述，它也是抽象的，并不关系到你的实现或者设备上。</p>
+<p>总之一点，七层都是没有实体的，它们只是对于你所通信的数据一些约定俗成的规则。它们处理的都是抽象数字，并不涉及模拟。不是因为它叫物理层，所以就和物理设备有关系。它这所以叫物理层，是因为它对数据传输的物理实现进行了定义。</p>
+<p>所以可以这么认为，你在七层所处理的数据，其实都是数字的，在物理层上也是数字的，所以确确实实是比特流。但是在物理设备中，它肯定是模拟的，因为自然界中的东西都是模拟的，你永远也找不到一个0或者1出来，是吧？</p>
+<p>题主要清楚一点，不要把物理设备和物理层混为一谈，整个七层所涉及的所有数据，都是物理设备一层层分析展开再打包合并了的。可以这么说，各层的意义其实都是人为的，它们本身在传输线或者设备内部都是模拟信号，只不过通过人为的规定，把他们规定成了有意义的比特流。</p>
+<p>总结就是，传输线只是传输物理信号的物理设备，并不是物理层的东西。任何信号，本质上来说都是模拟的，比如你觉得计算机处理的都是数字信号吗？并不是，我们只是把那些各种三极管的输出电平给视为0或者1，人脑袋里想的那些数字信号都是一些抽象信号。你不能把抽象的物理层和实际中的模拟信号传输的网线放在一起比较。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/12/02/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="songyanglin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SYL">
+      <meta itemprop="description" content="code随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SYL">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/12/02/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Linux常用命令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-12-02 16:50:55 / 修改时间：17:30:48" itemprop="dateCreated datePublished" datetime="2024-12-02T16:50:55+08:00">2024-12-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>646</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="ps-当前进程状态查询"><a href="#ps-当前进程状态查询" class="headerlink" title="ps 当前进程状态查询"></a>ps 当前进程状态查询</h3><blockquote>
+<p>process status:用于显示当前进程的状态，类似于 windows 的任务管理器。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-ps.html">Linux ps 命令</a></p>
+<p><strong>例子：</strong></p>
+<p><code>ps aux | grep mono</code> 查询mono进程</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>USER</td>
+<td>运行进程的用户名</td>
+</tr>
+<tr>
+<td>PID</td>
+<td>进程ID，即进程的唯一标识符</td>
+</tr>
+<tr>
+<td>%CPU</td>
+<td>进程占用的 CPU 使用率</td>
+</tr>
+<tr>
+<td>%MEM</td>
+<td>进程占用的物理内存百分比</td>
+</tr>
+<tr>
+<td>VSZ</td>
+<td>进程使用的虚拟内存大小（以 KB 为单位）</td>
+</tr>
+<tr>
+<td>RSS</td>
+<td>进程使用的驻留集大小，即实际物理内存占用（以 KB 为单位）</td>
+</tr>
+<tr>
+<td>TTY</td>
+<td>启动进程的终端名。? 表示没有关联的终端</td>
+</tr>
+<tr>
+<td>STAT</td>
+<td>进程状态，例如 S (sleeping)，R (running)，Z (zombie) 等</td>
+</tr>
+<tr>
+<td>START</td>
+<td>进程启动时间</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>进程占用的 CPU 时间</td>
+</tr>
+<tr>
+<td>COMMAND</td>
+<td>启动进程的命令行</td>
+</tr>
+</tbody></table>
+<h3 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h3><h4 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h4><p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-cat.html">Linux cat 命令 </a></p>
+<p><code>cat -n filename</code> 查看文件内容 并且 显示行号</p>
+<h4 id="less"><a href="#less" class="headerlink" title="less"></a>less</h4><p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-less.html">Linux less 命令 </a></p>
+<h2 id="进程启动"><a href="#进程启动" class="headerlink" title="进程启动"></a>进程启动</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-nohup.html">Linux nohup 命令</a></p>
+<p><strong>判断当前系统是哪种初始化信通</strong></p>
+<p><code>ps -p 1 -o comm=</code></p>
+<p><strong>SysVinit</strong> 或 <strong>systemd</strong></p>
+<blockquote>
+<p><code>service_name</code>  可以通过  ps -p <code>&lt;pid&gt;</code> -o comm&#x3D;  来查询</p>
+</blockquote>
+<h4 id="停止进程"><a href="#停止进程" class="headerlink" title="停止进程"></a>停止进程</h4><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>命令</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>systemd</td>
+<td>systemctl stop <service_name></td>
+<td></td>
+</tr>
+<tr>
+<td>SysVinit</td>
+<td>service <service_name> start</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>kill <code>&lt;pid&gt;</code></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="启动进程"><a href="#启动进程" class="headerlink" title="启动进程"></a>启动进程</h4><blockquote>
+<p><code>nohup /root/runoob.sh &amp;</code>  <code>&amp;</code>让命令在后台执行</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>命令</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>systemd</td>
+<td>systemctl start <service_name></td>
+<td></td>
+</tr>
+<tr>
+<td>SysVinit</td>
+<td>service <service_name> start</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>nohup command &amp;</td>
+<td></td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/12/02/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="songyanglin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SYL">
+      <meta itemprop="description" content="code随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SYL">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/12/02/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Linux学习笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-12-02 16:46:27 / 修改时间：16:50:02" itemprop="dateCreated datePublished" datetime="2024-12-02T16:46:27+08:00">2024-12-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>35</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="启动过程"><a href="#启动过程" class="headerlink" title="启动过程"></a>启动过程</h2><ul>
+<li>内核的引导。</li>
+<li>运行 init。</li>
+<li>系统初始化。</li>
+<li>建立终端 。</li>
+<li>用户登录系统。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/30/PDP2.0%E9%85%8D%E7%BD%AE%E9%A1%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="songyanglin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SYL">
+      <meta itemprop="description" content="code随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SYL">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/11/30/PDP2.0%E9%85%8D%E7%BD%AE%E9%A1%B9/" class="post-title-link" itemprop="url">PDP2.0配置项</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-30 18:22:57" itemprop="dateCreated datePublished" datetime="2024-11-30T18:22:57+08:00">2024-11-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-02 16:28:46" itemprop="dateModified" datetime="2024-12-02T16:28:46+08:00">2024-12-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/PDP2/" itemprop="url" rel="index"><span itemprop="name">PDP2</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="配置ORACLE数据库节点"><a href="#配置ORACLE数据库节点" class="headerlink" title="配置ORACLE数据库节点"></a>配置ORACLE数据库节点</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Open3000</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">IPCFG</span>&gt;</span>&lt;![CDATA[10.176.164.204:1521/o2000]]&gt;<span class="tag">&lt;/<span class="name">IPCFG</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DATABASE</span>&gt;</span>&lt;![CDATA[EMS]]&gt;<span class="tag">&lt;/<span class="name">DATABASE</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[ORACLE]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DBUSER</span>&gt;</span>&lt;![CDATA[fhyc]]&gt;<span class="tag">&lt;/<span class="name">DBUSER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PASSWORD</span>&gt;</span>&lt;![CDATA[2a5e7b6fcbb2fb411267d01af2d6f1432d584c03fc888d71b54f0f4dacfaf2d1]]&gt;<span class="tag">&lt;/<span class="name">PASSWORD</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">BATCHEX</span>&gt;</span>&lt;![CDATA[BEGIN;,COMMIT;]]&gt;<span class="tag">&lt;/<span class="name">BATCHEX</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Open3000</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>IPCFG</code>是IP加端口+服务名</p>
+</blockquote>
+<h2 id="ORACLE的SQL注意事项"><a href="#ORACLE的SQL注意事项" class="headerlink" title="ORACLE的SQL注意事项"></a>ORACLE的SQL注意事项</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">GetZWPlan</span> <span class="attr">db</span>=<span class="string">&quot;Open3000&quot;</span> <span class="attr">type</span>=<span class="string">&quot;load&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;time,value&quot;</span> <span class="attr">args</span>=<span class="string">&quot;s,e&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;2d&quot;</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[ </span><br><span class="line">        SELECT OCCUR_TIME, CUR_001</span><br><span class="line">        FROM EMS.yc_hs_800001</span><br><span class="line">        WHERE STA_001 = &#x27;1073741824&#x27; AND OCCUR_TIME &gt;=  TO_DATE(&#123;s&#125;,&#x27;YYYY-MM-DD HH24:MI:SS&#x27;) AND OCCUR_TIME &lt;= TO_DATE(&#123;e&#125;,&#x27;YYYY-MM-DD HH24:MI:SS&#x27;)</span><br><span class="line">        ]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">GetZWPlan</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>末尾不要加分号</li>
+<li>时间要通过函数转换</li>
+</ol>
+<h2 id="配置Mysql数据库"><a href="#配置Mysql数据库" class="headerlink" title="配置Mysql数据库"></a>配置Mysql数据库</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ConnMain</span> <span class="attr">Name</span>=<span class="string">&quot;国调云&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">IPCFG</span>&gt;</span>&lt;![CDATA[ 192.168.6.227; Pooling=false; Allow User Variables=True;SslMode=None; ]]&gt;<span class="tag">&lt;/<span class="name">IPCFG</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DATABASE</span>&gt;</span>&lt;![CDATA[ysh_db]]&gt;<span class="tag">&lt;/<span class="name">DATABASE</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[ MYSQL ]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DBUSER</span>&gt;</span>&lt;![CDATA[root]]&gt;<span class="tag">&lt;/<span class="name">DBUSER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PASSWORD</span>&gt;</span>&lt;![CDATA[c1e9829d774eb7d21a69c40c0fb848cff88f323a050a63ae11678d6ebc0b5158]]&gt;<span class="tag">&lt;/<span class="name">PASSWORD</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">BATCHEX</span>&gt;</span>&lt;![CDATA[BEGIN;,COMMIT;]]&gt;<span class="tag">&lt;/<span class="name">BATCHEX</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ConnMain</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><strong>Pooling&#x3D;false</strong> ：设置为 <code>false</code>表示不使用连接池，每次请求都会创建新的数据库连接。</li>
+<li><strong>Allow User Variables&#x3D;True</strong> ：允许在SQL查询中使用用户自定义的变量。</li>
+<li><strong>SslMode&#x3D;None</strong> ：当设置为 <code>None</code>时，表示不使用SSL连接。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/20/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="songyanglin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SYL">
+      <meta itemprop="description" content="code随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SYL">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/11/20/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/" class="post-title-link" itemprop="url">PDP2.0问题集合</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-20 15:22:57" itemprop="dateCreated datePublished" datetime="2024-11-20T15:22:57+08:00">2024-11-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-02 16:28:39" itemprop="dateModified" datetime="2024-12-02T16:28:39+08:00">2024-12-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/PDP2/" itemprop="url" rel="index"><span itemprop="name">PDP2</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>379</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="大小写问题"><a href="#大小写问题" class="headerlink" title="大小写问题"></a>大小写问题</h2><p>linux上区分大小写 windows上不区分大小写  当同时存在 <code>bin</code>和 <code>Bin</code>时读取要编译的dll会读取Bin下的dll</p>
+<h2 id="编译不通过问题"><a href="#编译不通过问题" class="headerlink" title="编译不通过问题"></a>编译不通过问题</h2><p>linux下吧没法编译并且LOG里面没有记录可能是由以下的dll造成的</p>
+<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093362747.jpg" alt="1732093362747"></p>
+<p><strong>云南主配微排除查出来的dll</strong></p>
+<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093463492.jpg" alt="1732093463492"></p>
+<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093510245.jpg" alt="1732093510245"></p>
+<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093524740.jpg" alt="1732093524740"></p>
+<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093541496.jpg" alt="1732093541496"></p>
+<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093574196.jpg" alt="1732093574196"></p>
+<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093592842.jpg" alt="1732093592842"></p>
+<h2 id="aspx文件请求Not-Found"><a href="#aspx文件请求Not-Found" class="headerlink" title="aspx文件请求Not Found"></a>aspx文件请求Not Found</h2><p>一把报错为 <code>ip/ajaxpro/... not found</code></p>
+<p><strong>解决办法</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">system.web</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">httpHandlers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">add</span> <span class="attr">verb</span>=<span class="string">&quot;POST,GET&quot;</span> <span class="attr">path</span>=<span class="string">&quot;ajaxpro*.ashx&quot;</span> <span class="attr">type</span>=<span class="string">&quot;AjaxPro.AjaxHandlerFactory, AjaxPro.2&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">httpHandlers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">system.web</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="用户模块添加用户报错"><a href="#用户模块添加用户报错" class="headerlink" title="用户模块添加用户报错"></a>用户模块添加用户报错</h2>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/20/%E4%BA%91%E5%8D%97%E5%87%BA%E5%B7%AE%E8%A7%81%E9%97%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="songyanglin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SYL">
+      <meta itemprop="description" content="code随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SYL">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/11/20/%E4%BA%91%E5%8D%97%E5%87%BA%E5%B7%AE%E8%A7%81%E9%97%BB/" class="post-title-link" itemprop="url">云南出差见闻</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-20 15:22:57" itemprop="dateCreated datePublished" datetime="2024-11-20T15:22:57+08:00">2024-11-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-02 16:38:05" itemprop="dateModified" datetime="2024-12-02T16:38:05+08:00">2024-12-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE/%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AF%BC%E8%88%AA/" itemprop="url" rel="index"><span itemprop="name">地理信息导航</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>163</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="项目初版搭建"><a href="#项目初版搭建" class="headerlink" title="项目初版搭建"></a>项目初版搭建</h2><p>1、项目需要和虚拟机保持操作系统和jexus版本一致方便重现问题</p>
+<p>2、更新至现场前需要将所有相关的进程全部停掉，重新启动后没有问题再将linux的程序更新至现场</p>
+<p>3、初版的配置可由工程将现场参数传回后由研发配置</p>
+<p>4、工程需要一些辅助工具或者脚本，如备份更新脚本 兼具回滚功能；图模数据校验工具</p>
+<h2 id="linux常用命令"><a href="#linux常用命令" class="headerlink" title="linux常用命令"></a>linux常用命令</h2><h2 id="telnat"><a href="#telnat" class="headerlink" title="telnat"></a>telnat</h2>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/20/%E9%A1%B9%E7%9B%AE%E5%8A%9F%E8%83%BD%E6%B8%85%E5%8D%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="songyanglin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SYL">
+      <meta itemprop="description" content="code随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SYL">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/11/20/%E9%A1%B9%E7%9B%AE%E5%8A%9F%E8%83%BD%E6%B8%85%E5%8D%95/" class="post-title-link" itemprop="url">项目功能清单</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-20 15:22:57" itemprop="dateCreated datePublished" datetime="2024-11-20T15:22:57+08:00">2024-11-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-06 09:25:40" itemprop="dateModified" datetime="2024-12-06T09:25:40+08:00">2024-12-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>713</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="项目注意事项"><a href="#项目注意事项" class="headerlink" title="项目注意事项"></a>项目注意事项</h2><h3 id="供电路径"><a href="#供电路径" class="headerlink" title="供电路径"></a>供电路径</h3><ol>
+<li>接线图供电路径整体为 网页发送websocket消息至花海燕服务 ，花海燕服务为消息转发  ，花海燕消息转发给张聪的服务进行计算，将结果返回给花海燕服务再返回给页面</li>
+<li>花海燕服务 有三个端口  第一个和网页交互的端口 IP要设置为 <code>0.0.0.0</code> 剩余两个端口是和张聪的服务做交互  其ip要设置为127.0.0.1  或者真实IP，该服务 server  和client   要和张聪的服务IP做交叉</li>
+<li>花海燕服务下有两个exe   AI开头的带有[[[]]]]三个方括号的标识符   Web开头的没有携带标识符</li>
+<li>张聪的服务需要标识符才能接收到消息</li>
+<li>张聪的服务启动很耗费时间只有其完全将数据读入内存后才能正常提供服务。</li>
+<li>两个服务的消息接受转发都记录在SK开头的日志，张聪的服务是否启动的日志是NORMAL开头</li>
+</ol>
+<h3 id="供电路径调试记录"><a href="#供电路径调试记录" class="headerlink" title="供电路径调试记录"></a>供电路径调试记录</h3><p>1、调试消息交互按照消息的传递路径一个节点一个节点的验证，验证顺序为1、收到消息这一动作是否执行，2、收到的消息格式是否正确3、是否对收到的消息做了正确的响应。</p>
+<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><ul>
+<li><code>127.0.0.1</code> 是本地回环地址，仅用于本机通信 （任何发送到 <code>127.0.0.1</code> 的网络请求都不会发送到外部网络，而是会回送到本机。）。</li>
+<li><code>0.0.0.0</code> 是一个通配符地址，允许服务接受所有地址的连接 （当一个服务绑定到 <code>0.0.0.0</code> 时，意味着它将监听来自所有可用IP地址的请求，而不仅仅是本机请求）。</li>
+<li>实际IP是设备在网络中的唯一标识，用于进行外部通信（与 <code>127.0.0.1</code> 和 <code>0.0.0.0</code> 的区别在于，实际IP是分配给特定设备的，可以是动态或静态的，而前两者是特殊用途的地址）。</li>
+</ul>
+<blockquote>
+<p>如果你的服务需要接受来自不同主机的 WebSocket 消息，那么将服务的监听 IP 设置为 <code>0.0.0.0</code> 是一个合适的选择。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/08/%E8%B7%A8%E5%9F%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="songyanglin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SYL">
+      <meta itemprop="description" content="code随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SYL">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/11/08/%E8%B7%A8%E5%9F%9F/" class="post-title-link" itemprop="url">跨域</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-08 09:14:13" itemprop="dateCreated datePublished" datetime="2024-11-08T09:14:13+08:00">2024-11-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-07 13:57:35" itemprop="dateModified" datetime="2024-12-07T13:57:35+08:00">2024-12-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E6%B5%8F%E8%A7%88%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">浏览器</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>169</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Cookie-Session-Token"><a href="#Cookie-Session-Token" class="headerlink" title="Cookie Session Token"></a>Cookie Session Token</h2><blockquote>
+<p>三者都是由于http无状态属性 ，但是为了方便使用识别用户状态 ，所以需要每次请求带上标识符，标识符目前有三个版本 <code>Cookie </code> <code>Session</code> <code>Token</code></p>
+</blockquote>
+<h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><blockquote>
+<p>目前是将其作为 传递唯一标识的手段 </p>
+</blockquote>
+<p>特性：</p>
+<ol>
+<li>4KB限制</li>
+<li>可被修改</li>
+</ol>
+<p>获取：</p>
+<p>设置：</p>
+<p>传递：</p>
+<h2 id="跨域的概念"><a href="#跨域的概念" class="headerlink" title="跨域的概念"></a>跨域的概念</h2><h2 id="跨域对于cookie的影响"><a href="#跨域对于cookie的影响" class="headerlink" title="跨域对于cookie的影响"></a>跨域对于cookie的影响</h2><h2 id="跨域处理方法"><a href="#跨域处理方法" class="headerlink" title="跨域处理方法"></a>跨域处理方法</h2><p>代理</p>
+<h2 id="浏览器权限限制总结"><a href="#浏览器权限限制总结" class="headerlink" title="浏览器权限限制总结"></a>浏览器权限限制总结</h2>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">songyanglin</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">33k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">56 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
