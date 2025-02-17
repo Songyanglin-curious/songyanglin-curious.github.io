@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="大屏生成器需求分析文档 构建一个可视化开发大屏可视化系统的系统，这个系统要面向两种人员：工程（不懂代码的） 研发（会编写代码的），这个系统的要求是工程要能够简单的通过拖拽来配置出来页面，比较容易绑定数据；对于研发则是工程无法实现的需求要研发介入来实现。最终目标是希望工程来实现大部分低难度的需求，研发来实现比较复杂的需求。整体的流程是 一个新项目-&gt;工程根据需求创建初版-&gt;解决不了的交给">
+<meta property="og:type" content="article">
+<meta property="og:title" content="可视化界面生成器">
+<meta property="og:url" content="http://example.com/2025/02/07/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%95%8C%E9%9D%A2%E7%94%9F%E6%88%90%E5%99%A8/index.html">
+<meta property="og:site_name" content="SYL">
+<meta property="og:description" content="大屏生成器需求分析文档 构建一个可视化开发大屏可视化系统的系统，这个系统要面向两种人员：工程（不懂代码的） 研发（会编写代码的），这个系统的要求是工程要能够简单的通过拖拽来配置出来页面，比较容易绑定数据；对于研发则是工程无法实现的需求要研发介入来实现。最终目标是希望工程来实现大部分低难度的需求，研发来实现比较复杂的需求。整体的流程是 一个新项目-&gt;工程根据需求创建初版-&gt;解决不了的交给">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-02-07T14:17:15.000Z">
+<meta property="article:modified_time" content="2025-02-14T08:05:49.886Z">
+<meta property="article:author" content="songyanglin">
+<meta property="article:tag" content="可视化">
+<meta property="article:tag" content="低代码">
+<meta property="article:tag" content="需求">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/02/07/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%95%8C%E9%9D%A2%E7%94%9F%E6%88%90%E5%99%A8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/02/07/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%95%8C%E9%9D%A2%E7%94%9F%E6%88%90%E5%99%A8/","path":"2025/02/07/可视化界面生成器/","title":"可视化界面生成器"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>可视化界面生成器 | SYL</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SYL</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">随笔</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-navigation"><a href="/navigation/" rel="section"><i class="fa fa-navicon fa-fw"></i>导航</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E5%B1%8F%E7%94%9F%E6%88%90%E5%99%A8%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%96%87%E6%A1%A3"><span class="nav-number">1.</span> <span class="nav-text">大屏生成器需求分析文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83"><span class="nav-number">2.</span> <span class="nav-text">核心</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">使用流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="nav-number">2.2.</span> <span class="nav-text">问题分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%A1%B9%E7%9B%AE"><span class="nav-number">3.</span> <span class="nav-text">参考项目</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">songyanglin</p>
+  <div class="site-description" itemprop="description">code随笔</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Songyanglin-curious" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Songyanglin-curious" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+<!-- recent posts -->
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+        <div class="links-of-blogroll-title recent-posts-title">
+	    <i class="fa fa-history " aria-hidden="true"></i>
+            近期文章
+	</div>
+	<ul class="links-of-blogroll-list recent-posts-list">
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/02/10/DeepSeek%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/" title="DeepSeek部署记录" target="">
+		    DeepSeek部署记录
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/02/09/AI%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" title="AI相关概念" target="">
+		    AI相关概念
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/02/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" title="浏览器开发工具" target="">
+		    浏览器开发工具
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/02/07/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%95%8C%E9%9D%A2%E7%94%9F%E6%88%90%E5%99%A8/" title="可视化界面生成器" target="">
+		    可视化界面生成器
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/02/06/AI%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%8A%80%E5%B7%A7%E5%8F%8A%E7%A4%BA%E4%BE%8B/" title="AI提示词技巧及示例" target="">
+		    AI提示词技巧及示例
+		    </a>
+		</li>
+	</ul>
+    </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/07/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%95%8C%E9%9D%A2%E7%94%9F%E6%88%90%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="songyanglin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SYL">
+      <meta itemprop="description" content="code随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="可视化界面生成器 | SYL">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          可视化界面生成器
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-07 22:17:15" itemprop="dateCreated datePublished" datetime="2025-02-07T22:17:15+08:00">2025-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-14 16:05:49" itemprop="dateModified" datetime="2025-02-14T16:05:49+08:00">2025-02-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9C%80%E6%B1%82/" itemprop="url" rel="index"><span itemprop="name">需求</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="大屏生成器需求分析文档"><a href="#大屏生成器需求分析文档" class="headerlink" title="大屏生成器需求分析文档"></a>大屏生成器需求分析文档</h2><blockquote>
+<p>构建一个可视化开发大屏可视化系统的系统，这个系统要面向两种人员：<strong>工程</strong>（不懂代码的） <strong>研发</strong>（会编写代码的），这个系统的要求是工程要能够简单的通过拖拽来配置出来页面，比较容易绑定数据；对于研发则是工程无法实现的需求要研发介入来实现。最终目标是希望工程来实现大部分低难度的需求，研发来实现比较复杂的需求。整体的流程是 一个新项目-&gt;工程根据需求创建初版-&gt;解决不了的交给研发代码来实现-&gt;给用户演示和交流-&gt;新需求工程继续迭代-&gt;处理不了的需求再交由研发来做-&gt;成果再交给用户…就这样一直迭代到项目结束。我现在的最大的顾虑是 研发通过代码实现的部分会不会造成工程那边无法使用，工程的使用会不会影响研发的代码。</p>
+</blockquote>
+<h2 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h2><ol>
+<li>面向工程而非开发</li>
+<li>要维护的是代码。</li>
+<li>工程使用必须要简单才会有人用，过于繁杂会很难推行。</li>
+<li>仅限于展示为主的项目，交互不能多。</li>
+</ol>
+<h3 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h3><pre class="mermaid">flowchart TD
+    A(新项目) --> B["工程根据需求创建初版"]
+    B --> C{"能否解决?"}
+    C -->|是| D["给用户演示/交流"]
+    C -->|否| E["研发代码实现"]
+    E --> D
+    D --> F{"是否有新需求?"}
+    F -->|是| G["工程继续迭代"]
+    F -->|否| H(项目结束)
+    G --> I{"能否解决?"}
+    I -->|是| D
+    I -->|否| E</pre>
+
+<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>工程的参数要简单，研发的可编辑性要强，所以 工程使用的 组件是 对研发使用组件的二次封装，给工程用的只允许有少量可选配置不允许自定义值。</p>
+<p>研发用来进行复杂需求实现的  是一个限制很少的组件的基础上开发的。</p>
+<p>为了架构清晰，要分为公共组件和项目组件。</p>
+<p>当项目组件成熟后可以将其推送到公共组件的范围内。</p>
+<p>这个项目需要角色和权限管理。</p>
+<p>这个项目需要版本控制和工程能够使用的版本控制。</p>
+<p>这个项目要能够让工程自己出更新。</p>
+<p>数据的对接我认为单独做一个数据仓库，当数据更新时，将对和这个数据关联的组件进行更新消息推送。然后单独弄个数据层去获取数据然后送往数据仓库，这个数据层就可以以各种各样的方式获取数据。这个就要定好接口或者说是协议。</p>
+<p>目前我的想法就是：最底层一张画布，工程要对整个画布进行布局，这个布局使用grid布局,可以让其可视化的使用。工程使用封装好的容器组件来将后续的工作限制在这个容器内，容器内划分图层，每一层可以使用布局组件，这样可以实现较为复杂的功能，然后最小的零件是封装好的文本组件，图片组件，Echarts组件，表格组件等等。不要细化到标签，最小的单位就是组件，无论这个组件是负责的还是简单到就一个div。</p>
+<p>最终工程编辑好的起始就是代码，一份以组件为单位的有层级的代码。研发也去修改的是代码，这样避免最终无法维护。现在的难点就是如何让其能够生成代码，最终工程在编辑的时候还能渲染出来。渲染的还要和最终的一模一样。</p>
+<p>前端代码使用Vue。</p>
+<h2 id="参考项目"><a href="#参考项目" class="headerlink" title="参考项目"></a>参考项目</h2><p><a target="_blank" rel="noopener" href="https://mtruning.club/guide/start/">引导 | GoView 说明文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/taowen/awesome-lowcode">taowen&#x2F;awesome-lowcode: 国内低代码平台从业者交流</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/451340998">从实现原理看低代码 - 知乎</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6989983085345374222">开源低代码平台开发实践一：低代码开发探讨与技术选型</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7205361008272326716">实战，一个高扩展、可视化低代码前端，详实、完整</a></p>
+<p>低代码引擎</p>
+<p><a target="_blank" rel="noopener" href="https://opentiny.design/tiny-engine#/home">TinyEngine 低代码引擎 —— 使能开发者定制低代码平台</a></p>
+<p><a target="_blank" rel="noopener" href="https://lowcode-engine.cn/site/docs/guide/quickStart/intro">简介 | Low-Code Engine</a></p>
+<p><a target="_blank" rel="noopener" href="https://lowcode-engine.cn/site/docs/specs/lowcode-spec">《低代码引擎搭建协议规范》 | Low-Code Engine</a></p>
+<p><a target="_blank" rel="noopener" href="https://lowcode-engine.cn/site/docs/specs/material-spec">《低代码引擎物料协议规范》 | Low-Code Engine</a></p>
+<p><a target="_blank" rel="noopener" href="https://lowcode-engine.cn/site/docs/specs/assets-spec">《低代码引擎资产包协议规范》 | Low-Code Engine</a></p>
+<p>低代码平台</p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/wurong19870715/formDesigner#github-%E5%9C%B0%E5%9D%80">formDesigner: 基于vue+ElementUI的表单设计器，让表单拖拽更加简单方便。想做功能最全的表单设计器</a></p>
+<p>表单设计器，没有出码选项，是通过渲染JSON配置来实现可视化。</p>
+<p><a target="_blank" rel="noopener" href="https://ai.goviewlink.com/saas/">GoView Pro - 官网</a></p>
+<p>图层式布局，图层布局的问题在于，研发很难去修改。最好使用布局容器配合图层。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag"># 可视化</a>
+              <a href="/tags/%E4%BD%8E%E4%BB%A3%E7%A0%81/" rel="tag"># 低代码</a>
+              <a href="/tags/%E9%9C%80%E6%B1%82/" rel="tag"># 需求</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/02/06/AI%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%8A%80%E5%B7%A7%E5%8F%8A%E7%A4%BA%E4%BE%8B/" rel="prev" title="AI提示词技巧及示例">
+                  <i class="fa fa-angle-left"></i> AI提示词技巧及示例
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/02/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="next" title="浏览器开发工具">
+                  浏览器开发工具 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">songyanglin</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">55k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:32</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js","integrity":"sha256-YbM1pG3wWnzhyYN49g5fPnen+2CKEFaZfopkkwSpNtY="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

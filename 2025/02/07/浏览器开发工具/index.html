@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="浏览器开发工具官方文档:概览  |  Chrome DevTools  |  Chrome for Developers 打开开发工具 快捷键开启： F12 Ctrl+Shift+I Cmd+Opt+I   浏览器菜单入口： 右键菜单 -&gt; 检查：  面板简介 切换中英文 注意事项: 在修改语言后必须要关闭开发工具重新打开才会生效。最终效果: 开发工具停靠主要分为两种停靠方式：  单独窗口,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器开发工具">
+<meta property="og:url" content="http://example.com/2025/02/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/index.html">
+<meta property="og:site_name" content="SYL">
+<meta property="og:description" content="浏览器开发工具官方文档:概览  |  Chrome DevTools  |  Chrome for Developers 打开开发工具 快捷键开启： F12 Ctrl+Shift+I Cmd+Opt+I   浏览器菜单入口： 右键菜单 -&gt; 检查：  面板简介 切换中英文 注意事项: 在修改语言后必须要关闭开发工具重新打开才会生效。最终效果: 开发工具停靠主要分为两种停靠方式：  单独窗口,">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738983652456.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738983812265.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738984373415.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738984551719.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738984585246.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738984842051.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738984670816.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738984736471.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738985281998.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738985395005.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738985410940.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738986018196.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738986886771.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738987043412.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738991446720.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738991822569.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738992030807.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738992140274.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738992319577.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738992536609.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738992552019.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738994161971.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738994305869.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739520627232.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739520935588.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739520954966.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739521160454.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739522970654.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739523048776.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739523228870.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738996295175.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738995829988.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739755039535.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739755306553.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739756354101.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739756530762.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739756666868.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739755594199.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739756930112.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739755646172.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739755686952.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739756557926.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738997771344.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738998117184.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738998288933.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738998396222.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738998439528.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738999382734.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738998956493.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738999033534.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738999089973.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738999301590.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739000824114.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739006204160.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739154603656.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739158003163.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739006281148.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739006564112.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739007155706.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739007245560.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739156018771.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739156597854.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739156613645.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739156677527.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739156715693.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739156763831.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739156843158.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739157717793.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739159180249.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739159314873.png">
+<meta property="og:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739159563507.png">
+<meta property="article:published_time" content="2025-02-07T15:27:05.000Z">
+<meta property="article:modified_time" content="2025-02-17T02:13:21.324Z">
+<meta property="article:author" content="songyanglin">
+<meta property="article:tag" content="教程">
+<meta property="article:tag" content="浏览器">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738983652456.png">
+
+
+<link rel="canonical" href="http://example.com/2025/02/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/02/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/","path":"2025/02/07/浏览器开发工具/","title":"浏览器开发工具"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>浏览器开发工具 | SYL</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SYL</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">随笔</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-navigation"><a href="/navigation/" rel="section"><i class="fa fa-navicon fa-fw"></i>导航</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7"><span class="nav-number">1.</span> <span class="nav-text">浏览器开发工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%BC%80%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7"><span class="nav-number">1.1.</span> <span class="nav-text">打开开发工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E6%9D%BF%E7%AE%80%E4%BB%8B"><span class="nav-number">1.2.</span> <span class="nav-text">面板简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E4%B8%AD%E8%8B%B1%E6%96%87"><span class="nav-number">1.3.</span> <span class="nav-text">切换中英文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E5%81%9C%E9%9D%A0"><span class="nav-number">1.4.</span> <span class="nav-text">开发工具停靠</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98"><span class="nav-number">2.</span> <span class="nav-text">清除缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Elements-%E5%85%83%E7%B4%A0"><span class="nav-number">3.</span> <span class="nav-text">Elements(元素)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%83%E7%B4%A0%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">3.0.1.</span> <span class="nav-text">元素选择器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B7%E5%BC%8F%E8%B0%83%E8%AF%95"><span class="nav-number">3.0.2.</span> <span class="nav-text">样式调试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8"><span class="nav-number">3.1.</span> <span class="nav-text">实际应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9B%BE%E7%89%87%E6%88%96iframe%E4%B8%8D%E6%98%BE%E7%A4%BA"><span class="nav-number">3.1.1.</span> <span class="nav-text">1.图片或iframe不显示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%9B%BF%E6%8D%A2%E5%9B%BE%E7%89%87"><span class="nav-number">3.1.2.</span> <span class="nav-text">2.替换图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%A0%B7%E5%BC%8F%E9%94%99%E4%BD%8D"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.样式错位</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Console-%E6%8E%A7%E5%88%B6%E5%8F%B0"><span class="nav-number">4.</span> <span class="nav-text">Console(控制台)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8Cjs%E4%BB%A3%E7%A0%81"><span class="nav-number">4.1.</span> <span class="nav-text">运行js代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8-1"><span class="nav-number">4.2.</span> <span class="nav-text">实际应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%A5%E9%87%8D%E5%BD%B1%E5%93%8D%E9%A1%B5%E9%9D%A2%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA%EF%BC%88%E5%85%B3%E9%94%AE%E6%80%A7%E9%94%99%E8%AF%AF%EF%BC%89"><span class="nav-number">4.2.1.</span> <span class="nav-text">1. 严重影响页面正常显示（关键性错误）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%8D%E5%BD%B1%E5%93%8D%E9%A1%B5%E9%9D%A2%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA%EF%BC%88%E9%9D%9E%E5%85%B3%E9%94%AE%E6%80%A7%E9%94%99%E8%AF%AF%EF%BC%89"><span class="nav-number">4.2.2.</span> <span class="nav-text">2. 不影响页面正常显示（非关键性错误）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-TypeError%EF%BC%88%E7%B1%BB%E5%9E%8B%E9%94%99%E8%AF%AF%EF%BC%89"><span class="nav-number">4.2.3.</span> <span class="nav-text">1.TypeError（类型错误）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-SyntaxError%EF%BC%88%E8%AF%AD%E6%B3%95%E9%94%99%E8%AF%AF%EF%BC%89"><span class="nav-number">4.2.4.</span> <span class="nav-text">2. SyntaxError（语法错误）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-NetworkError%EF%BC%88%E7%BD%91%E7%BB%9C%E9%94%99%E8%AF%AF%EF%BC%89"><span class="nav-number">4.2.5.</span> <span class="nav-text">3. NetworkError（网络错误）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-DOMException%EF%BC%88DOM-%E6%93%8D%E4%BD%9C%E5%BC%82%E5%B8%B8%EF%BC%89"><span class="nav-number">4.2.6.</span> <span class="nav-text">4. DOMException（DOM 操作异常）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-Uncaught-in-promise-%EF%BC%88%E6%9C%AA%E5%A4%84%E7%90%86%E7%9A%84-Promise-%E6%8B%92%E7%BB%9D%EF%BC%89"><span class="nav-number">4.2.7.</span> <span class="nav-text">5. Uncaught (in promise)（未处理的 Promise 拒绝）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-RangeError%EF%BC%88%E8%8C%83%E5%9B%B4%E9%94%99%E8%AF%AF%EF%BC%8C%E9%9D%9E%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9C%BA%E6%99%AF%EF%BC%89"><span class="nav-number">4.2.8.</span> <span class="nav-text">6. RangeError（范围错误，非栈溢出场景）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-SecurityError%EF%BC%88%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E5%86%B2%E7%AA%81%EF%BC%89"><span class="nav-number">4.2.9.</span> <span class="nav-text">7. SecurityError（安全策略冲突）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-ReferenceError%EF%BC%88%E5%BC%95%E7%94%A8%E9%94%99%E8%AF%AF%EF%BC%89"><span class="nav-number">4.2.10.</span> <span class="nav-text">8. ReferenceError（引用错误）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-EvalError%EF%BC%88eval-%E5%87%BD%E6%95%B0%E9%94%99%E8%AF%AF%EF%BC%89"><span class="nav-number">4.2.11.</span> <span class="nav-text">9. EvalError（eval 函数错误）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%90%E4%BB%A3%E7%A0%81-%E6%9D%A5%E6%BA%90-Sources"><span class="nav-number">5.</span> <span class="nav-text">源代码&#x2F;来源(Sources)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%A0%91"><span class="nav-number">5.1.</span> <span class="nav-text">文件树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95"><span class="nav-number">5.2.</span> <span class="nav-text">断点调试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%AD%E7%82%B9%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.2.1.</span> <span class="nav-text">断点设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95-1"><span class="nav-number">5.2.2.</span> <span class="nav-text">断点调试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%8F%98%E9%87%8F%E5%80%BC"><span class="nav-number">5.2.2.1.</span> <span class="nav-text">查看变量值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%90%E6%AD%A5%E8%B0%83%E8%AF%95"><span class="nav-number">5.2.2.2.</span> <span class="nav-text">逐步调试</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%EF%BC%88Network%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">网络（Network）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E5%87%BA-HAR%E6%96%87%E4%BB%B6"><span class="nav-number">6.1.</span> <span class="nav-text">导出 HAR文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%9B%E9%80%89"><span class="nav-number">6.2.</span> <span class="nav-text">筛选</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E8%AF%A6%E8%A7%A3"><span class="nav-number">6.3.</span> <span class="nav-text">请求详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E5%A4%B4-Headers"><span class="nav-number">6.3.1.</span> <span class="nav-text">标头(Headers)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%BD%E8%8D%B7-Payload"><span class="nav-number">6.3.2.</span> <span class="nav-text">载荷(Payload)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E8%A7%88-Preview"><span class="nav-number">6.3.3.</span> <span class="nav-text">预览(Preview)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%8D%E5%BA%94-Response"><span class="nav-number">6.3.4.</span> <span class="nav-text">响应(Response)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E5%99%A8-Initiator"><span class="nav-number">6.3.5.</span> <span class="nav-text">启动器(Initiator)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Timing-%E6%97%B6%E9%97%B4"><span class="nav-number">6.3.6.</span> <span class="nav-text">Timing(时间)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie"><span class="nav-number">6.3.7.</span> <span class="nav-text">Cookie</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8-2"><span class="nav-number">6.4.</span> <span class="nav-text">实际应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E7%A1%80%E7%95%8C%E9%9D%A2%EF%BC%88%E5%9C%BA%E6%99%AF%EF%BC%9A%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E7%BC%93%E6%85%A2%EF%BC%89"><span class="nav-number">6.4.1.</span> <span class="nav-text">1. 基础界面（场景：网页加载缓慢）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%AF%B7%E6%B1%82%E8%BF%87%E6%BB%A4%EF%BC%88%E5%9C%BA%E6%99%AF%EF%BC%9A%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%A4%B1%E8%B4%A5%EF%BC%89"><span class="nav-number">6.4.2.</span> <span class="nav-text">2. 请求过滤（场景：图片加载失败）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98%EF%BC%88%E5%9C%BA%E6%99%AF%EF%BC%9AAPI%E8%B0%83%E7%94%A8%E5%A4%B1%E8%B4%A5%EF%BC%89"><span class="nav-number">6.4.3.</span> <span class="nav-text">3. 跨域问题（场景：API调用失败）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.4.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%EF%BC%88Performance%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">性能（Performance）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">songyanglin</p>
+  <div class="site-description" itemprop="description">code随笔</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Songyanglin-curious" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Songyanglin-curious" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+<!-- recent posts -->
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+        <div class="links-of-blogroll-title recent-posts-title">
+	    <i class="fa fa-history " aria-hidden="true"></i>
+            近期文章
+	</div>
+	<ul class="links-of-blogroll-list recent-posts-list">
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/02/10/DeepSeek%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/" title="DeepSeek部署记录" target="">
+		    DeepSeek部署记录
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/02/09/AI%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" title="AI相关概念" target="">
+		    AI相关概念
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/02/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" title="浏览器开发工具" target="">
+		    浏览器开发工具
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/02/07/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%95%8C%E9%9D%A2%E7%94%9F%E6%88%90%E5%99%A8/" title="可视化界面生成器" target="">
+		    可视化界面生成器
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/02/06/AI%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%8A%80%E5%B7%A7%E5%8F%8A%E7%A4%BA%E4%BE%8B/" title="AI提示词技巧及示例" target="">
+		    AI提示词技巧及示例
+		    </a>
+		</li>
+	</ul>
+    </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="songyanglin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SYL">
+      <meta itemprop="description" content="code随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="浏览器开发工具 | SYL">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          浏览器开发工具
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-07 23:27:05" itemprop="dateCreated datePublished" datetime="2025-02-07T23:27:05+08:00">2025-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-17 10:13:21" itemprop="dateModified" datetime="2025-02-17T10:13:21+08:00">2025-02-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>12 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="浏览器开发工具"><a href="#浏览器开发工具" class="headerlink" title="浏览器开发工具"></a>浏览器开发工具</h2><p><strong>官方文档:</strong><br><a target="_blank" rel="noopener" href="https://developer.chrome.google.cn/docs/devtools/overview?hl=zh-cn">概览  |  Chrome DevTools  |  Chrome for Developers</a></p>
+<h3 id="打开开发工具"><a href="#打开开发工具" class="headerlink" title="打开开发工具"></a>打开开发工具</h3><ol>
+<li>快捷键开启：<ul>
+<li>F12</li>
+<li>Ctrl+Shift+I</li>
+<li>Cmd+Opt+I</li>
+</ul>
+</li>
+<li>浏览器菜单入口：<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738983652456.png" alt="1738983652456"></li>
+<li>右键菜单 -&gt; 检查：<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738983812265.png" alt="1738983812265"></li>
+</ol>
+<h3 id="面板简介"><a href="#面板简介" class="headerlink" title="面板简介"></a>面板简介</h3><p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738984373415.png" alt="1738984373415"></p>
+<h3 id="切换中英文"><a href="#切换中英文" class="headerlink" title="切换中英文"></a>切换中英文</h3><p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738984551719.png" alt="1738984551719"><br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738984585246.png" alt="1738984585246"></p>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738984842051.png" alt="1738984842051"><br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738984670816.png" alt="1738984670816"><br><strong>注意事项:</strong> 在修改语言后必须要关闭开发工具重新打开才会生效。<br><strong>最终效果:</strong><br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738984736471.png" alt="1738984736471"></p>
+<h3 id="开发工具停靠"><a href="#开发工具停靠" class="headerlink" title="开发工具停靠"></a>开发工具停靠</h3><p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738985281998.png" alt="1738985281998"><br>主要分为两种停靠方式：</p>
+<ol>
+<li>单独窗口,开发工具在页面的上方显示，不会影响页面的大小。</li>
+<li>侧边停靠，开发工具在页面的左侧显示，会挤压页面内容。<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738985395005.png" alt="1738985395005"><br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738985410940.png" alt="1738985410940"></li>
+</ol>
+<h2 id="清除缓存"><a href="#清除缓存" class="headerlink" title="清除缓存"></a>清除缓存</h2><ol>
+<li>打开开发工具</li>
+<li>右键刷新按钮</li>
+<li>选择清空缓存并硬性重新加载<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738986018196.png" alt="1738986018196"></li>
+</ol>
+<blockquote>
+<p>清除缓存目的就是为了应用最新的文件</p>
+</blockquote>
+<p><strong>注意事项:</strong> 强制刷新（Ctrl+F5）不会清除缓存。<br><strong>常见应用场景：</strong><br>在更新文件后，需要清除缓存。</p>
+<h2 id="Elements-元素"><a href="#Elements-元素" class="headerlink" title="Elements(元素)"></a>Elements(元素)</h2><p><a target="_blank" rel="noopener" href="https://developer.chrome.google.cn/docs/devtools/elements?hl=zh-cn">元素面板概览  |  Chrome DevTools  |  Chrome for Developers</a></p>
+<blockquote>
+<p>在点击<strong>元素</strong>选项后，可以看到页面的结构，包括HTML、CSS。</p>
+</blockquote>
+<p>下图就是Elements包含的内容：<br>左侧：DOM树<br>右侧：选中节点对应的样式<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738986886771.png" alt="1738986886771"></p>
+<h4 id="元素选择器"><a href="#元素选择器" class="headerlink" title="元素选择器"></a>元素选择器</h4><ol>
+<li><p>点击选择元素（按钮&#x2F;文本&#x2F;图片等）</p>
+<blockquote>
+<p>需要从页面的某个元素查看其dom结构。</p>
+</blockquote>
+<p>操作步骤：</p>
+<ol>
+<li>点击元素</li>
+<li>右键选择“检查”</li>
+<li>选择“检查元素”</li>
+<li>会自动定位到该元素的dom结构 会使用浅蓝色标记出来<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738987043412.png" alt="1738987043412"></li>
+</ol>
+</li>
+<li><p>悬停高亮功能<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738991446720.png" alt="1738991446720"><br>当点选了检查按钮后，会出现悬停高亮功能，可以看到鼠标悬停在哪个元素上，便可以快速定位到该元素。<br>DOM树和样式面板都会随着鼠标的移动实时更新。</p>
+</li>
+<li><p>搜索DOM元素（Ctrl+F）<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738991822569.png" alt="1738991822569"></p>
+</li>
+</ol>
+<h4 id="样式调试"><a href="#样式调试" class="headerlink" title="样式调试"></a>样式调试</h4><ol>
+<li><p>样式的查看</p>
+<blockquote>
+<p>样式是页面的美观和功能的实现，好比装修 div等元素就是房间的框架 样式就是房间的装修。<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738992030807.png" alt="1738992030807"></p>
+</blockquote>
+</li>
+<li><p>查看计算样式（Computed）</p>
+<blockquote>
+<p>计算样式是页面最终呈现的样式，是页面样式的计算结果。<br>一个元素可能有多个同名的样式，计算样式就是最终应用到元素上的样式。<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738992140274.png" alt="1738992140274"></p>
+</blockquote>
+</li>
+<li><p>CSS属性修改</p>
+<ul>
+<li><p>禁用和启用样式</p>
+<blockquote>
+<p>当鼠标放在样式上，前方会出现一个勾选框，勾中就是使用这个样式，没勾中就是禁用这个样式。</p>
+</blockquote>
+<p><strong>注意事项：</strong>这个例子是对class的属性修改会影响所有应用的这个class的元素<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738992319577.png" alt="1738992319577"></p>
+</li>
+<li><p>添加样式<br>鼠标在大括号内点击，可以添加新的样式属性。<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738992536609.png" alt="1738992536609"><br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738992552019.png" alt="1738992552019"><br>这样就可以添加css样式了。<br><strong>注意事项：</strong>最上方的 <code>element.style</code>是元素的行内样式只对元素本身生效，对class的样式修改会影响所有应用的这个class的元素。</p>
+</li>
+<li><p>样式状态解释<br>除了一下样式是正常样式，其他都是非正常样式。<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738994161971.png" alt="1738994161971"><br>具体可参考：<br><a target="_blank" rel="noopener" href="https://developer.chrome.google.cn/docs/devtools/css/issues?hl=zh-cn">查找无效、已替换、无效和其他 CSS  |  Chrome DevTools  |  Chrome for Developers</a></p>
+</li>
+</ul>
+</li>
+<li><p>样式过滤<br>最上方有过滤输入框：<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738994305869.png" alt="1738994305869"></p>
+<blockquote>
+<p>我需要过滤出包含color属性的样式，输入color即可，color都会被浅蓝色标记出来。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><h4 id="1-图片或iframe不显示"><a href="#1-图片或iframe不显示" class="headerlink" title="1.图片或iframe不显示"></a>1.图片或iframe不显示</h4><blockquote>
+<p>当现场的某个图片或者iframe不显示</p>
+</blockquote>
+<p>如：</p>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739520627232.png" alt="1739520627232"></p>
+<p>具体的操作思路如下：</p>
+<ol>
+<li>清除缓存再次刷新</li>
+<li>检索元素找到对应的img标签,Ctrl+F 搜索文件名称，找到src这个路径</li>
+<li>按照这个文件和ip端口组合新开一个标签页去测试能否看见图片</li>
+<li>根据测试结果分情况</li>
+</ol>
+<ul>
+<li>找不见图片</li>
+</ul>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739520935588.png" alt="1739520935588"></p>
+<ul>
+<li>找得到图片</li>
+</ul>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739520954966.png" alt="1739520954966"></p>
+<ol start="5">
+<li>现在分为两种情况</li>
+</ol>
+<ul>
+<li>标签页能显示图片但是项目中不显示：可能原因有 css的样式将其隐藏没显示 <code>display: none;</code>  <code>visibility: hidden;</code> <code>opacity: 0; </code></li>
+</ul>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739521160454.png" alt="1739521160454"></p>
+<blockquote>
+<p>这种情况需要让研发更改样式重新出更新。</p>
+</blockquote>
+<ul>
+<li>标签页中也无法正常显示图片</li>
+</ul>
+<blockquote>
+<p>这种情况就是浏览器没能够正确加载到文件。</p>
+</blockquote>
+<p> 这种按照以下步骤来查。<br> 1.检查项目服务器上的文件是否存在。<br> 2.检查标签的src和服务器的文件路径是否正确。<br> 3.检查路径和服务器的大小写是否区分。Linux 严格区分大小写，windows不区分。有时候就会出现研发环境正常而现场环境下不显示的情况。</p>
+<ol start="6">
+<li>依然无法解决的，联系研发排查原因。</li>
+</ol>
+<blockquote>
+<p>将前5步的测试结果 如 文件是加载了没显示还是 没加载  ，核对路径是否正确，大小写是否区分。做详细说明。</p>
+</blockquote>
+<p><strong>备注：</strong></p>
+<p>iframe的步骤和图片的同理</p>
+<h4 id="2-替换图片"><a href="#2-替换图片" class="headerlink" title="2.替换图片"></a>2.替换图片</h4><blockquote>
+<p>在大屏项目中有些内容会被做成图片，有时需要替换图片，替换图片需要找到图片的路径，图片路径就按照上方的获取图片路径的步骤即可。</p>
+</blockquote>
+<h4 id="3-样式错位"><a href="#3-样式错位" class="headerlink" title="3.样式错位"></a>3.样式错位</h4><p>如下图：</p>
+<ul>
+<li>正常</li>
+</ul>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739522970654.png" alt="1739522970654"></p>
+<ul>
+<li>异常<blockquote>
+<p>搜索条件最下方的文字不见了。</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739523048776.png" alt="1739523048776"></p>
+<p>排查步骤：</p>
+<ol>
+<li>Ctrl+F  搜索消失的文本</li>
+</ol>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739523228870.png" alt="1739523228870"></p>
+<p>可以看见文字是被下方的表格给盖住了。</p>
+<p>解决方案：</p>
+<blockquote>
+<p>联系研发做适配。</p>
+</blockquote>
+<h2 id="Console-控制台"><a href="#Console-控制台" class="headerlink" title="Console(控制台)"></a>Console(控制台)</h2><p><a target="_blank" rel="noopener" href="https://developer.chrome.google.cn/docs/devtools/console?hl=zh-cn">控制台概览  |  Chrome DevTools  |  Chrome for Developers</a><br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738996295175.png" alt="1738996295175"></p>
+<h3 id="运行js代码"><a href="#运行js代码" class="headerlink" title="运行js代码"></a>运行js代码</h3><p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738995829988.png" alt="1738995829988"></p>
+<h3 id="实际应用-1"><a href="#实际应用-1" class="headerlink" title="实际应用"></a>实际应用</h3><blockquote>
+<p>异常信息都会在Console中打印，当网站遇见任何异常问题的时候都需要先看Console的异常信息。</p>
+</blockquote>
+<p>常见的异常信息有9种：</p>
+<h4 id="1-严重影响页面正常显示（关键性错误）"><a href="#1-严重影响页面正常显示（关键性错误）" class="headerlink" title="1. 严重影响页面正常显示（关键性错误）"></a><strong>1. 严重影响页面正常显示（关键性错误）</strong></h4><table>
+<thead>
+<tr>
+<th>错误类型</th>
+<th>影响场景示例</th>
+<th>后果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><code>SyntaxError</code></strong></td>
+<td>代码中存在语法错误（如缺少括号、重复声明变量）</td>
+<td><strong>脚本完全无法执行，页面空白</strong></td>
+</tr>
+<tr>
+<td><strong><code>ReferenceError</code></strong></td>
+<td>引用未声明的变量（如 <code>$ is not defined</code>）</td>
+<td><strong>依赖该变量的后续逻辑全部中断</strong></td>
+</tr>
+<tr>
+<td><strong><code>NetworkError</code></strong></td>
+<td>关键资源加载失败（如 <code>404</code> 导致 CSS&#x2F;JS 缺失）</td>
+<td><strong>页面布局错乱或功能完全失效</strong></td>
+</tr>
+<tr>
+<td><strong><code>RangeError</code></strong></td>
+<td>栈溢出（如无限递归）</td>
+<td><strong>脚本崩溃，页面交互停止</strong></td>
+</tr>
+<tr>
+<td><strong><code>SecurityError</code></strong></td>
+<td>跨域请求被阻止（如关键接口无法访问）</td>
+<td><strong>核心数据无法加载，页面功能瘫痪</strong></td>
+</tr>
+<tr>
+<td><strong><code>DOMException</code></strong></td>
+<td>关键 DOM 操作失败（如插入无效节点导致页面结构损坏）</td>
+<td><strong>元素渲染异常，页面部分空白</strong></td>
+</tr>
+</tbody></table>
+<h4 id="2-不影响页面正常显示（非关键性错误）"><a href="#2-不影响页面正常显示（非关键性错误）" class="headerlink" title="2. 不影响页面正常显示（非关键性错误）"></a><strong>2. 不影响页面正常显示（非关键性错误）</strong></h4><table>
+<thead>
+<tr>
+<th>错误类型</th>
+<th>影响场景示例</th>
+<th>后果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><code>TypeError</code></strong></td>
+<td>变量类型错误（如 <code>null.name</code> 或 <code>undefined.forEach</code>）</td>
+<td><strong>仅当前操作失败，页面其他部分正常</strong></td>
+</tr>
+<tr>
+<td><strong><code>Uncaught (in promise)</code></strong></td>
+<td>未处理的异步错误（如非关键接口请求失败）</td>
+<td><strong>局部功能异常，不影响整体渲染</strong></td>
+</tr>
+<tr>
+<td><strong><code>EvalError</code></strong></td>
+<td><code>eval()</code> 被 CSP 阻止（通常用于非核心逻辑）</td>
+<td><strong>动态功能失效，静态内容仍可展示</strong></td>
+</tr>
+</tbody></table>
+<p> Console 中常见的异常类型及具体场景，补充了更多你可能遇到的错误：</p>
+<hr>
+<h4 id="1-TypeError（类型错误）"><a href="#1-TypeError（类型错误）" class="headerlink" title="1.TypeError（类型错误）"></a><strong>1.<code>TypeError</code>（类型错误）</strong></h4><ul>
+<li><strong>错误示例</strong>：<ul>
+<li><code>Uncaught TypeError: Cannot read property &#39;name&#39; of null</code></li>
+<li><code>Uncaught TypeError: obj.forEach is not a function</code></li>
+</ul>
+</li>
+<li><strong>触发场景</strong>：<ul>
+<li>调用 <code>null</code>&#x2F;<code>undefined</code> 的方法（如 <code>user.getName()</code>，但 <code>user</code> 为 <code>null</code>）。</li>
+<li>变量类型不符合预期（如对非数组对象调用 <code>forEach</code>）。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739755039535.png" alt="1739755039535"></p>
+<h4 id="2-SyntaxError（语法错误）"><a href="#2-SyntaxError（语法错误）" class="headerlink" title="2. SyntaxError（语法错误）"></a><strong>2. <code>SyntaxError</code>（语法错误）</strong></h4><ul>
+<li><strong>错误示例</strong>：<ul>
+<li><code>Uncaught SyntaxError: Unexpected token &#39;&#125;&#39;</code></li>
+<li><code>Uncaught SyntaxError: Identifier &#39;xxx&#39; has already been declared</code></li>
+</ul>
+</li>
+<li><strong>触发场景</strong>：<ul>
+<li>缺少括号、引号不匹配（如 <code>const arr = [1, 2, 3;</code>）。</li>
+<li>重复声明变量（如 <code>let x = 1; let x = 2;</code>）。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739755306553.png" alt="1739755306553"></p>
+<h4 id="3-NetworkError（网络错误）"><a href="#3-NetworkError（网络错误）" class="headerlink" title="3. NetworkError（网络错误）"></a><strong>3. <code>NetworkError</code>（网络错误）</strong></h4><ul>
+<li><strong>错误示例</strong>：<ul>
+<li><code>Failed to load resource: net::ERR_CONNECTION_TIMED_OUT</code></li>
+<li><code>Failed to load resource: the server responded with a status of 404 (Not Found)</code></li>
+</ul>
+</li>
+<li><strong>触发场景</strong>：<ul>
+<li>资源路径错误（如 <code>script src=&quot;wrong-path.js&quot;</code>）。</li>
+<li>服务端崩溃或未启动（如本地开发时后端服务未运行）。</li>
+</ul>
+</li>
+</ul>
+<p>超时：<code>Timeout Error</code></p>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739756354101.png" alt="1739756354101"></p>
+<p>跨域：</p>
+<p>标志性单词 <code>CORS</code> , <code>Access-Control-Allow-Origin</code></p>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739756530762.png" alt="1739756530762"></p>
+<p>iframe  不允许嵌入</p>
+<p><a target="_blank" rel="noopener" href="http://doc.ysh.com/docs/faq/faq-1fgiup14locgk">X-Frame-Options - Powered by MinDoc</a></p>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739756666868.png" alt="1739756666868"></p>
+<h4 id="4-DOMException（DOM-操作异常）"><a href="#4-DOMException（DOM-操作异常）" class="headerlink" title="4. DOMException（DOM 操作异常）"></a><strong>4. <code>DOMException</code>（DOM 操作异常）</strong></h4><ul>
+<li><strong>错误示例</strong>：<ul>
+<li><code>DOMException: Failed to execute &#39;appendChild&#39; on &#39;Node&#39;: The new child element contains the parent.</code></li>
+<li><code>DOMException: The operation is insecure.</code></li>
+</ul>
+</li>
+<li><strong>触发场景</strong>：<ul>
+<li>循环嵌套 DOM 节点（如将父元素插入到子元素中）。</li>
+<li>跨域访问敏感 API（如 <code>navigator.clipboard.writeText</code> 未在 HTTPS 下调用）。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739755594199.png" alt="1739755594199"></p>
+<h4 id="5-Uncaught-in-promise-（未处理的-Promise-拒绝）"><a href="#5-Uncaught-in-promise-（未处理的-Promise-拒绝）" class="headerlink" title="5. Uncaught (in promise)（未处理的 Promise 拒绝）"></a><strong>5. <code>Uncaught (in promise)</code>（未处理的 Promise 拒绝）</strong></h4><ul>
+<li><strong>错误示例</strong>：<ul>
+<li><code>Uncaught (in promise) Error: Request failed with status code 500</code></li>
+<li><code>Uncaught (in promise) TypeError: response.json is not a function</code></li>
+</ul>
+</li>
+<li><strong>触发场景</strong>：<ul>
+<li><code>fetch</code> 或 <code>axios</code> 请求未处理 <code>catch</code>（如 <code>fetch(url).then(...)</code> 但未处理异常）。</li>
+<li>异步操作中未校验响应格式。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739756930112.png" alt="1739756930112"></p>
+<h4 id="6-RangeError（范围错误，非栈溢出场景）"><a href="#6-RangeError（范围错误，非栈溢出场景）" class="headerlink" title="6. RangeError（范围错误，非栈溢出场景）"></a><strong>6. <code>RangeError</code>（范围错误，非栈溢出场景）</strong></h4><ul>
+<li><strong>错误示例</strong>：<ul>
+<li><code>Uncaught RangeError: Invalid array length</code></li>
+<li><code>Uncaught RangeError: Maximum call stack size exceeded</code>（栈溢出）</li>
+</ul>
+</li>
+<li><strong>触发场景</strong>：<ul>
+<li>创建非法长度的数组（如 <code>new Array(-1)</code>）。</li>
+<li>递归未设置终止条件导致栈溢出。</li>
+</ul>
+</li>
+</ul>
+<p>标志性单词 <code>Maximum</code></p>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739755646172.png" alt="1739755646172"></p>
+<h4 id="7-SecurityError（安全策略冲突）"><a href="#7-SecurityError（安全策略冲突）" class="headerlink" title="7. SecurityError（安全策略冲突）"></a><strong>7. <code>SecurityError</code>（安全策略冲突）</strong></h4><ul>
+<li><strong>错误示例</strong>：<ul>
+<li><code>SecurityError: Blocked a frame with origin &quot;http://localhost:3000&quot; from accessing a cross-origin frame.</code></li>
+<li><code>SecurityError: The operation is insecure.</code></li>
+</ul>
+</li>
+<li><strong>触发场景</strong>：<ul>
+<li>跨域访问 <code>iframe</code> 内容（如父页面与子页面域名不同）。</li>
+<li>尝试读取 <code>HttpOnly</code> 的 Cookie。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739755686952.png" alt="1739755686952"></p>
+<h4 id="8-ReferenceError（引用错误）"><a href="#8-ReferenceError（引用错误）" class="headerlink" title="8. ReferenceError（引用错误）"></a><strong>8. <code>ReferenceError</code>（引用错误）</strong></h4><ul>
+<li><strong>错误示例</strong>：<ul>
+<li><code>Uncaught ReferenceError: $ is not defined</code>（未引入 jQuery）</li>
+<li><code>Uncaught ReferenceError: Cannot access &#39;x&#39; before initialization</code></li>
+</ul>
+</li>
+<li><strong>触发场景</strong>：<ul>
+<li>变量未声明直接使用（如 <code>console.log(undeclaredVar)</code>）。</li>
+<li>在 <code>let</code>&#x2F;<code>const</code> 声明前访问变量（暂时性死区）。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739756557926.png" alt="1739756557926"></p>
+<h4 id="9-EvalError（eval-函数错误）"><a href="#9-EvalError（eval-函数错误）" class="headerlink" title="9. EvalError（eval 函数错误）"></a><strong>9. <code>EvalError</code>（eval 函数错误）</strong></h4><ul>
+<li><strong>错误示例</strong>：<ul>
+<li><code>Uncaught EvalError: call to eval() blocked by CSP</code></li>
+</ul>
+</li>
+<li><strong>触发场景</strong>：<ul>
+<li>内容安全策略（CSP）禁止 <code>eval()</code> 执行。</li>
+<li>动态执行未经验证的字符串代码。</li>
+</ul>
+</li>
+</ul>
+<h2 id="源代码-来源-Sources"><a href="#源代码-来源-Sources" class="headerlink" title="源代码&#x2F;来源(Sources)"></a>源代码&#x2F;来源(Sources)</h2><p><a target="_blank" rel="noopener" href="https://developer.chrome.google.cn/docs/devtools/sources?hl=zh-cn">“来源”面板概览  |  Chrome DevTools  |  Chrome for Developers</a></p>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738997771344.png" alt="1738997771344"></p>
+<h3 id="文件树"><a href="#文件树" class="headerlink" title="文件树"></a>文件树</h3><p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738998117184.png" alt="1738998117184"><br>文件树的构造如下：<br>从根目录开始 为TOP,按照窗口的嵌套关系进行嵌套。<br>每个网站下面的代码按照源代码的层进进行加载<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738998288933.png" alt="1738998288933"><br>选中一个文件后，可以看到文件内容，可以设置断点，调试代码。</p>
+<h3 id="断点调试"><a href="#断点调试" class="headerlink" title="断点调试"></a>断点调试</h3><h4 id="断点设置"><a href="#断点设置" class="headerlink" title="断点设置"></a>断点设置</h4><ol>
+<li>最简单的断点设置方式。<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738998396222.png" alt="1738998396222"></li>
+<li>条件断点设置。</li>
+</ol>
+<blockquote>
+<p>在蓝色的断点上右键，点击修改断点，然后输入条件表达式。<br>适用于针对特定条件的调试。</p>
+</blockquote>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738998439528.png" alt="1738998439528"><br>    设置成功为黄色的断点<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738999382734.png" alt="1738999382734"></p>
+<h4 id="断点调试-1"><a href="#断点调试-1" class="headerlink" title="断点调试"></a>断点调试</h4><blockquote>
+<p>代码是一个个函数按照顺序进行执行的，当代码执行到断点处，会暂停，等待调试者的输入。<br>调试者可以查看变量的值，执行代码，查看调用栈等。<br>调试者可以设置断点，单步执行代码，跳过代码，继续执行等。</p>
+</blockquote>
+<h5 id="查看变量值"><a href="#查看变量值" class="headerlink" title="查看变量值"></a>查看变量值</h5><ol>
+<li><p>鼠标悬停在变量上，会显示变量的值。</p>
+<blockquote>
+<p>如本图的id变量鼠标放上去即可显示</p>
+</blockquote>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738998956493.png" alt="1738998956493"></p>
+</li>
+<li><p>作用域处查看变量值。<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738999033534.png" alt="1738999033534"></p>
+</li>
+<li><p>控制台输入变量名会打印出变量名的值。<br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738999089973.png" alt="1738999089973"></p>
+</li>
+<li><p>监视（Watch）功能。</p>
+<blockquote>
+<p>监视功能可以监视变量的变化，当变量的值发生变化时，会自动打印出来。</p>
+</blockquote>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1738999301590.png" alt="1738999301590"></p>
+</li>
+</ol>
+<h5 id="逐步调试"><a href="#逐步调试" class="headerlink" title="逐步调试"></a>逐步调试</h5><blockquote>
+<p>鼠标方上会有提示</p>
+</blockquote>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739000824114.png" alt="1739000824114"></p>
+<ol>
+<li><p>继续执行脚本 <code>F8</code></p>
+<blockquote>
+<p>按 <code>F8</code>，脚本会执行到下一个断点，如果没有断点，则执行完当前代码。</p>
+</blockquote>
+</li>
+<li><p>跳过下一个函数调用 <code>F10</code></p>
+<blockquote>
+<p>按 <code>F10</code>，不会进入函数内部，而是直接执行下一行代码。</p>
+</blockquote>
+</li>
+<li><p>进入下一个函数调用 <code>F11</code></p>
+<blockquote>
+<p>按 <code>F11</code>，会进入函数内部，可以查看函数内部变量的值，设置断点，逐步调试。</p>
+</blockquote>
+</li>
+<li><p>退出当前函数 <code>Shift+F11</code></p>
+<blockquote>
+<p>按 <code>Shift+F11</code>，会退出当前函数，回到上一层函数。</p>
+</blockquote>
+</li>
+<li><p><del>单步调试 <code>F9</code></del></p>
+<blockquote>
+<p><del>按 <code>F9</code>，和 <code>F11</code>类似，一般不用。</del></p>
+</blockquote>
+</li>
+</ol>
+<h2 id="网络（Network）"><a href="#网络（Network）" class="headerlink" title="网络（Network）"></a>网络（Network）</h2><p><a target="_blank" rel="noopener" href="https://developer.chrome.google.cn/docs/devtools/network/overview?hl=zh-cn">“网络”面板：分析网络负载和资源  |  Chrome DevTools  |  Chrome for Developers</a></p>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739006204160.png" alt="1739006204160"></p>
+<p><strong>列表：</strong></p>
+<ul>
+<li><strong>名称 Name</strong> ：HTTP 请求方法。</li>
+<li><strong>状态 Status</strong> ：HTTP 响应代码。</li>
+<li><strong>类型 Type</strong> ：资源类型。</li>
+<li><strong>发起者 Intitator</strong> ：导致请求资源的原因。点击“发起者”列中的链接可前往导致请求的源代码。</li>
+<li><strong>大小 Size</strong> ：通过网络传输的资源量。</li>
+<li><strong>时间 Time</strong> ：请求所用时间。</li>
+</ul>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739154603656.png" alt="1739154603656"></p>
+<p><strong>点击列表的标题可以排序</strong></p>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739158003163.png" alt="1739158003163"></p>
+<h3 id="导出-HAR文件"><a href="#导出-HAR文件" class="headerlink" title="导出 HAR文件"></a>导出 <code>HAR</code>文件</h3><p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739006281148.png" alt="1739006281148"></p>
+<blockquote>
+<p>点击图上按钮即可将当前的记录导出成HAR文件</p>
+<p>研发拿到HAR文件就可以看到现场的网络请求记录</p>
+</blockquote>
+<h3 id="筛选"><a href="#筛选" class="headerlink" title="筛选"></a>筛选</h3><p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739006564112.png" alt="1739006564112"></p>
+<ol>
+<li>编号 <code>1</code>的筛选按钮为<strong>蓝色</strong>代表打开筛选功能会在下一行出现筛选选项</li>
+<li>编号 <code>2</code>就是筛选的输入框，根据下方列表的名称筛选</li>
+<li>编号 <code>3</code>是请求类型的选项<ul>
+<li>Fetch\XHR: 是各种API请求</li>
+<li>Doc: 是HTML文档请求</li>
+<li>Css: 是CSS样式请求</li>
+<li>JS: 是JavaScript脚本请求</li>
+<li>Img: 是各种图片请求如：jpg、png、gif等</li>
+<li>WS: 是WebSocket请求</li>
+<li>Media: 是各种媒体请求如：音频、视频等</li>
+<li>Font: 是字体文件请求</li>
+</ul>
+</li>
+</ol>
+<h3 id="请求详解"><a href="#请求详解" class="headerlink" title="请求详解"></a>请求详解</h3><p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739007155706.png" alt="1739007155706"><br><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739007245560.png" alt="1739007245560"></p>
+<h4 id="标头-Headers"><a href="#标头-Headers" class="headerlink" title="标头(Headers)"></a>标头(Headers)</h4><pre><code>是http请求基础的请求信息和请求头以及响应头
+</code></pre>
+<h4 id="载荷-Payload"><a href="#载荷-Payload" class="headerlink" title="载荷(Payload)"></a>载荷(Payload)</h4><blockquote>
+<p>载荷就是请求携带的一些参数</p>
+</blockquote>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739156018771.png" alt="1739156018771"></p>
+<h4 id="预览-Preview"><a href="#预览-Preview" class="headerlink" title="预览(Preview)"></a>预览(Preview)</h4><h4 id="响应-Response"><a href="#响应-Response" class="headerlink" title="响应(Response)"></a>响应(Response)</h4><blockquote>
+<p>预览和响应一起说：响应就是请求返回的原始数据，预览就是对这个数据渲染后的结果。</p>
+</blockquote>
+<p>json:</p>
+<blockquote>
+<p>预览就可以展开来看</p>
+</blockquote>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739156597854.png" alt="1739156597854"></p>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739156613645.png" alt="1739156613645"></p>
+<p>图片：</p>
+<blockquote>
+<p>响应就是二进制，预览就能看见图片</p>
+</blockquote>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739156677527.png" alt="1739156677527"></p>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739156715693.png" alt="1739156715693"></p>
+<h4 id="启动器-Initiator"><a href="#启动器-Initiator" class="headerlink" title="启动器(Initiator)"></a>启动器(Initiator)</h4><blockquote>
+<p>就是这个请求进行调用的时候的，函数调用栈，不重要。</p>
+</blockquote>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739156763831.png" alt="1739156763831"></p>
+<h4 id="Timing-时间"><a href="#Timing-时间" class="headerlink" title="Timing(时间)"></a>Timing(时间)</h4><blockquote>
+<p>时间就是这个一个请求，总共用了多少时间，以及每步所用时间是多少。</p>
+<p>常用于检查请求慢的时候：从列表的时间列排序，找到耗时最大的几个请求，然后针对这些请求查看他们具体的时间（下图），然后找这个请求哪个花费的时间最长，然后再找造成这个时间长的原因，一步一步的找到造成请求慢的根本原因。</p>
+</blockquote>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739156843158.png" alt="1739156843158"></p>
+<ul>
+<li><strong>加入队列</strong> 。浏览器会在连接开始之前以及在以下情况下将请求加入队列：</li>
+<li>还有优先级更高的请求。请求优先级由资源类型以及其在文档中的位置等因素决定。如需了解详情，请参阅 <code>fetchpriority</code> 指南的<a target="_blank" rel="noopener" href="https://web.developers.google.cn/articles/fetch-priority?hl=zh-cn#resource-priority">资源优先级部分</a>。</li>
+<li>此来源已有 6 个 TCP 连接处于打开状态，这是上限。（仅适用于 HTTP&#x2F;1.0 和 HTTP&#x2F;1.1。）</li>
+<li>浏览器正在磁盘缓存中暂时分配空间。</li>
+<li><strong>已暂停</strong> 。连接开始后，请求可能会因<strong>队列</strong>中所述的任何原因而暂停。</li>
+<li><strong>DNS 查找</strong> 。浏览器正在解析请求的 IP 地址。</li>
+<li><strong>初始连接</strong> 。浏览器正在建立连接，包括 TCP 握手或重试以及协商 SSL。</li>
+<li><strong>代理协商</strong> 。浏览器正在与<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Proxy_server">代理服务器</a>协商请求。</li>
+<li><strong>已发送请求</strong> 。正在发送请求。</li>
+<li><strong>ServiceWorker 准备工作</strong> 。浏览器正在启动服务工件。</li>
+<li><strong>向 ServiceWorker 发出请求</strong> 。请求正在发送到服务工件。</li>
+<li><strong>等待中 (TTFB)</strong> 。浏览器正在等待响应的第一个字节。TTFB 是“Time To First Byte”（收到第一个字节的时间）的缩写。此时间包括 1 次往返延迟时间和服务器准备响应所用的时间。</li>
+<li><strong>内容下载</strong> 。浏览器会直接从网络或 Service Worker 接收响应。此值是读取响应正文所花费的总时间。大于预期值可能表示网络速度缓慢，或者浏览器正忙于执行其他工作，导致延迟读取响应。</li>
+</ul>
+<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><blockquote>
+<p>这个是http请求中携带的cookie以列表形式展示</p>
+</blockquote>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739157717793.png" alt="1739157717793"></p>
+<h3 id="实际应用-2"><a href="#实际应用-2" class="headerlink" title="实际应用"></a>实际应用</h3><h4 id="1-基础界面（场景：网页加载缓慢）"><a href="#1-基础界面（场景：网页加载缓慢）" class="headerlink" title="1. 基础界面（场景：网页加载缓慢）"></a>1. 基础界面（场景：网页加载缓慢）</h4><p><strong>操作步骤：</strong></p>
+<ol>
+<li>打开网页时按F12 → 点击”Network”标签</li>
+<li>刷新页面查看加载过程</li>
+</ol>
+<p><strong>实际应用：</strong></p>
+<ul>
+<li>发现某个 <code>.js</code>文件加载时间过长（红色标记）</li>
+<li>右键点击该请求 → “Block request domain”临时屏蔽</li>
+<li>立即测试页面核心功能是否可用，定位问题文件</li>
+</ul>
+<h4 id="2-请求过滤（场景：图片加载失败）"><a href="#2-请求过滤（场景：图片加载失败）" class="headerlink" title="2. 请求过滤（场景：图片加载失败）"></a>2. 请求过滤（场景：图片加载失败）</h4><p><strong>典型场景：</strong><br>用户反馈某个产品图片无法显示</p>
+<p><strong>排查步骤：</strong></p>
+<ol>
+<li><p>在筛选栏输入 <code>image</code></p>
+</li>
+<li><p>查看所有图片请求状态码：</p>
+<ul>
+<li>红色（4xx&#x2F;5xx）：服务器问题</li>
+<li>灰色（已取消）：可能被广告拦截</li>
+</ul>
+</li>
+<li><p>右键点击问题图片 → “Open in new tab”验证源文件</p>
+</li>
+<li><p>缓存验证（场景：更新未生效）</p>
+</li>
+</ol>
+<p>**常见问题：<br>已发布新版本但用户看到旧内容</p>
+<p>**解决方案：</p>
+<ol>
+<li>勾选”Disable cache”</li>
+<li>查看文件响应头：<ul>
+<li><code>Cache-Control</code>值是否合理</li>
+<li>检查 <code>Last-Modified</code>日期</li>
+</ul>
+</li>
+</ol>
+<h4 id="3-跨域问题（场景：API调用失败）"><a href="#3-跨域问题（场景：API调用失败）" class="headerlink" title="3. 跨域问题（场景：API调用失败）"></a>3. 跨域问题（场景：API调用失败）</h4><p>**典型表现：<br>控制台出现CORS错误提示</p>
+<p>**诊断方法：</p>
+<ol>
+<li>查看请求头是否携带 <code>Origin</code></li>
+<li>检查响应头是否包含：<ul>
+<li><code>Access-Control-Allow-Origin</code></li>
+<li><code>Access-Control-Allow-Methods</code></li>
+</ul>
+</li>
+</ol>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><blockquote>
+<p>页面白屏：优先查看红色状态码请求<br>数据错乱：检查Preview中的数据结构<br>功能失效：确认关键API请求是否正常发送</p>
+</blockquote>
+<h2 id="性能（Performance）"><a href="#性能（Performance）" class="headerlink" title="性能（Performance）"></a>性能（Performance）</h2><p><a target="_blank" rel="noopener" href="https://developer.chrome.google.cn/docs/devtools/performance/overview?hl=zh-cn">Performance</a></p>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739159180249.png" alt="1739159180249"></p>
+<p>录制结束的样式如下：</p>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739159314873.png" alt="1739159314873"></p>
+<p>点击下载按钮，即可将性能分析的文件下载下来 ，如同网络的 <code>HAR</code>文件</p>
+<p>点击后会出现两个选项，选择第一个（Save Trace）即可。两者的区分就是带不带注释而已</p>
+<p><img src="/image/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/1739159563507.png" alt="1739159563507"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"># 教程</a>
+              <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="tag"># 浏览器</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/02/07/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%95%8C%E9%9D%A2%E7%94%9F%E6%88%90%E5%99%A8/" rel="prev" title="可视化界面生成器">
+                  <i class="fa fa-angle-left"></i> 可视化界面生成器
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/02/09/AI%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" rel="next" title="AI相关概念">
+                  AI相关概念 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">songyanglin</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">55k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:32</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js","integrity":"sha256-YbM1pG3wWnzhyYN49g5fPnen+2CKEFaZfopkkwSpNtY="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
