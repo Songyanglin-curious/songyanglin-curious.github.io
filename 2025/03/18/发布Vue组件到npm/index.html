@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="整体流程%%{init: {‘theme’: ‘neutral’, ‘themeVariables’: { ‘fontSize’: ‘24px’}}}%%  flowchart TB     subgraph 开发者流程         A[编写源码] --&gt; B[代码质量检查]         B --&gt; C{通过检查?}         C --&gt;|是| D[构建工具打包]         C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="发布Vue组件到npm">
+<meta property="og:url" content="http://example.com/2025/03/18/%E5%8F%91%E5%B8%83Vue%E7%BB%84%E4%BB%B6%E5%88%B0npm/index.html">
+<meta property="og:site_name" content="SYL">
+<meta property="og:description" content="整体流程%%{init: {‘theme’: ‘neutral’, ‘themeVariables’: { ‘fontSize’: ‘24px’}}}%%  flowchart TB     subgraph 开发者流程         A[编写源码] --&gt; B[代码质量检查]         B --&gt; C{通过检查?}         C --&gt;|是| D[构建工具打包]         C">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-18T06:13:28.000Z">
+<meta property="article:modified_time" content="2025-03-19T09:27:42.359Z">
+<meta property="article:author" content="songyanglin">
+<meta property="article:tag" content="npm">
+<meta property="article:tag" content="操作步骤">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/03/18/%E5%8F%91%E5%B8%83Vue%E7%BB%84%E4%BB%B6%E5%88%B0npm/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/18/%E5%8F%91%E5%B8%83Vue%E7%BB%84%E4%BB%B6%E5%88%B0npm/","path":"2025/03/18/发布Vue组件到npm/","title":"发布Vue组件到npm"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>发布Vue组件到npm | SYL</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SYL</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">随笔</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-navigation"><a href="/navigation/" rel="section"><i class="fa fa-navicon fa-fw"></i>导航</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">整体流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%89%E5%8F%8A%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">涉及的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#node"><span class="nav-number">2.1.</span> <span class="nav-text">node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm"><span class="nav-number">2.2.</span> <span class="nav-text">npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vite"><span class="nav-number">2.3.</span> <span class="nav-text">vite</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%BC%80%E5%8F%91%E9%98%B6%E6%AE%B5%EF%BC%9A%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E9%9D%9E%E4%BC%A0%E7%BB%9F%E6%89%93%E5%8C%85%E5%99%A8%EF%BC%89"><span class="nav-number">2.3.1.</span> <span class="nav-text">1. 开发阶段：轻量级服务器（非传统打包器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%94%9F%E4%BA%A7%E9%98%B6%E6%AE%B5%EF%BC%9A%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%EF%BC%88%E5%9F%BA%E4%BA%8E-Rollup%EF%BC%89"><span class="nav-number">2.3.2.</span> <span class="nav-text">2. 生产阶段：构建工具（基于 Rollup）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%A1%86%E6%9E%B6%E6%97%A0%E5%85%B3%E6%80%A7%EF%BC%9A%E6%8F%92%E4%BB%B6%E5%8C%96%E6%89%A9%E5%B1%95"><span class="nav-number">2.3.3.</span> <span class="nav-text">3. 框架无关性：插件化扩展</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue"><span class="nav-number">2.4.</span> <span class="nav-text">vue</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">3.</span> <span class="nav-text">示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E6%A1%86%E6%9E%B6"><span class="nav-number">3.1.</span> <span class="nav-text">1、创建框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E7%BC%96%E5%86%99%E7%BB%84%E4%BB%B6%E4%BB%A3%E7%A0%81"><span class="nav-number">3.2.</span> <span class="nav-text">2、编写组件代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E6%B5%8B%E8%AF%95"><span class="nav-number">3.3.</span> <span class="nav-text">3、测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E6%89%93%E5%8C%85"><span class="nav-number">3.4.</span> <span class="nav-text">4、打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E6%B5%8B%E8%AF%95%E6%89%93%E5%8C%85"><span class="nav-number">3.5.</span> <span class="nav-text">5、测试打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6%E3%80%81%E5%8F%91%E5%B8%83%E5%88%B0-npm"><span class="nav-number">3.6.</span> <span class="nav-text">6、发布到 npm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">songyanglin</p>
+  <div class="site-description" itemprop="description">code随笔</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Songyanglin-curious" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Songyanglin-curious" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+<!-- recent posts -->
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+        <div class="links-of-blogroll-title recent-posts-title">
+	    <i class="fa fa-history " aria-hidden="true"></i>
+            近期文章
+	</div>
+	<ul class="links-of-blogroll-list recent-posts-list">
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/03/18/%E5%8F%91%E5%B8%83Vue%E7%BB%84%E4%BB%B6%E5%88%B0npm/" title="发布Vue组件到npm" target="">
+		    发布Vue组件到npm
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/02/10/DeepSeek%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/" title="DeepSeek部署记录" target="">
+		    DeepSeek部署记录
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/02/09/AI%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" title="AI相关概念" target="">
+		    AI相关概念
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/02/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" title="浏览器开发工具" target="">
+		    浏览器开发工具
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2025/02/07/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%95%8C%E9%9D%A2%E7%94%9F%E6%88%90%E5%99%A8/" title="可视化界面生成器" target="">
+		    可视化界面生成器
+		    </a>
+		</li>
+	</ul>
+    </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/18/%E5%8F%91%E5%B8%83Vue%E7%BB%84%E4%BB%B6%E5%88%B0npm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="songyanglin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SYL">
+      <meta itemprop="description" content="code随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="发布Vue组件到npm | SYL">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          发布Vue组件到npm
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-03-18 14:13:28" itemprop="dateCreated datePublished" datetime="2025-03-18T14:13:28+08:00">2025-03-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-19 17:27:42" itemprop="dateModified" datetime="2025-03-19T17:27:42+08:00">2025-03-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>13 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h2><p>%%{init: {‘theme’: ‘neutral’, ‘themeVariables’: { ‘fontSize’: ‘24px’}}}%%</p>
+<pre class="mermaid">
+flowchart TB
+    subgraph 开发者流程
+        A[编写源码] --> B[代码质量检查]
+        B --> C{通过检查?}
+        C -->|是| D[构建工具打包]
+        C -->|否| A1[修改代码]
+        A1 --> B
+        D --> E[生成产物目录 dist]
+        E --> F[配置 package.json]
+        F --> G[本地测试]
+        G --> H{测试通过?}
+        H -->|是| I[版本管理: npm version]
+        H -->|否| G1[修复问题]
+        G1 --> G
+        I --> J[npm publish 发布]
+        J --> K{发布成功?}
+        K -->|是| L[验证发布结果]
+        K -->|否| J1[处理错误]
+        J1 -->|例如: 包名冲突| F
+        J1 -->|例如: 认证问题| J2[重新登录]
+        J2 --> J
+    end
+
+    subgraph 用户流程
+        M[用户安装: npm install] --> N[解析 package.json]
+        N --> O{是否存在 exports 字段?}
+        O -->|是| P[按 exports 条件选择入口]
+        O -->|否| Q[按 main/module 选择入口]
+        P --> R[加载对应文件]
+        Q --> R
+        R --> S[引入代码]
+        S --> T{是否 TypeScript 项目?}
+        T -->|是| U[加载类型声明文件]
+        T -->|否| V[直接运行]
+        U --> V
+    end
+
+    开发者流程 -->|发布成功| 用户流程</pre>
+
+<h2 id="涉及的概念"><a href="#涉及的概念" class="headerlink" title="涉及的概念"></a>涉及的概念</h2><h3 id="node"><a href="#node" class="headerlink" title="node"></a>node</h3><p>Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境， <strong>突破了浏览器限制</strong> ，使得 JavaScript 能够操作本地文件、创建 HTTP 服务等。</p>
+<p><strong>开发中的具体作用</strong> ：</p>
+<ul>
+<li>运行 <code>vite</code> 或 <code>webpack</code> 等构建工具</li>
+<li>执行 <code>npm run dev</code> 等开发脚本</li>
+<li>托管本地开发服务器（如通过 <code>vite</code> 启动的 <code>localhost:3000</code>）</li>
+</ul>
+<h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><p> <strong>核心定位</strong> ：<br>  npm 是 <strong>包管理工具 + 软件注册表</strong> 的复合体：</p>
+<ol>
+<li><strong>注册表（Registry）</strong> ：存储了数百万个开源包（如 <code>vue</code>、<code>lodash</code>），类似“应用商店”</li>
+<li><strong>命令行工具（CLI）</strong> ：提供 <code>install</code>、<code>publish</code> 等命令管理依赖</li>
+</ol>
+<p> <strong>关键功能补充</strong> ：</p>
+<ul>
+<li>版本控制（<code>^1.0.0</code> 表示兼容版本）</li>
+<li>依赖关系解析（自动安装子依赖）</li>
+<li>脚本执行（<code>package.json</code> 中的 <code>scripts</code> 字段）</li>
+</ul>
+<p> <strong>比喻理解</strong> ：</p>
+<ul>
+<li>npm ≈ Android应用商店（注册表） + 手机上的应用管理器（CLI）</li>
+</ul>
+<h3 id="vite"><a href="#vite" class="headerlink" title="vite"></a>vite</h3><p><a target="_blank" rel="noopener" href="https://vitejs.cn/vite3-cn/guide/why.html">Vite 官方中文文档</a></p>
+<ul>
+<li><strong>开发时</strong> ：是浏览器与开发者之间的“ <strong>智能桥梁</strong> ”，利用现代浏览器能力跳过打包。</li>
+<li><strong>生产时</strong> ：是“ <strong>优化器</strong> ”，沿用传统构建工具的优势生成高性能代码。</li>
+<li><strong>框架支持</strong> ：是“ <strong>乐高底座</strong> ”，通过插件自由拼装能力，适应任何技术栈。</li>
+</ul>
+<h4 id="1-开发阶段：轻量级服务器（非传统打包器）"><a href="#1-开发阶段：轻量级服务器（非传统打包器）" class="headerlink" title="1. 开发阶段：轻量级服务器（非传统打包器）"></a><strong>1. 开发阶段：轻量级服务器（非传统打包器）</strong></h4><ul>
+<li><strong>角色</strong> ：按需编译的 ESM 服务器。</li>
+<li><strong>工作原理</strong> ：</li>
+<li>直接利用浏览器原生 ESM 能力，将源码文件（如 <code>.vue</code>、<code>.jsx</code>）通过插件实时编译为浏览器可识别的 ESM 模块。</li>
+<li>依赖项（如 <code>node_modules</code> 中的库）通过 <code>esbuild</code> 预构建为 ESM 格式并缓存。</li>
+<li><strong>结果</strong> ：无需打包整个应用，实现秒级启动和即时热更新。</li>
+</ul>
+<h4 id="2-生产阶段：构建工具（基于-Rollup）"><a href="#2-生产阶段：构建工具（基于-Rollup）" class="headerlink" title="2. 生产阶段：构建工具（基于 Rollup）"></a><strong>2. 生产阶段：构建工具（基于 Rollup）</strong></h4><ul>
+<li><strong>角色</strong> ：高性能打包器。</li>
+<li><strong>工作原理</strong> ：</li>
+<li>使用 Rollup 对代码进行打包、Tree-Shaking、代码分割等优化。</li>
+<li>复用开发阶段的插件体系（如 Vue&#x2F;React 插件），确保构建行为一致。</li>
+<li><strong>结果</strong> ：生成高度优化的静态文件（如 <code>index.html</code> + 分块 JS&#x2F;CSS）。</li>
+</ul>
+<h4 id="3-框架无关性：插件化扩展"><a href="#3-框架无关性：插件化扩展" class="headerlink" title="3. 框架无关性：插件化扩展"></a><strong>3. 框架无关性：插件化扩展</strong></h4><ul>
+<li><strong>核心定位</strong> ：Vite 本身是一个  <strong>构建工具链框架</strong> ，不绑定任何特定框架。</li>
+<li><strong>对框架的支持</strong> ：</li>
+<li><strong>官方插件</strong> ：如 <code>@vitejs/plugin-vue</code>（支持 Vue 单文件组件）、<code>@vitejs/plugin-react</code>（支持 React JSX）。</li>
+<li><strong>社区插件</strong> ：支持 Svelte、SolidJS 等新兴框架。</li>
+<li><strong>插件的作用</strong> ：</li>
+<li>解析框架特定语法（如 <code>.vue</code> 文件中的 <code>&lt;template&gt;</code>、<code>&lt;script&gt;</code>、<code>&lt;style&gt;</code>）。</li>
+<li>集成框架生态工具（如 Vue Router、React Refresh）。</li>
+</ul>
+<blockquote>
+<p><strong>为什么说它是“基础框架”？</strong></p>
+<ol>
+<li><strong>核心功能与框架解耦</strong> ：</li>
+</ol>
+<ul>
+<li>Vite 的核心仅处理  <strong>开发服务器启动</strong> 、 <strong>模块编译管道</strong> 、<strong>构建流程</strong> 等基础能力。</li>
+<li>框架特性（如 Vue 的 SFC、React 的 Fast Refresh）通过插件注入到核心流程中。</li>
+</ul>
+<ol>
+<li><strong>插件系统的标准化</strong> ：</li>
+</ol>
+<ul>
+<li><p>插件通过 Vite 的 <a target="_blank" rel="noopener" href="https://vitejs.dev/guide/api-plugin.html">Plugin API</a> 介入编译过程。</p>
+</li>
+<li><p>例如，<code>@vitejs/plugin-vue</code> 的工作流程：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// vite.config.js</span></span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">&#x27;@vitejs/plugin-vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="title function_">vue</span>()] <span class="comment">// 注入 Vue 编译能力</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当浏览器请求 <code>.vue</code> 文件时，Vite 调用该插件将文件拆解为 JS&#x2F;CSS，再分别处理。</p>
+</li>
+</ul>
+<ol>
+<li><strong>生态兼容性</strong> ：</li>
+</ol>
+<ul>
+<li>开发者可自由组合插件（如同时使用 <code>@vitejs/plugin-vue</code> + <code>vite-plugin-pwa</code>），无需被框架限制。</li>
+<li>社区插件覆盖场景广泛：Markdown 编译、SVG 图标处理、SSR 支持等。</li>
+</ul>
+</blockquote>
+<h3 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h3><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="1、创建框架"><a href="#1、创建框架" class="headerlink" title="1、创建框架"></a>1、创建框架</h3><p><strong>参考资料：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://vitejs.cn/vite3-cn/guide/build.html">vite</a></p>
+<p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/quick-start.html">vue3</a></p>
+<blockquote>
+<p>引入 vite  vue  和相关插件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">D:\code&gt;npm create vue</span><br><span class="line"></span><br><span class="line">&gt; npx</span><br><span class="line">&gt; create-vue</span><br><span class="line"></span><br><span class="line">T  Vue.js - The Progressive JavaScript Framework</span><br><span class="line">|</span><br><span class="line">o  请输入项目名称：</span><br><span class="line">|  yshboard</span><br><span class="line">|</span><br><span class="line">o  请选择要包含的功能： (↑/↓ 切换，空格选择，a 全选，回车确认)</span><br><span class="line">|  TypeScript</span><br><span class="line"></span><br><span class="line">正在初始化项目 D:\code\yshboard...</span><br><span class="line">|</span><br><span class="line">—  项目初始化完成，可执行以下命令：</span><br><span class="line"></span><br><span class="line">   cd yshboard</span><br><span class="line">   npm install</span><br><span class="line">   npm run dev</span><br><span class="line"></span><br><span class="line">| 可选：使用以下命令在项目目录中初始化 Git：</span><br><span class="line"></span><br><span class="line">   git init &amp;&amp; git add -A &amp;&amp; git commit -m &quot;initial commit&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">D:\code&gt; </span><br></pre></td></tr></table></figure>
+
+<p>1.执行 <code>npm create vue</code> 命令，创建 vue 项目。<br>2.输入项目名称 <code>yshboard</code><br>3.选择 <code>TypeScript</code> 功能<br>4.项目初始化完成，可执行 <code>npm install</code> 安装依赖，<code>npm run dev</code> 启动项目。<br>5.调整项目框架,清除默认的 <code>HelloWorld.vue</code> 文件，App.vue清除默认代码。</p>
+<blockquote>
+<p>├── src<br>│   ├── components &#x2F;&#x2F;组件文件夹<br>│   │   ├── Line &#x2F;&#x2F;  一个组件<br>│   │   │   ├── index.ts &#x2F;&#x2F;组件的导出文件<br>│   │   │   ├── Line.vue &#x2F;&#x2F;组件的实现文件<br>│   │   ├── index.ts &#x2F;&#x2F;所有组件的导出文件<br>│   ├── theme &#x2F;&#x2F;echarts的主题文件夹<br>│   ├── App.vue<br>│   ├── main.ts<br>├── package.json &#x2F;&#x2F; 项目的依赖 和 npm发布的配置文件<br>├── README.md &#x2F;&#x2F; 项目的说明文件<br>├── tsconfig.app.json<br>├── tsconfig.json &#x2F;&#x2F; typescript的配置文件<br>├── tsconfig.node.json<br>├── vite.config.ts &#x2F;&#x2F; vite的配置文件</p>
+</blockquote>
+<h3 id="2、编写组件代码"><a href="#2、编写组件代码" class="headerlink" title="2、编写组件代码"></a>2、编写组件代码</h3><ul>
+<li><code>src\components\Line\Line.vue</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">&quot;chartRef&quot;</span> <span class="attr">class</span>=<span class="string">&quot;line-chart&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">&quot;ts&quot;</span> <span class="attr">setup</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> &#123; defineComponent, defineProps, onMounted, ref, watch, onBeforeUnmount, <span class="title class_">PropType</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> &#123; initChart &#125; <span class="keyword">from</span> <span class="string">&#x27;@/utils/echarts&#x27;</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">interface <span class="title class_">SeriesItem</span> &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">name</span>: string</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">data</span>: number[]</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> props = <span class="title function_">defineProps</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">xAxisData</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">type</span>: <span class="title class_">Array</span> <span class="keyword">as</span> <span class="title class_">PropType</span>&lt;string[]&gt;,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">required</span>: <span class="literal">true</span></span></span><br><span class="line"><span class="language-javascript">    &#125;,</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">series</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">type</span>: <span class="title class_">Array</span> <span class="keyword">as</span> <span class="title class_">PropType</span>&lt;<span class="title class_">SeriesItem</span>[]&gt;,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">required</span>: <span class="literal">true</span></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> chartRef = ref&lt;<span class="title class_">HTMLElement</span>&gt;()</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">let</span> <span class="attr">chartInstance</span>: <span class="title class_">ECharts</span> | <span class="literal">null</span> = <span class="literal">null</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> <span class="title function_">init</span> = (<span class="params"></span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">if</span> (!chartRef.<span class="property">value</span>) <span class="keyword">return</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> option = &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">tooltip</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">trigger</span>: <span class="string">&#x27;axis&#x27;</span></span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">legend</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">data</span>: props.<span class="property">series</span>.<span class="title function_">map</span>(<span class="function"><span class="params">item</span> =&gt;</span> item.<span class="property">name</span>)</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">xAxis</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">type</span>: <span class="string">&#x27;category&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">data</span>: props.<span class="property">xAxisData</span></span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">yAxis</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">type</span>: <span class="string">&#x27;value&#x27;</span></span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">series</span>: props.<span class="property">series</span>.<span class="title function_">map</span>(<span class="function"><span class="params">item</span> =&gt;</span> (&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">name</span>: item.<span class="property">name</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">type</span>: <span class="string">&#x27;line&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">data</span>: item.<span class="property">data</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">smooth</span>: <span class="literal">true</span></span></span><br><span class="line"><span class="language-javascript">        &#125;))</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">if</span> (!chartInstance) &#123;</span></span><br><span class="line"><span class="language-javascript">        chartInstance = <span class="title function_">initChart</span>(chartRef.<span class="property">value</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    chartInstance.<span class="title function_">setOption</span>(option)</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> <span class="title function_">resizeHandler</span> = (<span class="params"></span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">    chartInstance?.<span class="title function_">resize</span>()</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="title function_">onMounted</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">init</span>()</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;resize&#x27;</span>, resizeHandler)</span></span><br><span class="line"><span class="language-javascript">&#125;)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="title function_">watch</span>(</span></span><br><span class="line"><span class="language-javascript">    <span class="function">() =&gt;</span> [props.<span class="property">xAxisData</span>, props.<span class="property">series</span>],</span></span><br><span class="line"><span class="language-javascript">    <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">init</span>()</span></span><br><span class="line"><span class="language-javascript">    &#125;,</span></span><br><span class="line"><span class="language-javascript">    &#123; <span class="attr">deep</span>: <span class="literal">true</span> &#125;</span></span><br><span class="line"><span class="language-javascript">)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="title function_">onBeforeUnmount</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">if</span> (chartInstance) &#123;</span></span><br><span class="line"><span class="language-javascript">        chartInstance.<span class="title function_">dispose</span>()</span></span><br><span class="line"><span class="language-javascript">        chartInstance = <span class="literal">null</span></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">window</span>.<span class="title function_">removeEventListener</span>(<span class="string">&#x27;resize&#x27;</span>, resizeHandler)</span></span><br><span class="line"><span class="language-javascript">&#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-class">.line-chart</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>src\components\Line\index.ts</code></li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123; <span class="title class_">App</span>, <span class="title class_">Plugin</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Line</span> <span class="keyword">from</span> <span class="string">&#x27;./Line.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title class_">LineChart</span>: <span class="title class_">Plugin</span> = &#123;</span><br><span class="line">    <span class="title function_">install</span>(<span class="params"><span class="attr">app</span>: <span class="title class_">App</span></span>) &#123;</span><br><span class="line">        app.<span class="title function_">component</span>(<span class="string">&#x27;LineChart&#x27;</span>, <span class="title class_">Line</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>src\components\index.ts</code></li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123; <span class="title class_">App</span>, <span class="title class_">Plugin</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">LineChart</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./Line&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; <span class="title class_">LineChart</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">components</span>: <span class="title class_">Plugin</span>[] = [<span class="title class_">LineChart</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">install</span> = (<span class="params"><span class="attr">app</span>: <span class="title class_">App</span></span>) =&gt; &#123;</span><br><span class="line">    components.<span class="title function_">forEach</span>(<span class="function"><span class="params">plugin</span> =&gt;</span> &#123;</span><br><span class="line">        app.<span class="title function_">use</span>(plugin)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">YshBoard</span>: <span class="title class_">Plugin</span> = &#123; install &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">YshBoard</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="3、测试"><a href="#3、测试" class="headerlink" title="3、测试"></a>3、测试</h3><p>将组件在 <code>main.ts</code>注册，在 <code>App.vue</code>测试</p>
+<ul>
+<li><code>src\main.ts</code></li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">YshBoard</span> <span class="keyword">from</span> <span class="string">&quot;./components/index&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">createApp</span>(<span class="title class_">App</span>).<span class="title function_">use</span>(<span class="title class_">YshBoard</span>).<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>src\App.vue</code></li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">LineChart</span> <span class="attr">style</span>=<span class="string">&quot;width: 100vw; height: 100vh&quot;</span> <span class="attr">:x-axis-data</span>=<span class="string">&quot;xAxisData&quot;</span> <span class="attr">:series</span>=<span class="string">&quot;seriesData&quot;</span> /&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span> <span class="attr">lang</span>=<span class="string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">import</span> &#123; defineComponent, reactive &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">const</span> xAxisData = [<span class="string">&#x27;Mon&#x27;</span>, <span class="string">&#x27;Tue&#x27;</span>, <span class="string">&#x27;Wed&#x27;</span>, <span class="string">&#x27;Thu&#x27;</span>, <span class="string">&#x27;Fri&#x27;</span>, <span class="string">&#x27;Sat&#x27;</span>, <span class="string">&#x27;Sun&#x27;</span>]</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">const</span> seriesData = <span class="title function_">reactive</span>([</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">name</span>: <span class="string">&#x27;Email&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">data</span>: [<span class="number">120</span>, <span class="number">132</span>, <span class="number">101</span>, <span class="number">134</span>, <span class="number">90</span>, <span class="number">230</span>, <span class="number">210</span>]</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">name</span>: <span class="string">&#x27;Union Ads&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">data</span>: [<span class="number">220</span>, <span class="number">182</span>, <span class="number">191</span>, <span class="number">234</span>, <span class="number">290</span>, <span class="number">330</span>, <span class="number">310</span>]</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">])</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4、打包"><a href="#4、打包" class="headerlink" title="4、打包"></a>4、打包</h3><blockquote>
+<p>打包需要配置vite</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://vitejs.cn/vite3-cn/guide/build.html">vite</a></p>
+<ul>
+<li><code>vite.config.ts</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; fileURLToPath, <span class="variable constant_">URL</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;node:url&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">&#x27;@vitejs/plugin-vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> vueDevTools <span class="keyword">from</span> <span class="string">&#x27;vite-plugin-vue-devtools&#x27;</span></span><br><span class="line"><span class="keyword">import</span> path <span class="keyword">from</span> <span class="string">&#x27;node:path&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// https://vite.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        <span class="title function_">vue</span>(),</span><br><span class="line">        process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;development&#x27;</span> ? <span class="title function_">vueDevTools</span>() : <span class="literal">null</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">build</span>: &#123;</span><br><span class="line">        <span class="comment">// 默认会打包到dist目录下</span></span><br><span class="line">        <span class="attr">lib</span>: &#123;</span><br><span class="line">            <span class="attr">formats</span>: [<span class="string">&#x27;es&#x27;</span>, <span class="string">&#x27;umd&#x27;</span>],</span><br><span class="line">            <span class="attr">entry</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;./src/components/index.ts&quot;</span>), <span class="comment">//指定组件编译入口文件</span></span><br><span class="line">            <span class="attr">name</span>: <span class="string">&quot;yshboard&quot;</span>,</span><br><span class="line">        &#125;, <span class="comment">//库编译模式配置</span></span><br><span class="line">        <span class="attr">rollupOptions</span>: &#123;</span><br><span class="line">            <span class="comment">// 确保外部化处理那些你不想打包进库的依赖</span></span><br><span class="line">            <span class="attr">external</span>: [<span class="string">&quot;vue&quot;</span>, <span class="regexp">/^@vue\/devtools/</span>],</span><br><span class="line">            <span class="attr">output</span>: &#123;</span><br><span class="line">                <span class="comment">// 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量</span></span><br><span class="line">                <span class="attr">globals</span>: &#123;</span><br><span class="line">                    <span class="attr">vue</span>: <span class="string">&quot;Vue&quot;</span>,</span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;, <span class="comment">// rollup打包配置</span></span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">resolve</span>: &#123;</span><br><span class="line">        <span class="attr">alias</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;@&#x27;</span>: <span class="title function_">fileURLToPath</span>(<span class="keyword">new</span> <span class="title function_">URL</span>(<span class="string">&#x27;./src&#x27;</span>, <span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">url</span>))</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>执行 <code>npm run build</code> 打包文件到 <code>dist</code>目录下</li>
+</ul>
+<h3 id="5、测试打包"><a href="#5、测试打包" class="headerlink" title="5、测试打包"></a>5、测试打包</h3><ul>
+<li>配置 <code>package.json</code></li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="string">&quot;name&quot;</span>: <span class="string">&quot;yshboard&quot;</span>,</span><br><span class="line">    <span class="string">&quot;private&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="string">&quot;version&quot;</span>: <span class="string">&quot;1.0.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;type&quot;</span>: <span class="string">&quot;module&quot;</span>,</span><br><span class="line">    <span class="string">&quot;main&quot;</span>: <span class="string">&quot;./dist/yshboard.umd.cjs&quot;</span>,</span><br><span class="line">    <span class="string">&quot;module&quot;</span>: <span class="string">&quot;./dist/yshboard.js&quot;</span>,</span><br><span class="line">    <span class="string">&quot;types&quot;</span>: <span class="string">&quot;./dist/index.d.ts&quot;</span>,</span><br><span class="line">    <span class="string">&quot;files&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;dist/*&quot;</span></span><br><span class="line">    ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在项目根路径下执行 <code>npm link</code> ,然后再测试项目中使用 <code>npm link yshboard</code></li>
+</ul>
+<h3 id="6、发布到-npm"><a href="#6、发布到-npm" class="headerlink" title="6、发布到 npm"></a>6、发布到 npm</h3><ul>
+<li>先将npm的镜像地址改为npm官网</li>
+<li>执行 <code>npm login</code> 登录</li>
+<li>执行 <code>npm publish --access=public</code>发布到 npm上</li>
+<li>在测试项目中从npm按照进行测试</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://docs.npmjs.com/">npmDoc</a></p>
+<p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/reusability/plugins">vuePlugin</a></p>
+<p><a target="_blank" rel="noopener" href="https://cn.vite.dev/guide/build">Vite Library Mode</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/npm/" rel="tag"># npm</a>
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4/" rel="tag"># 操作步骤</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/02/10/DeepSeek%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/" rel="prev" title="DeepSeek部署记录">
+                  <i class="fa fa-angle-left"></i> DeepSeek部署记录
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">songyanglin</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">67k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:51</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js","integrity":"sha256-YbM1pG3wWnzhyYN49g5fPnen+2CKEFaZfopkkwSpNtY="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
