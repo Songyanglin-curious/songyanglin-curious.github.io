@@ -286,7 +286,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.9k</span>
+      <span>2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -312,18 +312,18 @@
 <li>工程使用必须要简单才会有人用，过于繁杂会很难推行。</li>
 <li>仅限于展示为主的项目，交互不能多。</li>
 </ol>
-<h3 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h3><pre class="mermaid">flowchart TD
-    A(新项目) --> B["工程根据需求创建初版"]
-    B --> C{"能否解决?"}
-    C -->|是| D["给用户演示/交流"]
-    C -->|否| E["研发代码实现"]
-    E --> D
-    D --> F{"是否有新需求?"}
-    F -->|是| G["工程继续迭代"]
-    F -->|否| H(项目结束)
-    G --> I{"能否解决?"}
-    I -->|是| D
-    I -->|否| E</pre>
+<h3 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h3><pre><code class="highlight mermaid">flowchart TD
+    A(新项目) --&gt; B[&quot;工程根据需求创建初版&quot;]
+    B --&gt; C&#123;&quot;能否解决?&quot;&#125;
+    C --&gt;|是| D[&quot;给用户演示/交流&quot;]
+    C --&gt;|否| E[&quot;研发代码实现&quot;]
+    E --&gt; D
+    D --&gt; F&#123;&quot;是否有新需求?&quot;&#125;
+    F --&gt;|是| G[&quot;工程继续迭代&quot;]
+    F --&gt;|否| H(项目结束)
+    G --&gt; I&#123;&quot;能否解决?&quot;&#125;
+    I --&gt;|是| D
+    I --&gt;|否| E</code></pre>
 
 <h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>工程的参数要简单，研发的可编辑性要强，所以 工程使用的 组件是 对研发使用组件的二次封装，给工程用的只允许有少量可选配置不允许自定义值。</p>
 <p>研发用来进行复杂需求实现的  是一个限制很少的组件的基础上开发的。</p>
@@ -419,13 +419,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">67k</span>
+    <span title="站点总字数">68k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:51</span>
+    <span title="站点阅读时长">1:53</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
@@ -461,7 +461,7 @@
 <script src="/js/third-party/search/local-search.js"></script>
 
 
-  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js","integrity":"sha256-YbM1pG3wWnzhyYN49g5fPnen+2CKEFaZfopkkwSpNtY="}}</script>
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"neutral","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js","integrity":"sha256-YbM1pG3wWnzhyYN49g5fPnen+2CKEFaZfopkkwSpNtY="}}</script>
   <script src="/js/third-party/tags/mermaid.js"></script>
 
 

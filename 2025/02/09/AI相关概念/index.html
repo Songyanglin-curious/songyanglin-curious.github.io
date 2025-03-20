@@ -284,7 +284,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>8.4k</span>
+      <span>8.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -431,11 +431,11 @@
 </li>
 </ul>
 <h4 id="代码生成模型（Coder-Model）"><a href="#代码生成模型（Coder-Model）" class="headerlink" title="代码生成模型（Coder Model）"></a>代码生成模型（Coder Model）</h4><ul>
-<li><strong>典型架构</strong>:<pre class="mermaid">  graph LR
-  A[输入:自然语言描述] --> B[代码语法解析]
-  B --> C[抽象语法树生成]
-  C --> D[代码优化器]
-  D --> E[输出:可执行代码]</pre></li>
+<li><strong>典型架构</strong>:<pre><code class="highlight mermaid">graph LR
+  A[输入:自然语言描述] --&gt; B[代码语法解析]
+  B --&gt; C[抽象语法树生成]
+  C --&gt; D[代码优化器]
+  D --&gt; E[输出:可执行代码]</code></pre></li>
 <li><strong>开发工具链</strong>:<br>IDE插件 → GitHub Copilot → 自动代码补全</li>
 </ul>
 <h4 id="多模态模型"><a href="#多模态模型" class="headerlink" title="多模态模型"></a>多模态模型</h4><table>
@@ -499,26 +499,27 @@
 <ul>
 <li>用户提问时，RAG 框架将问题转化为向量 → 从向量数据库检索相似内容 → 将检索到的文本作为上下文输入大模型（如 GPT-4）→ 生成最终回答。</li>
 </ul>
-<h3 id="3-3RAG-运作流程图解"><a href="#3-3RAG-运作流程图解" class="headerlink" title="3.3RAG 运作流程图解"></a>3.3RAG 运作流程图解</h3><pre class="mermaid">
+<h3 id="3-3RAG-运作流程图解"><a href="#3-3RAG-运作流程图解" class="headerlink" title="3.3RAG 运作流程图解"></a>3.3RAG 运作流程图解</h3><pre><code class="highlight mermaid">
 graph TD
 
-    A[用户问题] --> B[问题向量化<br/>嵌入模型处理]
+    A[用户问题] --&gt; B[问题向量化&lt;br/&gt;嵌入模型处理]
 
-    B --> C{向量数据库检索}
+    B --&gt; C&#123;向量数据库检索&#125;
 
-    C -->|相似度 > 阈值| D[召回匹配文本片段]
+    C --&gt;|相似度 &gt; 阈值| D[召回匹配文本片段]
 
-    C -->|无匹配结果| E[触发失败处理]
+    C --&gt;|无匹配结果| E[触发失败处理]
 
-    D --> F[构造上下文 Prompt]
+    D --&gt; F[构造上下文 Prompt]
 
-    F --> G[大模型生成答案]
+    F --&gt; G[大模型生成答案]
 
-    E --> H[基于大模型原生知识生成]
+    E --&gt; H[基于大模型原生知识生成]
 
-    G --> I[最终回答]
+    G --&gt; I[最终回答]
 
-    H --> I</pre>
+    H --&gt; I
+</code></pre>
 
 <hr>
 <h3 id="3-4流程分步详解"><a href="#3-4流程分步详解" class="headerlink" title="3.4流程分步详解"></a>3.4流程分步详解</h3><h4 id="1-用户问题向量化"><a href="#1-用户问题向量化" class="headerlink" title="1. 用户问题向量化"></a>1. 用户问题向量化</h4><p>*<strong>技术实现</strong> ：</p>
@@ -703,12 +704,12 @@ graph TD
 <p>是 基于LLM 和一些工具箱 ，给LLM 输出格式进行限制 然后程序对这个格式进行解析调用相关的工具将输出再给LLM这样一步步最终得到想要的结果</p>
 </blockquote>
 <hr>
-<h3 id="5-2-核心流程概览"><a href="#5-2-核心流程概览" class="headerlink" title="5.2 核心流程概览"></a><strong>5.2 核心流程概览</strong></h3><pre class="mermaid">graph LR
-A[用户输入] --> B{LLM} 
-B -->|结构化指令| C[程序解析]
-C -->|调用工具| D[工具箱]
-D -->|工具结果| B
-B -->|最终输出| E[用户]</pre>
+<h3 id="5-2-核心流程概览"><a href="#5-2-核心流程概览" class="headerlink" title="5.2 核心流程概览"></a><strong>5.2 核心流程概览</strong></h3><pre><code class="highlight mermaid">graph LR
+A[用户输入] --&gt; B&#123;LLM&#125; 
+B --&gt;|结构化指令| C[程序解析]
+C --&gt;|调用工具| D[工具箱]
+D --&gt;|工具结果| B
+B --&gt;|最终输出| E[用户]</code></pre>
 
 <ol>
 <li><p><strong>输入与格式约束</strong></p>
@@ -882,13 +883,13 @@ B -->|最终输出| E[用户]</pre>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">67k</span>
+    <span title="站点总字数">68k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:51</span>
+    <span title="站点阅读时长">1:53</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
@@ -924,7 +925,7 @@ B -->|最终输出| E[用户]</pre>
 <script src="/js/third-party/search/local-search.js"></script>
 
 
-  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js","integrity":"sha256-YbM1pG3wWnzhyYN49g5fPnen+2CKEFaZfopkkwSpNtY="}}</script>
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"neutral","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js","integrity":"sha256-YbM1pG3wWnzhyYN49g5fPnen+2CKEFaZfopkkwSpNtY="}}</script>
   <script src="/js/third-party/tags/mermaid.js"></script>
 
 
