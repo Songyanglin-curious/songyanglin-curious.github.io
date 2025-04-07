@@ -27,7 +27,7 @@
 <meta property="og:description" content="整体流程flowchart TB     subgraph 开发者流程         A[编写源码] --&gt; B[代码质量检查]         B --&gt; C&#123;通过检查?&#125;         C --&gt;|是| D[构建工具打包]         C --&gt;|否| A1[修改代码]         A1 --&gt; B         D --&gt;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-18T06:13:28.000Z">
-<meta property="article:modified_time" content="2025-03-20T01:36:47.700Z">
+<meta property="article:modified_time" content="2025-03-21T01:46:15.003Z">
 <meta property="article:author" content="songyanglin">
 <meta property="article:tag" content="npm">
 <meta property="article:tag" content="操作步骤">
@@ -266,7 +266,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-20 09:36:47" itemprop="dateModified" datetime="2025-03-20T09:36:47+08:00">2025-03-20</time>
+      <time title="修改时间：2025-03-21 09:46:15" itemprop="dateModified" datetime="2025-03-21T09:46:15+08:00">2025-03-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -285,14 +285,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>8k</span>
+      <span>8.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>13 分钟</span>
+      <span>15 分钟</span>
     </span>
 </div>
 
@@ -486,6 +486,31 @@
 <li>执行 <code>npm publish --access=public</code>发布到 npm上</li>
 <li>在测试项目中从npm按照进行测试</li>
 </ul>
+<ol>
+<li><strong>依赖声明缺失</strong><br>搜索结果显示Vue3+Vite模板需要明确声明 <code>peerDependencies</code>(如vue、vite)[1][4]。检查 <code>package.json</code>是否包含必要的框架依赖声明。</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;peerDependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;vue&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^3.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>更新版本号</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm version patch</span><br></pre></td></tr></table></figure>
+
+
+<ol>
+<li><strong>子配置文件设置</strong> ： 在 <code>tsconfig.app.json</code>中添加声明文件生成配置：</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;compilerOptions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;declaration&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;declarationDir&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./dist/types&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;emitDeclarationOnly&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;include&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;src/**/*&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>DiffCopyInsert</p>
+<ol start="2">
+<li><strong>构建工具配置</strong> ： 如果是Vite项目，安装并配置声明文件插件：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vite-plugin-dts -D</span><br></pre></td></tr></table></figure>
+
+<p>DiffCopyInsert</p>
+<p>在 <code>vite.config.ts</code>中：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> dts <span class="keyword">from</span> <span class="string">&#x27;vite-plugin-dts&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">build</span>: &#123;</span><br><span class="line">    <span class="attr">lib</span>: &#123;</span><br><span class="line">      <span class="attr">entry</span>: <span class="string">&#x27;src/main.ts&#x27;</span>,</span><br><span class="line">      <span class="attr">formats</span>: [<span class="string">&#x27;es&#x27;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="title function_">dts</span>(&#123;</span><br><span class="line">      <span class="attr">insertTypesEntry</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">include</span>: [<span class="string">&#x27;src/**/*&#x27;</span>],</span><br><span class="line">      <span class="attr">outputDir</span>: <span class="string">&#x27;dist/types&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://docs.npmjs.com/">npmDoc</a></p>
 <p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/reusability/plugins">vuePlugin</a></p>
 <p><a target="_blank" rel="noopener" href="https://cn.vite.dev/guide/build">Vite Library Mode</a></p>
@@ -547,7 +572,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:53</span>
+    <span title="站点阅读时长">1:54</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

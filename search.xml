@@ -1,370 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>PDP2.0类</title>
-    <url>/2024/12/06/PDP2.0%E7%B1%BB/</url>
-    <content><![CDATA[<h2 id="读取XML"><a href="#读取XML" class="headerlink" title="读取XML"></a>读取XML</h2><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Linger.Common.XmlHelper xml = <span class="keyword">new</span> Linger.Common.XmlHelper(<span class="string">&quot;environment.xml&quot;</span>);</span><br><span class="line"><span class="built_in">string</span> current = xml.GetNodeValue(<span class="string">&quot;CURRENT&quot;</span>).Trim();</span><br><span class="line">XmlNode currentConfig = xml.GetXmlNode(current);</span><br><span class="line">mapUrl = xml.GetNodeValue(current+ <span class="string">&quot;/MPA_URL&quot;</span>).Trim();</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><code>new Linger.Common.XmlHelper(&quot;environment.xml&quot;);</code>读取固定路径 &#x2F;App_Data&#x2F;下的文件</p>
-<p><code>environment.xml</code> 也可以拼路径 如 <code>load/environment.xml</code>就是读&#x2F;App_Data&#x2F;load&#x2F;environment.xml文件</p>
-<p>读取文件下的执行节点可以传相对路径</p>
-<p>读取CDATA内的值使用xml.GetNodeValue(“CURRENT”)</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>框架</category>
-        <category>PDP2</category>
-      </categories>
-      <tags>
-        <tag>PDP2</tag>
-        <tag>经验</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PDP2.0配置项</title>
-    <url>/2024/11/30/PDP2.0%E9%85%8D%E7%BD%AE%E9%A1%B9/</url>
-    <content><![CDATA[<h2 id="配置ORACLE数据库节点"><a href="#配置ORACLE数据库节点" class="headerlink" title="配置ORACLE数据库节点"></a>配置ORACLE数据库节点</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Open3000</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">IPCFG</span>&gt;</span>&lt;![CDATA[10.176.164.204:1521/o2000]]&gt;<span class="tag">&lt;/<span class="name">IPCFG</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DATABASE</span>&gt;</span>&lt;![CDATA[EMS]]&gt;<span class="tag">&lt;/<span class="name">DATABASE</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[ORACLE]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DBUSER</span>&gt;</span>&lt;![CDATA[fhyc]]&gt;<span class="tag">&lt;/<span class="name">DBUSER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PASSWORD</span>&gt;</span>&lt;![CDATA[2a5e7b6fcbb2fb411267d01af2d6f1432d584c03fc888d71b54f0f4dacfaf2d1]]&gt;<span class="tag">&lt;/<span class="name">PASSWORD</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">BATCHEX</span>&gt;</span>&lt;![CDATA[BEGIN;,COMMIT;]]&gt;<span class="tag">&lt;/<span class="name">BATCHEX</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Open3000</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><code>IPCFG</code>是IP加端口+服务名</p>
-</blockquote>
-<h2 id="ORACLE的SQL注意事项"><a href="#ORACLE的SQL注意事项" class="headerlink" title="ORACLE的SQL注意事项"></a>ORACLE的SQL注意事项</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">GetZWPlan</span> <span class="attr">db</span>=<span class="string">&quot;Open3000&quot;</span> <span class="attr">type</span>=<span class="string">&quot;load&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;time,value&quot;</span> <span class="attr">args</span>=<span class="string">&quot;s,e&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;2d&quot;</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[ </span><br><span class="line">        SELECT OCCUR_TIME, CUR_001</span><br><span class="line">        FROM EMS.yc_hs_800001</span><br><span class="line">        WHERE STA_001 = &#x27;1073741824&#x27; AND OCCUR_TIME &gt;=  TO_DATE(&#123;s&#125;,&#x27;YYYY-MM-DD HH24:MI:SS&#x27;) AND OCCUR_TIME &lt;= TO_DATE(&#123;e&#125;,&#x27;YYYY-MM-DD HH24:MI:SS&#x27;)</span><br><span class="line">        ]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">GetZWPlan</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>末尾不要加分号</li>
-<li>时间要通过函数转换</li>
-</ol>
-<h2 id="配置Mysql数据库"><a href="#配置Mysql数据库" class="headerlink" title="配置Mysql数据库"></a>配置Mysql数据库</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ConnMain</span> <span class="attr">Name</span>=<span class="string">&quot;国调云&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">IPCFG</span>&gt;</span>&lt;![CDATA[ 192.168.6.227; Pooling=false; Allow User Variables=True;SslMode=None; ]]&gt;<span class="tag">&lt;/<span class="name">IPCFG</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DATABASE</span>&gt;</span>&lt;![CDATA[ysh_db]]&gt;<span class="tag">&lt;/<span class="name">DATABASE</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[ MYSQL ]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DBUSER</span>&gt;</span>&lt;![CDATA[root]]&gt;<span class="tag">&lt;/<span class="name">DBUSER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PASSWORD</span>&gt;</span>&lt;![CDATA[c1e9829d774eb7d21a69c40c0fb848cff88f323a050a63ae11678d6ebc0b5158]]&gt;<span class="tag">&lt;/<span class="name">PASSWORD</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">BATCHEX</span>&gt;</span>&lt;![CDATA[BEGIN;,COMMIT;]]&gt;<span class="tag">&lt;/<span class="name">BATCHEX</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ConnMain</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><strong>Pooling&#x3D;false</strong> ：设置为 <code>false</code>表示不使用连接池，每次请求都会创建新的数据库连接。</li>
-<li><strong>Allow User Variables&#x3D;True</strong> ：允许在SQL查询中使用用户自定义的变量。</li>
-<li><strong>SslMode&#x3D;None</strong> ：当设置为 <code>None</code>时，表示不使用SSL连接。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>框架</category>
-        <category>PDP2</category>
-      </categories>
-      <tags>
-        <tag>PDP2</tag>
-        <tag>清单</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PDP2.0问题集合</title>
-    <url>/2024/11/20/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/</url>
-    <content><![CDATA[<h2 id="大小写问题"><a href="#大小写问题" class="headerlink" title="大小写问题"></a>大小写问题</h2><p>linux上区分大小写 windows上不区分大小写  当同时存在 <code>bin</code>和 <code>Bin</code>时读取要编译的dll会读取Bin下的dll</p>
-<h2 id="编译不通过问题"><a href="#编译不通过问题" class="headerlink" title="编译不通过问题"></a>编译不通过问题</h2><p>linux下吧没法编译并且LOG里面没有记录可能是由以下的dll造成的</p>
-<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093362747.jpg" alt="1732093362747"></p>
-<p><strong>云南主配微排除查出来的dll</strong></p>
-<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093463492.jpg" alt="1732093463492"></p>
-<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093510245.jpg" alt="1732093510245"></p>
-<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093524740.jpg" alt="1732093524740"></p>
-<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093541496.jpg" alt="1732093541496"></p>
-<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093574196.jpg" alt="1732093574196"></p>
-<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093592842.jpg" alt="1732093592842"></p>
-<h2 id="aspx文件请求Not-Found"><a href="#aspx文件请求Not-Found" class="headerlink" title="aspx文件请求Not Found"></a>aspx文件请求Not Found</h2><p>一把报错为 <code>ip/ajaxpro/... not found</code></p>
-<p><strong>解决办法</strong></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">system.web</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">httpHandlers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">add</span> <span class="attr">verb</span>=<span class="string">&quot;POST,GET&quot;</span> <span class="attr">path</span>=<span class="string">&quot;ajaxpro*.ashx&quot;</span> <span class="attr">type</span>=<span class="string">&quot;AjaxPro.AjaxHandlerFactory, AjaxPro.2&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">httpHandlers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">system.web</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="用户模块添加用户报错"><a href="#用户模块添加用户报错" class="headerlink" title="用户模块添加用户报错"></a>用户模块添加用户报错</h2>]]></content>
-      <categories>
-        <category>框架</category>
-        <category>PDP2</category>
-      </categories>
-      <tags>
-        <tag>PDP2</tag>
-        <tag>经验</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PDP获取数据</title>
-    <url>/2024/11/07/PDP%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE/</url>
-    <content><![CDATA[<h1 id="pdp获取数据"><a href="#pdp获取数据" class="headerlink" title="pdp获取数据"></a>pdp获取数据</h1><h2 id="获取参数的节点写法"><a href="#获取参数的节点写法" class="headerlink" title="获取参数的节点写法"></a>获取参数的节点写法</h2><p>type&#x3D;”sql” sql节点获取sql数据<br>fields&#x3D;”ID,Name” 获得数据的别名 ，目前不加默认为数组，通过索引获取，加了为一个数组的对象，<br>args: 输入的参数</p>
-<p>db:数据库节点</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">test1</span> <span class="attr">db</span>=<span class="string">&quot;SGAPP&quot;</span> <span class="attr">type</span>=<span class="string">&quot;sql&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;ID,Name&quot;</span> <span class="attr">args</span>=<span class="string">&quot;type&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;2d&quot;</span>&gt;</span>  </span><br><span class="line">    &lt;![CDATA[SELECT ID,NAME AS Name FROM SG_DB.SG_CON_PLANT_B WHERE PLANT_TYPE=&#123;type&#125;]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">test1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">test</span> <span class="attr">type</span>=<span class="string">&quot;dll&quot;</span> <span class="attr">dll</span>=<span class="string">&quot;PDP2.0:PDP.GetSystemParameter&quot;</span> <span class="attr">args</span>=<span class="string">&quot;key&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;2d&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="单条sql获取数据"><a href="#单条sql获取数据" class="headerlink" title="单条sql获取数据"></a>单条sql获取数据</h2><p>新写法：PDP.load<br>第一个参数为 “节点位置和名称，第二个位置通过对象传递参数，对象名为sql节点的参数名”</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable constant_">PDP</span>.<span class="title function_">load</span>(<span class="string">&quot;sync:test1&quot;</span>,&#123;<span class="attr">type</span>:<span class="number">1006</span>&#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="多条sql获取数据"><a href="#多条sql获取数据" class="headerlink" title="多条sql获取数据"></a>多条sql获取数据</h2><p>PDP.exec<br>每一条数据是一个对象，所有的打包在一个数组里<br>每个对象里的写法<br>声明type为load<br>xml:加载的sql节点 ,args:传递的参数，用对象传递</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable constant_">PDP</span>.<span class="title function_">exec</span>([&#123; <span class="attr">type</span>:<span class="string">&quot;load&quot;</span>,<span class="attr">xml</span>:<span class="string">&quot;sync:test1&quot;</span>,<span class="attr">args</span>:&#123;<span class="attr">type</span>:<span class="number">1006</span>&#125;&#125;])</span><br></pre></td></tr></table></figure>
-
-<p>SELECT * FROM SG_META_TABLE</p>
-<p>SELECT * FROM SG_META_OBJECT</p>
-<p>SELECT *  FROM SG_META_TABLE WHERE TABLE_NAME_ENG LIKE ‘%DEV_ACLINE%’</p>
-<p>SELECT * FROM SG_CON_SUBSTATION_B</p>
-<p>select * from ys_db_hb.ysh_sc_station</p>
-<h2 id="模拟数据写法"><a href="#模拟数据写法" class="headerlink" title="模拟数据写法"></a>模拟数据写法</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">test</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;id,name&quot;</span> <span class="attr">args</span>=<span class="string">&quot;&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;2d&quot;</span>&gt;</span></span><br><span class="line">    1,张三</span><br><span class="line">    2,李四</span><br><span class="line"><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="链接查询sql写法"><a href="#链接查询sql写法" class="headerlink" title="链接查询sql写法"></a>链接查询sql写法</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">test</span> <span class="attr">type</span>=<span class="string">&quot;calc&quot;</span> <span class="attr">args</span>=<span class="string">&quot;devid&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;2d&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;name&quot;</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">fields</span>=<span class="string">&quot;id,&quot;</span>&gt;</span></span><br><span class="line">      &lt;![CDATA[SELECT ZC_ID FROM YS_DB.YSH_GUD_DEVICE WHERE jxt_id=&#123;devid&#125;]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">b</span> <span class="attr">args</span>=<span class="string">&quot;a.id&quot;</span>&gt;</span></span><br><span class="line">      &lt;![CDATA[SELECT col3 FROM YS_DB.YSH_SC_DEVICE WHERE ID=&#123;a.id&#125;]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>参数往下穿，最外层的fields获取最下面的节点</p>
-<h2 id="union-SQL写法"><a href="#union-SQL写法" class="headerlink" title="union SQL写法"></a>union SQL写法</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">GetAllLinesLeng</span> <span class="attr">type</span>=<span class="string">&quot;union&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;ID,Length,Voltage&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">ac</span> <span class="attr">db</span>=<span class="string">&quot;SGC&quot;</span> <span class="attr">type</span>=<span class="string">&quot;sql&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;ID,Length,Voltage&quot;</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[ </span><br><span class="line">     SELECT A.ID,A.LENGTH,&#x27;交流&#x27; || V.NAME FROM SG_DATACENTER.SG_DEV_ACLINE_B AS A</span><br><span class="line">  JOIN SG_DATACENTER.SG_DIC_VOLTAGETYPE V </span><br><span class="line">     ON A.VOLTAGE_TYPE = V.CODE</span><br><span class="line">  WHERE V.CODE IN (1001,1003)</span><br><span class="line">     ]]&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">ac</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dc</span> <span class="attr">db</span>=<span class="string">&quot;SGC&quot;</span> <span class="attr">type</span>=<span class="string">&quot;sql&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;ID,Length,Voltage&quot;</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[ </span><br><span class="line">     SELECT A.ID,A.LENGTH,&#x27;直流&#x27; FROM SG_DATACENTER.SG_DEV_DCLINE_B AS A</span><br><span class="line">     JOIN (SELECT CODE,NAME FROM SG_DATACENTER.SG_DIC_VOLTAGETYPE ) AS B</span><br><span class="line">     ON A.VOLTAGE_TYPE = B.CODE</span><br><span class="line">     ]]&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">dc</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">GetAllLinesLeng</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="跨年写法"><a href="#跨年写法" class="headerlink" title="跨年写法"></a>跨年写法</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">test</span> <span class="attr">type</span>=<span class="string">&quot;period&quot;</span> <span class="attr">period</span>=<span class="string">&quot;y&quot;</span> <span class="attr">s</span>=<span class="string">&quot;0&quot;</span> <span class="attr">e</span>=<span class="string">&quot;1&quot;</span> <span class="attr">args</span>=<span class="string">&quot;st,et&quot;</span>&gt;</span></span><br><span class="line">	&lt;![CDATA[</span><br><span class="line">	SELECT * FROM SG_DATACENTER.SG_COM_TYPHOON_H_FORECAST_@T@&#123;0:yyyy&#125; </span><br><span class="line">	]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="内存数据库写法"><a href="#内存数据库写法" class="headerlink" title="内存数据库写法"></a>内存数据库写法</h2><blockquote>
-<p>可以将多个表查到服务器内存后建立内存数据库，故只能从data的表中执行SQL</p>
-<p>index为内存数据库表创建索引，</p>
-</blockquote>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">memory</span> <span class="attr">type</span>=<span class="string">&quot;memory&quot;</span> <span class="attr">args</span>=<span class="string">&quot;st,et&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">data</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[</span><br><span class="line">		SELECT * FROM SG_DATACENTER.SG_COM_TYPHOON_H_FORECAST_@T@&#123;0:yyyy&#125; </span><br><span class="line">		]]&gt;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">data</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">index</span> <span class="attr">a</span>=<span class="string">&quot;id&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">index</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">sql</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[</span><br><span class="line">		SELECT * FROM a</span><br><span class="line">		]]&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">memory</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="calc上一条sql结果是下一条的条件"><a href="#calc上一条sql结果是下一条的条件" class="headerlink" title="calc上一条sql结果是下一条的条件"></a>calc上一条sql结果是下一条的条件</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator">&lt;</span>test type<span class="operator">=</span>&quot;calc&quot; args<span class="operator">=</span>&quot;devid&quot; datatype<span class="operator">=</span>&quot;2d&quot; fields<span class="operator">=</span>&quot;name&quot; a<span class="operator">=</span>&quot;115123265642443316&quot;<span class="operator">&gt;</span></span><br><span class="line">       <span class="operator">&lt;</span>a fields<span class="operator">=</span>&quot;id,&quot;<span class="operator">&gt;</span></span><br><span class="line">     <span class="operator">&lt;</span><span class="operator">!</span>[CDATA[<span class="keyword">SELECT</span> ZC_ID <span class="keyword">FROM</span> ]]<span class="operator">&gt;</span><span class="operator">&lt;</span><span class="operator">!</span>[CDATA[same:SearchDistrictCommonSql:SchemaAppName]]<span class="operator">&gt;</span><span class="operator">&lt;</span><span class="operator">!</span>[CDATA[YSH_GUD_DEVICE <span class="keyword">WHERE</span> jxt_id<span class="operator">=</span>&#123;devid&#125;]]<span class="operator">&gt;</span></span><br><span class="line">   <span class="operator">&lt;</span><span class="operator">/</span>a<span class="operator">&gt;</span></span><br><span class="line">       <span class="operator">&lt;</span>b args<span class="operator">=</span>&quot;a.id&quot;<span class="operator">&gt;</span></span><br><span class="line">     <span class="operator">&lt;</span><span class="operator">!</span>[CDATA[<span class="keyword">SELECT</span> col3 <span class="keyword">FROM</span> ]]<span class="operator">&gt;</span><span class="operator">&lt;</span><span class="operator">!</span>[CDATA[same:SearchDistrictCommonSql:SchemaAppName]]<span class="operator">&gt;</span><span class="operator">&lt;</span><span class="operator">!</span>[CDATA[YSH_SC_DEVICE <span class="keyword">WHERE</span> ID<span class="operator">=</span>&#123;a.id&#125;]]<span class="operator">&gt;</span></span><br><span class="line">   <span class="operator">&lt;</span><span class="operator">/</span>b<span class="operator">&gt;</span></span><br><span class="line">   <span class="operator">&lt;</span><span class="operator">/</span>test<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="if写法"><a href="#if写法" class="headerlink" title="if写法"></a>if写法</h2><h2 id="Insert-获取自增id"><a href="#Insert-获取自增id" class="headerlink" title="Insert 获取自增id"></a>Insert 获取自增id</h2><p>insert SQL语句下面的sql想用增加后的id</p>
-<p>需要返回自增id的SQL请求条件type 为new,使用的为本身，使用上面返回的自增id使用占位符type可以干掉</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123; ref: &quot;0&quot;, value: -1, type: &quot;string&quot; &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="获取用户id"><a href="#获取用户id" class="headerlink" title="获取用户id"></a>获取用户id</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123; <span class="attr">ref</span>: <span class="string">&quot;lib&quot;</span>, <span class="attr">value</span>: <span class="string">&quot;userid&quot;</span> &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="复用SQL的节点"><a href="#复用SQL的节点" class="headerlink" title="复用SQL的节点"></a>复用SQL的节点</h2><p>注释语法same : 节点名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;![CDATA[same:SearchDistrictCommonSql:SchemaAppName]]&gt;</span><br></pre></td></tr></table></figure>
-
-<h1 id="设计文件获取SQL的写法"><a href="#设计文件获取SQL的写法" class="headerlink" title="设计文件获取SQL的写法"></a>设计文件获取SQL的写法</h1><h2 id="datasource节点获取"><a href="#datasource节点获取" class="headerlink" title="datasource节点获取"></a>datasource节点获取</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">datasource</span> <span class="attr">type</span>=<span class="string">&quot;load&quot;</span> <span class="attr">id</span>=<span class="string">&quot;factorys&quot;</span> <span class="attr">desc</span>=<span class="string">&quot;生产厂家正序&quot;</span> <span class="attr">node</span>=<span class="string">&quot;sc/sbzc:top5/factory&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">cols</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">col</span> <span class="attr">id</span>=<span class="string">&quot;col_type&quot;</span> <span class="attr">name</span>=<span class="string">&quot;type&quot;</span> <span class="attr">desc</span>=<span class="string">&quot;type&quot;</span> <span class="attr">from</span>=<span class="string">&quot;seldevtype&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">col</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">col</span> <span class="attr">id</span>=<span class="string">&quot;col_factory&quot;</span> <span class="attr">name</span>=<span class="string">&quot;factory&quot;</span> <span class="attr">desc</span>=<span class="string">&quot;factory&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">col</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">col</span> <span class="attr">id</span>=<span class="string">&quot;col_count&quot;</span> <span class="attr">name</span>=<span class="string">&quot;count&quot;</span> <span class="attr">desc</span>=<span class="string">&quot;count&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">col</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">cols</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">datasource</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>1、datasource在datasources节点下</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>type</td>
-<td>请求类型</td>
-<td>load|read|dll</td>
-</tr>
-<tr>
-<td>id</td>
-<td>获取到的参数的名字</td>
-<td></td>
-</tr>
-<tr>
-<td>desc</td>
-<td>获取参数失败的提示</td>
-<td></td>
-</tr>
-<tr>
-<td>node</td>
-<td>节点名</td>
-<td>：前的是文件路径，冒号后的是根节点，根节点下一层的SQL节点通过&#x2F;获取</td>
-</tr>
-</tbody></table>
-<p>col:name为字段名字</p>
-<p>from ：是条件变量，name是条件字段的名字</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"> this.load_deviceType(true,() =&gt; &#123;</span><br><span class="line">    console.log(this.deviceType)</span><br><span class="line">    var devtypes = [];</span><br><span class="line">    this.deviceType.forEach(item =&gt; &#123;</span><br><span class="line">      devtypes.push([item.type,item.type])</span><br><span class="line">    &#125;)</span><br><span class="line">    this.devtypes = devtypes;</span><br><span class="line">    this.seldevtype = devtypes[0][0];</span><br><span class="line">  </span><br><span class="line">    this.getFactoryTopData();</span><br><span class="line">    this.$nextTick(function()&#123;</span><br><span class="line">      this.resize();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>类型名_SQL变量名，是发布后的SQL请求函数，获取的值是返回值的value</p>
-<blockquote>
-<p>异步方法：</p>
-<p>this.load_deviceType(true,() &#x3D;&gt; {}）是回调函数，在有依赖关系时使用</p>
-<p>同步方法：</p>
-<p>var res &#x3D; this.load_deviceType();直接拿到值</p>
-</blockquote>
-<h2 id="直接通过函数调用"><a href="#直接通过函数调用" class="headerlink" title="直接通过函数调用"></a>直接通过函数调用</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">//单条</span><br><span class="line">PDP.load(&quot;sync:test1&quot;,&#123;type:1006&#125;)</span><br><span class="line">//多条</span><br><span class="line">PDP.exec([&#123; type:&quot;load&quot;,xml:&quot;sync:test1&quot;,args:&#123;type:1006&#125;&#125;])</span><br></pre></td></tr></table></figure>
-
-<h2 id="同步写法"><a href="#同步写法" class="headerlink" title="同步写法"></a>同步写法</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var user = PDP.load_userInfo();</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>框架</category>
-        <category>PDP2</category>
-      </categories>
-      <tags>
-        <tag>PDP2</tag>
-        <tag>清单</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PDP调用接口</title>
-    <url>/2024/11/07/PDP%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3/</url>
-    <content><![CDATA[<h1 id="PDP调用接口"><a href="#PDP调用接口" class="headerlink" title="PDP调用接口"></a>PDP调用接口</h1><p>PDP调用接口有两种,个人理解，两者都是http请求先到.ashx分发到对应函数，然后将讲函数返回值，通过http响应传给前端。</p>
-<h2 id="通过load类型调用"><a href="#通过load类型调用" class="headerlink" title="通过load类型调用"></a>通过load类型调用</h2><p>1、写配置文件</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">SetDeviceWhiteList</span> <span class="attr">type</span>=<span class="string">&quot;dll&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;json&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;ipE,device&quot;</span> <span class="attr">dll</span>=<span class="string">&quot;RCMain:RC.Main.SetDeviceWhiteList&quot;</span> <span class="attr">args</span>=<span class="string">&quot;ipE,device&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">SetDeviceWhiteList</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>参数名</th>
-<th>类型</th>
-<th>用法</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>fields，args</td>
-<td>String</td>
-<td>两者一样，和传入参数名一样即可</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<p>2、前端调用</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable constant_">PDP</span>.<span class="title function_">load</span>(<span class="string">&quot;main/remote:SetDeviceWhiteList&quot;</span>, &#123; <span class="attr">ipE</span>: vm.<span class="property">selRow</span>.<span class="property">ip</span>, <span class="attr">device</span>: whiteList &#125;, <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    vm.<span class="property">$Message</span>.<span class="title function_">success</span>(<span class="string">&quot;设置白名单成功!&quot;</span>)</span><br><span class="line">    vm.<span class="property">showDeviceWhitelist</span> = <span class="literal">false</span>;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="PDP-dll调用"><a href="#PDP-dll调用" class="headerlink" title="PDP.dll调用"></a>PDP.dll调用</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable constant_">PDP</span>.<span class="title function_">dll</span>(<span class="string">&quot;RCMain:RC.Main.RemoteControl&quot;</span>, [<span class="variable language_">this</span>.<span class="property">itemid</span>, remoteIp, netIP, port, osType, lowProtocol, userName, userPassword], <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  </span><br><span class="line">&#125;）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="PDP调用API接口"><a href="#PDP调用API接口" class="headerlink" title="PDP调用API接口"></a>PDP调用API接口</h2><p><strong>PDP调用示例:</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable constant_">PDP</span>.<span class="title function_">load</span>(<span class="string">&quot;jb/api:getLastImgListByCode&quot;</span>, &#123; <span class="attr">code</span>: code, <span class="attr">devCode</span>: code, <span class="attr">ak</span>: <span class="variable language_">this</span>.<span class="property">ak</span>, <span class="attr">token</span>: <span class="variable language_">this</span>.<span class="property">token</span>, <span class="attr">timestamp</span>: <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>(), <span class="attr">nonce</span>: <span class="built_in">parseInt</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">1000</span>) + <span class="string">&quot;&quot;</span> + <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>() &#125;, <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;getLastImgListByCode&quot;</span>, res);</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
-
-<p><strong>配置项示例:</strong></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">httppost</span> <span class="attr">type</span>=<span class="string">&quot;httppost&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;json&quot;</span> <span class="attr">args</span>=<span class="string">&quot;id&quot;</span> <span class="attr">Content-Type</span>=<span class="string">&quot;application/x-www-form-urlencoded; charset=UTF-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>&lt;![CDATA[http://127.0.0.1:8003/conn/ashx/AskHandler.ashx]]&gt;<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">data</span>&gt;</span>&lt;![CDATA[&#123;&#123; &quot;m&quot;: &quot;GetDataList&quot;, &quot;node&quot;: &quot;GetUserID&quot;, &quot;args&quot;: &quot;&#123;id&#125;&quot; &#125;&#125;]]&gt;<span class="tag">&lt;/<span class="name">data</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">headers</span> <span class="attr">ajaxToken</span>=<span class="string">&quot;Method&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">headers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">httppost</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">httpget</span> <span class="attr">type</span>=<span class="string">&quot;httpget&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;json,2d&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;group,name,value&quot;</span> <span class="attr">field</span>=<span class="string">&quot;1&quot;</span> <span class="attr">args</span>=<span class="string">&quot;conn,xml,args&quot;</span>&gt;</span></span><br><span class="line">  &lt;![CDATA[http://127.0.0.1:8003/conn/ashx/DataHandler.ashx?m=Read&amp;conn=&#123;conn&#125;&amp;xml=&#123;xml&#125;&amp;args=&#123;args&#125;]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">httpget</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>和一般的load调用方法一致</p>
-<p>httppost  这最外层的节点名称可以修改</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>框架</category>
-        <category>PDP2</category>
-      </categories>
-      <tags>
-        <tag>PDP2</tag>
-        <tag>清单</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>云南出差见闻</title>
-    <url>/2024/11/20/%E4%BA%91%E5%8D%97%E5%87%BA%E5%B7%AE%E8%A7%81%E9%97%BB/</url>
-    <content><![CDATA[<h2 id="项目初版搭建"><a href="#项目初版搭建" class="headerlink" title="项目初版搭建"></a>项目初版搭建</h2><p>1、项目需要和虚拟机保持操作系统和jexus版本一致方便重现问题</p>
-<p>2、更新至现场前需要将所有相关的进程全部停掉，重新启动后没有问题再将linux的程序更新至现场</p>
-<p>3、初版的配置可由工程将现场参数传回后由研发配置</p>
-<p>4、工程需要一些辅助工具或者脚本，如备份更新脚本 兼具回滚功能；图模数据校验工具</p>
-<h2 id="linux常用命令"><a href="#linux常用命令" class="headerlink" title="linux常用命令"></a>linux常用命令</h2><h2 id="telnat"><a href="#telnat" class="headerlink" title="telnat"></a>telnat</h2>]]></content>
-      <categories>
-        <category>项目</category>
-        <category>地理信息导航</category>
-      </categories>
-      <tags>
-        <tag>PDP2</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>冀北超高压</title>
-    <url>/2024/11/07/%E5%86%80%E5%8C%97%E8%B6%85%E9%AB%98%E5%8E%8B/</url>
-    <content><![CDATA[<h2 id="对接接口的一般实现步骤"><a href="#对接接口的一般实现步骤" class="headerlink" title="对接接口的一般实现步骤"></a>对接接口的一般实现步骤</h2><ol>
-<li>使用curl等工具让工程在现场测试通接口</li>
-<li>在保证接口畅通的情况下再进行程序的开发</li>
-<li>严格遵守这一顺序可按时下班。httpposthttppost</li>
-</ol>
-<h2 id="对接统一视频平台"><a href="#对接统一视频平台" class="headerlink" title="对接统一视频平台"></a>对接统一视频平台</h2><p>1、获取杆塔需要获取外网的图片机的数据所以需要穿透权限</p>
-<p>2、设备code 获取通过树结构资源获取接口逐层获取直至杆塔ID层级</p>
-<p>3、调用接口只有 <strong>查询最新图片信息</strong> 接口可用  接口中的双斜线 是错误要去掉</p>
-<p>4、鉴权和获取资源不会报跨域 查询最新图片信息接口会跨域  需要使用PDP.load调用api的方式来规避</p>
-<p>5、PDP.load调用api的方式来规避  需要查看 网站内是否有 <code>Mono.Security.dll</code> 该dll会造成调用失败  一般为超时错误</p>
-]]></content>
-      <categories>
-        <category>项目</category>
-        <category>地理信息导航</category>
-      </categories>
-      <tags>
-        <tag>PDP2</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>地理信息导航总结</title>
-    <url>/2024/11/07/%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AF%BC%E8%88%AA%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h2 id="Conncfg配置"><a href="#Conncfg配置" class="headerlink" title="Conncfg配置"></a>Conncfg配置</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ConnMain</span> <span class="attr">Name</span>=<span class="string">&quot;审计日志&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">IPCFG</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[192.168.12.82]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">IPCFG</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DATABASE</span>&gt;</span>&lt;![CDATA[ys_db]]&gt;<span class="tag">&lt;/<span class="name">DATABASE</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[MYSQL]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DBUSER</span>&gt;</span>&lt;![CDATA[root]]&gt;<span class="tag">&lt;/<span class="name">DBUSER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PASSWORD</span>&gt;</span>&lt;![CDATA[042fd2789843ff96fddf38a8fe5d763eaec70ec3838dc662ebb1bf0464926fbb]]&gt;<span class="tag">&lt;/<span class="name">PASSWORD</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">BATCHEX</span>&gt;</span>&lt;![CDATA[BEGIN;,COMMIT;]]&gt;<span class="tag">&lt;/<span class="name">BATCHEX</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ConnMain</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>标记</th>
-<th>作用</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ConnMain</td>
-<td>数据库节点名称，一个节点代表一个库的配置</td>
-<td></td>
-</tr>
-<tr>
-<td>IPCFG</td>
-<td>数据库IP和端口</td>
-<td>没写端口为默认端口</td>
-</tr>
-<tr>
-<td>DATABASE</td>
-<td>指定默认数据库</td>
-<td></td>
-</tr>
-<tr>
-<td>PROVIDER</td>
-<td>指定数据库类型</td>
-<td></td>
-</tr>
-<tr>
-<td>DBUSER</td>
-<td>用户名</td>
-<td></td>
-</tr>
-<tr>
-<td>PASSWORD</td>
-<td>密码(加密后的)</td>
-<td></td>
-</tr>
-<tr>
-<td>SETTINGS</td>
-<td>事务.未设置时默认为BEGIN;END;</td>
-<td>要以,分割；</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>项目</category>
-        <category>地理信息导航</category>
-      </categories>
-      <tags>
-        <tag>PDP2</tag>
-        <tag>配置</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>项目功能清单</title>
-    <url>/2024/11/20/%E9%A1%B9%E7%9B%AE%E5%8A%9F%E8%83%BD%E6%B8%85%E5%8D%95/</url>
-    <content><![CDATA[<h2 id="项目注意事项"><a href="#项目注意事项" class="headerlink" title="项目注意事项"></a>项目注意事项</h2><h3 id="供电路径"><a href="#供电路径" class="headerlink" title="供电路径"></a>供电路径</h3><ol>
-<li>接线图供电路径整体为 网页发送websocket消息至花海燕服务 ，花海燕服务为消息转发  ，花海燕消息转发给张聪的服务进行计算，将结果返回给花海燕服务再返回给页面</li>
-<li>花海燕服务 有三个端口  第一个和网页交互的端口 IP要设置为 <code>0.0.0.0</code> 剩余两个端口是和张聪的服务做交互  其ip要设置为127.0.0.1  或者真实IP，该服务 server  和client   要和张聪的服务IP做交叉</li>
-<li>花海燕服务下有两个exe   AI开头的带有[[[]]]]三个方括号的标识符   Web开头的没有携带标识符</li>
-<li>张聪的服务需要标识符才能接收到消息</li>
-<li>张聪的服务启动很耗费时间只有其完全将数据读入内存后才能正常提供服务。</li>
-<li>两个服务的消息接受转发都记录在SK开头的日志，张聪的服务是否启动的日志是NORMAL开头</li>
-</ol>
-<h3 id="供电路径调试记录"><a href="#供电路径调试记录" class="headerlink" title="供电路径调试记录"></a>供电路径调试记录</h3><p>1、调试消息交互按照消息的传递路径一个节点一个节点的验证，验证顺序为1、收到消息这一动作是否执行，2、收到的消息格式是否正确3、是否对收到的消息做了正确的响应。</p>
-<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><ul>
-<li><code>127.0.0.1</code> 是本地回环地址，仅用于本机通信 （任何发送到 <code>127.0.0.1</code> 的网络请求都不会发送到外部网络，而是会回送到本机。）。</li>
-<li><code>0.0.0.0</code> 是一个通配符地址，允许服务接受所有地址的连接 （当一个服务绑定到 <code>0.0.0.0</code> 时，意味着它将监听来自所有可用IP地址的请求，而不仅仅是本机请求）。</li>
-<li>实际IP是设备在网络中的唯一标识，用于进行外部通信（与 <code>127.0.0.1</code> 和 <code>0.0.0.0</code> 的区别在于，实际IP是分配给特定设备的，可以是动态或静态的，而前两者是特殊用途的地址）。</li>
-</ul>
-<blockquote>
-<p>如果你的服务需要接受来自不同主机的 WebSocket 消息，那么将服务的监听 IP 设置为 <code>0.0.0.0</code> 是一个合适的选择。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>项目</category>
-      </categories>
-      <tags>
-        <tag>经验</tag>
-        <tag>清单</tag>
-        <tag>注意事项</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AI提示词技巧及示例</title>
     <url>/2025/02/06/AI%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%8A%80%E5%B7%A7%E5%8F%8A%E7%A4%BA%E4%BE%8B/</url>
     <content><![CDATA[<h2 id="提示词的技巧"><a href="#提示词的技巧" class="headerlink" title="提示词的技巧"></a>提示词的技巧</h2><ol>
@@ -1074,25 +710,6 @@ B --&gt;|最终输出| E[用户]</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux学习笔记</title>
-    <url>/2024/12/02/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="启动过程"><a href="#启动过程" class="headerlink" title="启动过程"></a>启动过程</h2><ul>
-<li>内核的引导。</li>
-<li>运行 init。</li>
-<li>系统初始化。</li>
-<li>建立终端 。</li>
-<li>用户登录系统。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux常用命令</title>
     <url>/2024/12/02/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="ps-当前进程状态查询"><a href="#ps-当前进程状态查询" class="headerlink" title="ps 当前进程状态查询"></a>ps 当前进程状态查询</h3><blockquote>
@@ -1221,6 +838,25 @@ B --&gt;|最终输出| E[用户]</code></pre>
       <tags>
         <tag>Linux</tag>
         <tag>命令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux学习笔记</title>
+    <url>/2024/12/02/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="启动过程"><a href="#启动过程" class="headerlink" title="启动过程"></a>启动过程</h2><ul>
+<li>内核的引导。</li>
+<li>运行 init。</li>
+<li>系统初始化。</li>
+<li>建立终端 。</li>
+<li>用户登录系统。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -1756,9 +1392,9 @@ B --&gt;|最终输出| E[用户]</code></pre>
         <category>vue</category>
       </categories>
       <tags>
-        <tag>经验</tag>
         <tag>笔记</tag>
         <tag>vue</tag>
+        <tag>经验</tag>
         <tag>bug</tag>
       </tags>
   </entry>
@@ -2153,6 +1789,31 @@ B --&gt;|最终输出| E[用户]</code></pre>
 <li>执行 <code>npm publish --access=public</code>发布到 npm上</li>
 <li>在测试项目中从npm按照进行测试</li>
 </ul>
+<ol>
+<li><strong>依赖声明缺失</strong><br>搜索结果显示Vue3+Vite模板需要明确声明 <code>peerDependencies</code>(如vue、vite)[1][4]。检查 <code>package.json</code>是否包含必要的框架依赖声明。</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;peerDependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;vue&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^3.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>更新版本号</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm version patch</span><br></pre></td></tr></table></figure>
+
+
+<ol>
+<li><strong>子配置文件设置</strong> ： 在 <code>tsconfig.app.json</code>中添加声明文件生成配置：</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;compilerOptions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;declaration&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;declarationDir&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./dist/types&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;emitDeclarationOnly&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;include&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;src/**/*&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>DiffCopyInsert</p>
+<ol start="2">
+<li><strong>构建工具配置</strong> ： 如果是Vite项目，安装并配置声明文件插件：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install vite-plugin-dts -D</span><br></pre></td></tr></table></figure>
+
+<p>DiffCopyInsert</p>
+<p>在 <code>vite.config.ts</code>中：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> dts <span class="keyword">from</span> <span class="string">&#x27;vite-plugin-dts&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">build</span>: &#123;</span><br><span class="line">    <span class="attr">lib</span>: &#123;</span><br><span class="line">      <span class="attr">entry</span>: <span class="string">&#x27;src/main.ts&#x27;</span>,</span><br><span class="line">      <span class="attr">formats</span>: [<span class="string">&#x27;es&#x27;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="title function_">dts</span>(&#123;</span><br><span class="line">      <span class="attr">insertTypesEntry</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">include</span>: [<span class="string">&#x27;src/**/*&#x27;</span>],</span><br><span class="line">      <span class="attr">outputDir</span>: <span class="string">&#x27;dist/types&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://docs.npmjs.com/">npmDoc</a></p>
 <p><a href="https://cn.vuejs.org/guide/reusability/plugins">vuePlugin</a></p>
 <p><a href="https://cn.vite.dev/guide/build">Vite Library Mode</a></p>
@@ -2887,6 +2548,370 @@ B --&gt;|最终输出| E[用户]</code></pre>
         <tag>笔记</tag>
         <tag>浏览器</tag>
         <tag>跨域</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PDP2.0类</title>
+    <url>/2024/12/06/PDP2.0%E7%B1%BB/</url>
+    <content><![CDATA[<h2 id="读取XML"><a href="#读取XML" class="headerlink" title="读取XML"></a>读取XML</h2><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Linger.Common.XmlHelper xml = <span class="keyword">new</span> Linger.Common.XmlHelper(<span class="string">&quot;environment.xml&quot;</span>);</span><br><span class="line"><span class="built_in">string</span> current = xml.GetNodeValue(<span class="string">&quot;CURRENT&quot;</span>).Trim();</span><br><span class="line">XmlNode currentConfig = xml.GetXmlNode(current);</span><br><span class="line">mapUrl = xml.GetNodeValue(current+ <span class="string">&quot;/MPA_URL&quot;</span>).Trim();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>new Linger.Common.XmlHelper(&quot;environment.xml&quot;);</code>读取固定路径 &#x2F;App_Data&#x2F;下的文件</p>
+<p><code>environment.xml</code> 也可以拼路径 如 <code>load/environment.xml</code>就是读&#x2F;App_Data&#x2F;load&#x2F;environment.xml文件</p>
+<p>读取文件下的执行节点可以传相对路径</p>
+<p>读取CDATA内的值使用xml.GetNodeValue(“CURRENT”)</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>框架</category>
+        <category>PDP2</category>
+      </categories>
+      <tags>
+        <tag>经验</tag>
+        <tag>PDP2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PDP2.0问题集合</title>
+    <url>/2024/11/20/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/</url>
+    <content><![CDATA[<h2 id="大小写问题"><a href="#大小写问题" class="headerlink" title="大小写问题"></a>大小写问题</h2><p>linux上区分大小写 windows上不区分大小写  当同时存在 <code>bin</code>和 <code>Bin</code>时读取要编译的dll会读取Bin下的dll</p>
+<h2 id="编译不通过问题"><a href="#编译不通过问题" class="headerlink" title="编译不通过问题"></a>编译不通过问题</h2><p>linux下吧没法编译并且LOG里面没有记录可能是由以下的dll造成的</p>
+<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093362747.jpg" alt="1732093362747"></p>
+<p><strong>云南主配微排除查出来的dll</strong></p>
+<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093463492.jpg" alt="1732093463492"></p>
+<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093510245.jpg" alt="1732093510245"></p>
+<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093524740.jpg" alt="1732093524740"></p>
+<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093541496.jpg" alt="1732093541496"></p>
+<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093574196.jpg" alt="1732093574196"></p>
+<p><img src="/image/PDP2.0%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/1732093592842.jpg" alt="1732093592842"></p>
+<h2 id="aspx文件请求Not-Found"><a href="#aspx文件请求Not-Found" class="headerlink" title="aspx文件请求Not Found"></a>aspx文件请求Not Found</h2><p>一把报错为 <code>ip/ajaxpro/... not found</code></p>
+<p><strong>解决办法</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">system.web</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">httpHandlers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">add</span> <span class="attr">verb</span>=<span class="string">&quot;POST,GET&quot;</span> <span class="attr">path</span>=<span class="string">&quot;ajaxpro*.ashx&quot;</span> <span class="attr">type</span>=<span class="string">&quot;AjaxPro.AjaxHandlerFactory, AjaxPro.2&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">httpHandlers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">system.web</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="用户模块添加用户报错"><a href="#用户模块添加用户报错" class="headerlink" title="用户模块添加用户报错"></a>用户模块添加用户报错</h2>]]></content>
+      <categories>
+        <category>框架</category>
+        <category>PDP2</category>
+      </categories>
+      <tags>
+        <tag>经验</tag>
+        <tag>PDP2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PDP2.0配置项</title>
+    <url>/2024/11/30/PDP2.0%E9%85%8D%E7%BD%AE%E9%A1%B9/</url>
+    <content><![CDATA[<h2 id="配置ORACLE数据库节点"><a href="#配置ORACLE数据库节点" class="headerlink" title="配置ORACLE数据库节点"></a>配置ORACLE数据库节点</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Open3000</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">IPCFG</span>&gt;</span>&lt;![CDATA[10.176.164.204:1521/o2000]]&gt;<span class="tag">&lt;/<span class="name">IPCFG</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DATABASE</span>&gt;</span>&lt;![CDATA[EMS]]&gt;<span class="tag">&lt;/<span class="name">DATABASE</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[ORACLE]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DBUSER</span>&gt;</span>&lt;![CDATA[fhyc]]&gt;<span class="tag">&lt;/<span class="name">DBUSER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PASSWORD</span>&gt;</span>&lt;![CDATA[2a5e7b6fcbb2fb411267d01af2d6f1432d584c03fc888d71b54f0f4dacfaf2d1]]&gt;<span class="tag">&lt;/<span class="name">PASSWORD</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">BATCHEX</span>&gt;</span>&lt;![CDATA[BEGIN;,COMMIT;]]&gt;<span class="tag">&lt;/<span class="name">BATCHEX</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Open3000</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>IPCFG</code>是IP加端口+服务名</p>
+</blockquote>
+<h2 id="ORACLE的SQL注意事项"><a href="#ORACLE的SQL注意事项" class="headerlink" title="ORACLE的SQL注意事项"></a>ORACLE的SQL注意事项</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">GetZWPlan</span> <span class="attr">db</span>=<span class="string">&quot;Open3000&quot;</span> <span class="attr">type</span>=<span class="string">&quot;load&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;time,value&quot;</span> <span class="attr">args</span>=<span class="string">&quot;s,e&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;2d&quot;</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[ </span><br><span class="line">        SELECT OCCUR_TIME, CUR_001</span><br><span class="line">        FROM EMS.yc_hs_800001</span><br><span class="line">        WHERE STA_001 = &#x27;1073741824&#x27; AND OCCUR_TIME &gt;=  TO_DATE(&#123;s&#125;,&#x27;YYYY-MM-DD HH24:MI:SS&#x27;) AND OCCUR_TIME &lt;= TO_DATE(&#123;e&#125;,&#x27;YYYY-MM-DD HH24:MI:SS&#x27;)</span><br><span class="line">        ]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">GetZWPlan</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>末尾不要加分号</li>
+<li>时间要通过函数转换</li>
+</ol>
+<h2 id="配置Mysql数据库"><a href="#配置Mysql数据库" class="headerlink" title="配置Mysql数据库"></a>配置Mysql数据库</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ConnMain</span> <span class="attr">Name</span>=<span class="string">&quot;国调云&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">IPCFG</span>&gt;</span>&lt;![CDATA[ 192.168.6.227; Pooling=false; Allow User Variables=True;SslMode=None; ]]&gt;<span class="tag">&lt;/<span class="name">IPCFG</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DATABASE</span>&gt;</span>&lt;![CDATA[ysh_db]]&gt;<span class="tag">&lt;/<span class="name">DATABASE</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[ MYSQL ]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DBUSER</span>&gt;</span>&lt;![CDATA[root]]&gt;<span class="tag">&lt;/<span class="name">DBUSER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PASSWORD</span>&gt;</span>&lt;![CDATA[c1e9829d774eb7d21a69c40c0fb848cff88f323a050a63ae11678d6ebc0b5158]]&gt;<span class="tag">&lt;/<span class="name">PASSWORD</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">BATCHEX</span>&gt;</span>&lt;![CDATA[BEGIN;,COMMIT;]]&gt;<span class="tag">&lt;/<span class="name">BATCHEX</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ConnMain</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><strong>Pooling&#x3D;false</strong> ：设置为 <code>false</code>表示不使用连接池，每次请求都会创建新的数据库连接。</li>
+<li><strong>Allow User Variables&#x3D;True</strong> ：允许在SQL查询中使用用户自定义的变量。</li>
+<li><strong>SslMode&#x3D;None</strong> ：当设置为 <code>None</code>时，表示不使用SSL连接。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>框架</category>
+        <category>PDP2</category>
+      </categories>
+      <tags>
+        <tag>PDP2</tag>
+        <tag>清单</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PDP获取数据</title>
+    <url>/2024/11/07/PDP%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE/</url>
+    <content><![CDATA[<h1 id="pdp获取数据"><a href="#pdp获取数据" class="headerlink" title="pdp获取数据"></a>pdp获取数据</h1><h2 id="获取参数的节点写法"><a href="#获取参数的节点写法" class="headerlink" title="获取参数的节点写法"></a>获取参数的节点写法</h2><p>type&#x3D;”sql” sql节点获取sql数据<br>fields&#x3D;”ID,Name” 获得数据的别名 ，目前不加默认为数组，通过索引获取，加了为一个数组的对象，<br>args: 输入的参数</p>
+<p>db:数据库节点</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">test1</span> <span class="attr">db</span>=<span class="string">&quot;SGAPP&quot;</span> <span class="attr">type</span>=<span class="string">&quot;sql&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;ID,Name&quot;</span> <span class="attr">args</span>=<span class="string">&quot;type&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;2d&quot;</span>&gt;</span>  </span><br><span class="line">    &lt;![CDATA[SELECT ID,NAME AS Name FROM SG_DB.SG_CON_PLANT_B WHERE PLANT_TYPE=&#123;type&#125;]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">test1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">test</span> <span class="attr">type</span>=<span class="string">&quot;dll&quot;</span> <span class="attr">dll</span>=<span class="string">&quot;PDP2.0:PDP.GetSystemParameter&quot;</span> <span class="attr">args</span>=<span class="string">&quot;key&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;2d&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="单条sql获取数据"><a href="#单条sql获取数据" class="headerlink" title="单条sql获取数据"></a>单条sql获取数据</h2><p>新写法：PDP.load<br>第一个参数为 “节点位置和名称，第二个位置通过对象传递参数，对象名为sql节点的参数名”</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable constant_">PDP</span>.<span class="title function_">load</span>(<span class="string">&quot;sync:test1&quot;</span>,&#123;<span class="attr">type</span>:<span class="number">1006</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="多条sql获取数据"><a href="#多条sql获取数据" class="headerlink" title="多条sql获取数据"></a>多条sql获取数据</h2><p>PDP.exec<br>每一条数据是一个对象，所有的打包在一个数组里<br>每个对象里的写法<br>声明type为load<br>xml:加载的sql节点 ,args:传递的参数，用对象传递</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable constant_">PDP</span>.<span class="title function_">exec</span>([&#123; <span class="attr">type</span>:<span class="string">&quot;load&quot;</span>,<span class="attr">xml</span>:<span class="string">&quot;sync:test1&quot;</span>,<span class="attr">args</span>:&#123;<span class="attr">type</span>:<span class="number">1006</span>&#125;&#125;])</span><br></pre></td></tr></table></figure>
+
+<p>SELECT * FROM SG_META_TABLE</p>
+<p>SELECT * FROM SG_META_OBJECT</p>
+<p>SELECT *  FROM SG_META_TABLE WHERE TABLE_NAME_ENG LIKE ‘%DEV_ACLINE%’</p>
+<p>SELECT * FROM SG_CON_SUBSTATION_B</p>
+<p>select * from ys_db_hb.ysh_sc_station</p>
+<h2 id="模拟数据写法"><a href="#模拟数据写法" class="headerlink" title="模拟数据写法"></a>模拟数据写法</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">test</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;id,name&quot;</span> <span class="attr">args</span>=<span class="string">&quot;&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;2d&quot;</span>&gt;</span></span><br><span class="line">    1,张三</span><br><span class="line">    2,李四</span><br><span class="line"><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="链接查询sql写法"><a href="#链接查询sql写法" class="headerlink" title="链接查询sql写法"></a>链接查询sql写法</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">test</span> <span class="attr">type</span>=<span class="string">&quot;calc&quot;</span> <span class="attr">args</span>=<span class="string">&quot;devid&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;2d&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;name&quot;</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">fields</span>=<span class="string">&quot;id,&quot;</span>&gt;</span></span><br><span class="line">      &lt;![CDATA[SELECT ZC_ID FROM YS_DB.YSH_GUD_DEVICE WHERE jxt_id=&#123;devid&#125;]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">b</span> <span class="attr">args</span>=<span class="string">&quot;a.id&quot;</span>&gt;</span></span><br><span class="line">      &lt;![CDATA[SELECT col3 FROM YS_DB.YSH_SC_DEVICE WHERE ID=&#123;a.id&#125;]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>参数往下穿，最外层的fields获取最下面的节点</p>
+<h2 id="union-SQL写法"><a href="#union-SQL写法" class="headerlink" title="union SQL写法"></a>union SQL写法</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">GetAllLinesLeng</span> <span class="attr">type</span>=<span class="string">&quot;union&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;ID,Length,Voltage&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">ac</span> <span class="attr">db</span>=<span class="string">&quot;SGC&quot;</span> <span class="attr">type</span>=<span class="string">&quot;sql&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;ID,Length,Voltage&quot;</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[ </span><br><span class="line">     SELECT A.ID,A.LENGTH,&#x27;交流&#x27; || V.NAME FROM SG_DATACENTER.SG_DEV_ACLINE_B AS A</span><br><span class="line">  JOIN SG_DATACENTER.SG_DIC_VOLTAGETYPE V </span><br><span class="line">     ON A.VOLTAGE_TYPE = V.CODE</span><br><span class="line">  WHERE V.CODE IN (1001,1003)</span><br><span class="line">     ]]&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">ac</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dc</span> <span class="attr">db</span>=<span class="string">&quot;SGC&quot;</span> <span class="attr">type</span>=<span class="string">&quot;sql&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;ID,Length,Voltage&quot;</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[ </span><br><span class="line">     SELECT A.ID,A.LENGTH,&#x27;直流&#x27; FROM SG_DATACENTER.SG_DEV_DCLINE_B AS A</span><br><span class="line">     JOIN (SELECT CODE,NAME FROM SG_DATACENTER.SG_DIC_VOLTAGETYPE ) AS B</span><br><span class="line">     ON A.VOLTAGE_TYPE = B.CODE</span><br><span class="line">     ]]&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">dc</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">GetAllLinesLeng</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="跨年写法"><a href="#跨年写法" class="headerlink" title="跨年写法"></a>跨年写法</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">test</span> <span class="attr">type</span>=<span class="string">&quot;period&quot;</span> <span class="attr">period</span>=<span class="string">&quot;y&quot;</span> <span class="attr">s</span>=<span class="string">&quot;0&quot;</span> <span class="attr">e</span>=<span class="string">&quot;1&quot;</span> <span class="attr">args</span>=<span class="string">&quot;st,et&quot;</span>&gt;</span></span><br><span class="line">	&lt;![CDATA[</span><br><span class="line">	SELECT * FROM SG_DATACENTER.SG_COM_TYPHOON_H_FORECAST_@T@&#123;0:yyyy&#125; </span><br><span class="line">	]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="内存数据库写法"><a href="#内存数据库写法" class="headerlink" title="内存数据库写法"></a>内存数据库写法</h2><blockquote>
+<p>可以将多个表查到服务器内存后建立内存数据库，故只能从data的表中执行SQL</p>
+<p>index为内存数据库表创建索引，</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">memory</span> <span class="attr">type</span>=<span class="string">&quot;memory&quot;</span> <span class="attr">args</span>=<span class="string">&quot;st,et&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">data</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[</span><br><span class="line">		SELECT * FROM SG_DATACENTER.SG_COM_TYPHOON_H_FORECAST_@T@&#123;0:yyyy&#125; </span><br><span class="line">		]]&gt;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">data</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">index</span> <span class="attr">a</span>=<span class="string">&quot;id&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">index</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">sql</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[</span><br><span class="line">		SELECT * FROM a</span><br><span class="line">		]]&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">memory</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="calc上一条sql结果是下一条的条件"><a href="#calc上一条sql结果是下一条的条件" class="headerlink" title="calc上一条sql结果是下一条的条件"></a>calc上一条sql结果是下一条的条件</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator">&lt;</span>test type<span class="operator">=</span>&quot;calc&quot; args<span class="operator">=</span>&quot;devid&quot; datatype<span class="operator">=</span>&quot;2d&quot; fields<span class="operator">=</span>&quot;name&quot; a<span class="operator">=</span>&quot;115123265642443316&quot;<span class="operator">&gt;</span></span><br><span class="line">       <span class="operator">&lt;</span>a fields<span class="operator">=</span>&quot;id,&quot;<span class="operator">&gt;</span></span><br><span class="line">     <span class="operator">&lt;</span><span class="operator">!</span>[CDATA[<span class="keyword">SELECT</span> ZC_ID <span class="keyword">FROM</span> ]]<span class="operator">&gt;</span><span class="operator">&lt;</span><span class="operator">!</span>[CDATA[same:SearchDistrictCommonSql:SchemaAppName]]<span class="operator">&gt;</span><span class="operator">&lt;</span><span class="operator">!</span>[CDATA[YSH_GUD_DEVICE <span class="keyword">WHERE</span> jxt_id<span class="operator">=</span>&#123;devid&#125;]]<span class="operator">&gt;</span></span><br><span class="line">   <span class="operator">&lt;</span><span class="operator">/</span>a<span class="operator">&gt;</span></span><br><span class="line">       <span class="operator">&lt;</span>b args<span class="operator">=</span>&quot;a.id&quot;<span class="operator">&gt;</span></span><br><span class="line">     <span class="operator">&lt;</span><span class="operator">!</span>[CDATA[<span class="keyword">SELECT</span> col3 <span class="keyword">FROM</span> ]]<span class="operator">&gt;</span><span class="operator">&lt;</span><span class="operator">!</span>[CDATA[same:SearchDistrictCommonSql:SchemaAppName]]<span class="operator">&gt;</span><span class="operator">&lt;</span><span class="operator">!</span>[CDATA[YSH_SC_DEVICE <span class="keyword">WHERE</span> ID<span class="operator">=</span>&#123;a.id&#125;]]<span class="operator">&gt;</span></span><br><span class="line">   <span class="operator">&lt;</span><span class="operator">/</span>b<span class="operator">&gt;</span></span><br><span class="line">   <span class="operator">&lt;</span><span class="operator">/</span>test<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="if写法"><a href="#if写法" class="headerlink" title="if写法"></a>if写法</h2><h2 id="Insert-获取自增id"><a href="#Insert-获取自增id" class="headerlink" title="Insert 获取自增id"></a>Insert 获取自增id</h2><p>insert SQL语句下面的sql想用增加后的id</p>
+<p>需要返回自增id的SQL请求条件type 为new,使用的为本身，使用上面返回的自增id使用占位符type可以干掉</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123; ref: &quot;0&quot;, value: -1, type: &quot;string&quot; &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取用户id"><a href="#获取用户id" class="headerlink" title="获取用户id"></a>获取用户id</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123; <span class="attr">ref</span>: <span class="string">&quot;lib&quot;</span>, <span class="attr">value</span>: <span class="string">&quot;userid&quot;</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="复用SQL的节点"><a href="#复用SQL的节点" class="headerlink" title="复用SQL的节点"></a>复用SQL的节点</h2><p>注释语法same : 节点名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;![CDATA[same:SearchDistrictCommonSql:SchemaAppName]]&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="设计文件获取SQL的写法"><a href="#设计文件获取SQL的写法" class="headerlink" title="设计文件获取SQL的写法"></a>设计文件获取SQL的写法</h1><h2 id="datasource节点获取"><a href="#datasource节点获取" class="headerlink" title="datasource节点获取"></a>datasource节点获取</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">datasource</span> <span class="attr">type</span>=<span class="string">&quot;load&quot;</span> <span class="attr">id</span>=<span class="string">&quot;factorys&quot;</span> <span class="attr">desc</span>=<span class="string">&quot;生产厂家正序&quot;</span> <span class="attr">node</span>=<span class="string">&quot;sc/sbzc:top5/factory&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">cols</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">col</span> <span class="attr">id</span>=<span class="string">&quot;col_type&quot;</span> <span class="attr">name</span>=<span class="string">&quot;type&quot;</span> <span class="attr">desc</span>=<span class="string">&quot;type&quot;</span> <span class="attr">from</span>=<span class="string">&quot;seldevtype&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">col</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">col</span> <span class="attr">id</span>=<span class="string">&quot;col_factory&quot;</span> <span class="attr">name</span>=<span class="string">&quot;factory&quot;</span> <span class="attr">desc</span>=<span class="string">&quot;factory&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">col</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">col</span> <span class="attr">id</span>=<span class="string">&quot;col_count&quot;</span> <span class="attr">name</span>=<span class="string">&quot;count&quot;</span> <span class="attr">desc</span>=<span class="string">&quot;count&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">col</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">cols</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">datasource</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>1、datasource在datasources节点下</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>type</td>
+<td>请求类型</td>
+<td>load|read|dll</td>
+</tr>
+<tr>
+<td>id</td>
+<td>获取到的参数的名字</td>
+<td></td>
+</tr>
+<tr>
+<td>desc</td>
+<td>获取参数失败的提示</td>
+<td></td>
+</tr>
+<tr>
+<td>node</td>
+<td>节点名</td>
+<td>：前的是文件路径，冒号后的是根节点，根节点下一层的SQL节点通过&#x2F;获取</td>
+</tr>
+</tbody></table>
+<p>col:name为字段名字</p>
+<p>from ：是条件变量，name是条件字段的名字</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"> this.load_deviceType(true,() =&gt; &#123;</span><br><span class="line">    console.log(this.deviceType)</span><br><span class="line">    var devtypes = [];</span><br><span class="line">    this.deviceType.forEach(item =&gt; &#123;</span><br><span class="line">      devtypes.push([item.type,item.type])</span><br><span class="line">    &#125;)</span><br><span class="line">    this.devtypes = devtypes;</span><br><span class="line">    this.seldevtype = devtypes[0][0];</span><br><span class="line">  </span><br><span class="line">    this.getFactoryTopData();</span><br><span class="line">    this.$nextTick(function()&#123;</span><br><span class="line">      this.resize();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>类型名_SQL变量名，是发布后的SQL请求函数，获取的值是返回值的value</p>
+<blockquote>
+<p>异步方法：</p>
+<p>this.load_deviceType(true,() &#x3D;&gt; {}）是回调函数，在有依赖关系时使用</p>
+<p>同步方法：</p>
+<p>var res &#x3D; this.load_deviceType();直接拿到值</p>
+</blockquote>
+<h2 id="直接通过函数调用"><a href="#直接通过函数调用" class="headerlink" title="直接通过函数调用"></a>直接通过函数调用</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">//单条</span><br><span class="line">PDP.load(&quot;sync:test1&quot;,&#123;type:1006&#125;)</span><br><span class="line">//多条</span><br><span class="line">PDP.exec([&#123; type:&quot;load&quot;,xml:&quot;sync:test1&quot;,args:&#123;type:1006&#125;&#125;])</span><br></pre></td></tr></table></figure>
+
+<h2 id="同步写法"><a href="#同步写法" class="headerlink" title="同步写法"></a>同步写法</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var user = PDP.load_userInfo();</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>框架</category>
+        <category>PDP2</category>
+      </categories>
+      <tags>
+        <tag>PDP2</tag>
+        <tag>清单</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PDP调用接口</title>
+    <url>/2024/11/07/PDP%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3/</url>
+    <content><![CDATA[<h1 id="PDP调用接口"><a href="#PDP调用接口" class="headerlink" title="PDP调用接口"></a>PDP调用接口</h1><p>PDP调用接口有两种,个人理解，两者都是http请求先到.ashx分发到对应函数，然后将讲函数返回值，通过http响应传给前端。</p>
+<h2 id="通过load类型调用"><a href="#通过load类型调用" class="headerlink" title="通过load类型调用"></a>通过load类型调用</h2><p>1、写配置文件</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">SetDeviceWhiteList</span> <span class="attr">type</span>=<span class="string">&quot;dll&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;json&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;ipE,device&quot;</span> <span class="attr">dll</span>=<span class="string">&quot;RCMain:RC.Main.SetDeviceWhiteList&quot;</span> <span class="attr">args</span>=<span class="string">&quot;ipE,device&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">SetDeviceWhiteList</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fields，args</td>
+<td>String</td>
+<td>两者一样，和传入参数名一样即可</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>2、前端调用</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable constant_">PDP</span>.<span class="title function_">load</span>(<span class="string">&quot;main/remote:SetDeviceWhiteList&quot;</span>, &#123; <span class="attr">ipE</span>: vm.<span class="property">selRow</span>.<span class="property">ip</span>, <span class="attr">device</span>: whiteList &#125;, <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    vm.<span class="property">$Message</span>.<span class="title function_">success</span>(<span class="string">&quot;设置白名单成功!&quot;</span>)</span><br><span class="line">    vm.<span class="property">showDeviceWhitelist</span> = <span class="literal">false</span>;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="PDP-dll调用"><a href="#PDP-dll调用" class="headerlink" title="PDP.dll调用"></a>PDP.dll调用</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable constant_">PDP</span>.<span class="title function_">dll</span>(<span class="string">&quot;RCMain:RC.Main.RemoteControl&quot;</span>, [<span class="variable language_">this</span>.<span class="property">itemid</span>, remoteIp, netIP, port, osType, lowProtocol, userName, userPassword], <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  </span><br><span class="line">&#125;）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="PDP调用API接口"><a href="#PDP调用API接口" class="headerlink" title="PDP调用API接口"></a>PDP调用API接口</h2><p><strong>PDP调用示例:</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable constant_">PDP</span>.<span class="title function_">load</span>(<span class="string">&quot;jb/api:getLastImgListByCode&quot;</span>, &#123; <span class="attr">code</span>: code, <span class="attr">devCode</span>: code, <span class="attr">ak</span>: <span class="variable language_">this</span>.<span class="property">ak</span>, <span class="attr">token</span>: <span class="variable language_">this</span>.<span class="property">token</span>, <span class="attr">timestamp</span>: <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>(), <span class="attr">nonce</span>: <span class="built_in">parseInt</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">1000</span>) + <span class="string">&quot;&quot;</span> + <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>() &#125;, <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;getLastImgListByCode&quot;</span>, res);</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置项示例:</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">httppost</span> <span class="attr">type</span>=<span class="string">&quot;httppost&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;json&quot;</span> <span class="attr">args</span>=<span class="string">&quot;id&quot;</span> <span class="attr">Content-Type</span>=<span class="string">&quot;application/x-www-form-urlencoded; charset=UTF-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>&lt;![CDATA[http://127.0.0.1:8003/conn/ashx/AskHandler.ashx]]&gt;<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">data</span>&gt;</span>&lt;![CDATA[&#123;&#123; &quot;m&quot;: &quot;GetDataList&quot;, &quot;node&quot;: &quot;GetUserID&quot;, &quot;args&quot;: &quot;&#123;id&#125;&quot; &#125;&#125;]]&gt;<span class="tag">&lt;/<span class="name">data</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">headers</span> <span class="attr">ajaxToken</span>=<span class="string">&quot;Method&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">headers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">httppost</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">httpget</span> <span class="attr">type</span>=<span class="string">&quot;httpget&quot;</span> <span class="attr">datatype</span>=<span class="string">&quot;json,2d&quot;</span> <span class="attr">fields</span>=<span class="string">&quot;group,name,value&quot;</span> <span class="attr">field</span>=<span class="string">&quot;1&quot;</span> <span class="attr">args</span>=<span class="string">&quot;conn,xml,args&quot;</span>&gt;</span></span><br><span class="line">  &lt;![CDATA[http://127.0.0.1:8003/conn/ashx/DataHandler.ashx?m=Read&amp;conn=&#123;conn&#125;&amp;xml=&#123;xml&#125;&amp;args=&#123;args&#125;]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">httpget</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>和一般的load调用方法一致</p>
+<p>httppost  这最外层的节点名称可以修改</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>框架</category>
+        <category>PDP2</category>
+      </categories>
+      <tags>
+        <tag>PDP2</tag>
+        <tag>清单</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>云南出差见闻</title>
+    <url>/2024/11/20/%E4%BA%91%E5%8D%97%E5%87%BA%E5%B7%AE%E8%A7%81%E9%97%BB/</url>
+    <content><![CDATA[<h2 id="项目初版搭建"><a href="#项目初版搭建" class="headerlink" title="项目初版搭建"></a>项目初版搭建</h2><p>1、项目需要和虚拟机保持操作系统和jexus版本一致方便重现问题</p>
+<p>2、更新至现场前需要将所有相关的进程全部停掉，重新启动后没有问题再将linux的程序更新至现场</p>
+<p>3、初版的配置可由工程将现场参数传回后由研发配置</p>
+<p>4、工程需要一些辅助工具或者脚本，如备份更新脚本 兼具回滚功能；图模数据校验工具</p>
+<h2 id="linux常用命令"><a href="#linux常用命令" class="headerlink" title="linux常用命令"></a>linux常用命令</h2><h2 id="telnat"><a href="#telnat" class="headerlink" title="telnat"></a>telnat</h2>]]></content>
+      <categories>
+        <category>项目</category>
+        <category>地理信息导航</category>
+      </categories>
+      <tags>
+        <tag>PDP2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>冀北超高压</title>
+    <url>/2024/11/07/%E5%86%80%E5%8C%97%E8%B6%85%E9%AB%98%E5%8E%8B/</url>
+    <content><![CDATA[<h2 id="对接接口的一般实现步骤"><a href="#对接接口的一般实现步骤" class="headerlink" title="对接接口的一般实现步骤"></a>对接接口的一般实现步骤</h2><ol>
+<li>使用curl等工具让工程在现场测试通接口</li>
+<li>在保证接口畅通的情况下再进行程序的开发</li>
+<li>严格遵守这一顺序可按时下班。httpposthttppost</li>
+</ol>
+<h2 id="对接统一视频平台"><a href="#对接统一视频平台" class="headerlink" title="对接统一视频平台"></a>对接统一视频平台</h2><p>1、获取杆塔需要获取外网的图片机的数据所以需要穿透权限</p>
+<p>2、设备code 获取通过树结构资源获取接口逐层获取直至杆塔ID层级</p>
+<p>3、调用接口只有 <strong>查询最新图片信息</strong> 接口可用  接口中的双斜线 是错误要去掉</p>
+<p>4、鉴权和获取资源不会报跨域 查询最新图片信息接口会跨域  需要使用PDP.load调用api的方式来规避</p>
+<p>5、PDP.load调用api的方式来规避  需要查看 网站内是否有 <code>Mono.Security.dll</code> 该dll会造成调用失败  一般为超时错误</p>
+]]></content>
+      <categories>
+        <category>项目</category>
+        <category>地理信息导航</category>
+      </categories>
+      <tags>
+        <tag>PDP2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>地理信息导航总结</title>
+    <url>/2024/11/07/%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AF%BC%E8%88%AA%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="Conncfg配置"><a href="#Conncfg配置" class="headerlink" title="Conncfg配置"></a>Conncfg配置</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ConnMain</span> <span class="attr">Name</span>=<span class="string">&quot;审计日志&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">IPCFG</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[192.168.12.82]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">IPCFG</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DATABASE</span>&gt;</span>&lt;![CDATA[ys_db]]&gt;<span class="tag">&lt;/<span class="name">DATABASE</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">        &lt;![CDATA[MYSQL]]&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">PROVIDER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DBUSER</span>&gt;</span>&lt;![CDATA[root]]&gt;<span class="tag">&lt;/<span class="name">DBUSER</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PASSWORD</span>&gt;</span>&lt;![CDATA[042fd2789843ff96fddf38a8fe5d763eaec70ec3838dc662ebb1bf0464926fbb]]&gt;<span class="tag">&lt;/<span class="name">PASSWORD</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">BATCHEX</span>&gt;</span>&lt;![CDATA[BEGIN;,COMMIT;]]&gt;<span class="tag">&lt;/<span class="name">BATCHEX</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">SETTINGS</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ConnMain</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>标记</th>
+<th>作用</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ConnMain</td>
+<td>数据库节点名称，一个节点代表一个库的配置</td>
+<td></td>
+</tr>
+<tr>
+<td>IPCFG</td>
+<td>数据库IP和端口</td>
+<td>没写端口为默认端口</td>
+</tr>
+<tr>
+<td>DATABASE</td>
+<td>指定默认数据库</td>
+<td></td>
+</tr>
+<tr>
+<td>PROVIDER</td>
+<td>指定数据库类型</td>
+<td></td>
+</tr>
+<tr>
+<td>DBUSER</td>
+<td>用户名</td>
+<td></td>
+</tr>
+<tr>
+<td>PASSWORD</td>
+<td>密码(加密后的)</td>
+<td></td>
+</tr>
+<tr>
+<td>SETTINGS</td>
+<td>事务.未设置时默认为BEGIN;END;</td>
+<td>要以,分割；</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>项目</category>
+        <category>地理信息导航</category>
+      </categories>
+      <tags>
+        <tag>PDP2</tag>
+        <tag>配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>项目功能清单</title>
+    <url>/2024/11/20/%E9%A1%B9%E7%9B%AE%E5%8A%9F%E8%83%BD%E6%B8%85%E5%8D%95/</url>
+    <content><![CDATA[<h2 id="项目注意事项"><a href="#项目注意事项" class="headerlink" title="项目注意事项"></a>项目注意事项</h2><h3 id="供电路径"><a href="#供电路径" class="headerlink" title="供电路径"></a>供电路径</h3><ol>
+<li>接线图供电路径整体为 网页发送websocket消息至花海燕服务 ，花海燕服务为消息转发  ，花海燕消息转发给张聪的服务进行计算，将结果返回给花海燕服务再返回给页面</li>
+<li>花海燕服务 有三个端口  第一个和网页交互的端口 IP要设置为 <code>0.0.0.0</code> 剩余两个端口是和张聪的服务做交互  其ip要设置为127.0.0.1  或者真实IP，该服务 server  和client   要和张聪的服务IP做交叉</li>
+<li>花海燕服务下有两个exe   AI开头的带有[[[]]]]三个方括号的标识符   Web开头的没有携带标识符</li>
+<li>张聪的服务需要标识符才能接收到消息</li>
+<li>张聪的服务启动很耗费时间只有其完全将数据读入内存后才能正常提供服务。</li>
+<li>两个服务的消息接受转发都记录在SK开头的日志，张聪的服务是否启动的日志是NORMAL开头</li>
+</ol>
+<h3 id="供电路径调试记录"><a href="#供电路径调试记录" class="headerlink" title="供电路径调试记录"></a>供电路径调试记录</h3><p>1、调试消息交互按照消息的传递路径一个节点一个节点的验证，验证顺序为1、收到消息这一动作是否执行，2、收到的消息格式是否正确3、是否对收到的消息做了正确的响应。</p>
+<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><ul>
+<li><code>127.0.0.1</code> 是本地回环地址，仅用于本机通信 （任何发送到 <code>127.0.0.1</code> 的网络请求都不会发送到外部网络，而是会回送到本机。）。</li>
+<li><code>0.0.0.0</code> 是一个通配符地址，允许服务接受所有地址的连接 （当一个服务绑定到 <code>0.0.0.0</code> 时，意味着它将监听来自所有可用IP地址的请求，而不仅仅是本机请求）。</li>
+<li>实际IP是设备在网络中的唯一标识，用于进行外部通信（与 <code>127.0.0.1</code> 和 <code>0.0.0.0</code> 的区别在于，实际IP是分配给特定设备的，可以是动态或静态的，而前两者是特殊用途的地址）。</li>
+</ul>
+<blockquote>
+<p>如果你的服务需要接受来自不同主机的 WebSocket 消息，那么将服务的监听 IP 设置为 <code>0.0.0.0</code> 是一个合适的选择。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>项目</category>
+      </categories>
+      <tags>
+        <tag>经验</tag>
+        <tag>清单</tag>
+        <tag>注意事项</tag>
       </tags>
   </entry>
 </search>
